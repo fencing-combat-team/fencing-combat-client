@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public class Map : SyncBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SyncUpdate()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    public override void Start()
     {
-        
+        base.Start();
     }
 }
+
