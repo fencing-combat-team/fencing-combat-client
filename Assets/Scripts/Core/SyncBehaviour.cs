@@ -7,10 +7,9 @@ using UnityEngine;
 /// </summary>
 public abstract class SyncBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
     public virtual void Start()
     {
-
+        GameManager.Instance.AddSyncBehaviour(this);
     }
 
     public long DeltaTime { get; set; }
