@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: d55aea73ff3f7644c8a29bf4722d312d
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 102f76c195951d1499a77854b93f342b
+  - enabled: 1
+    path: Assets/Scenes/RoomSearching.unity
+    guid: df8ed14eb2b49554abe6c05dd35552f0
   m_configObjects: {}
