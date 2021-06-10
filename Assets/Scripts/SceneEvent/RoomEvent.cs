@@ -9,6 +9,7 @@ public class RoomEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         var btnNewGame = GameObject.Find("btnNewGame").GetComponent<Button>();
         btnNewGame.onClick.AddListener(() =>
         {
