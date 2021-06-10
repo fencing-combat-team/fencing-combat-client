@@ -13,7 +13,8 @@ public class RoomEvent : MonoBehaviour
         var btnNewGame = GameObject.Find("btnNewGame").GetComponent<Button>();
         btnNewGame.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Combat");
+            //SceneManager.LoadScene("Combat");
+            SceneManager.LoadScene("SampleScene");
         });
 
         var btnQuitRoom = GameObject.Find("btnQuitRoom").GetComponent<Button>();
