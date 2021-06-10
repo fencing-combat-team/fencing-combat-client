@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cherry
+  - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -41,3 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+    uniqueID: 3089417421
+  - name: BackGround
+    locked: 0
+  - name: FontGround
+    uniqueID: 2648910757
+  - name: Player
+    locked: 0
+    uniqueID: 2088196649
+    uniqueID: 2115799285
+    locked: 0
+    locked: 0
+  - name: Enemy
