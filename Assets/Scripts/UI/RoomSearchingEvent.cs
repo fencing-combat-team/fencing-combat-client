@@ -25,7 +25,8 @@ public class RoomSearchingEvent : MonoBehaviour
         txtTestRoom.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         go_btnTestRoom.transform.localPosition = new Vector3(300,-25,0);
         go_btnTestRoom.transform.localScale = new Vector3(1, 1, 1);
-        go_txtTestRoom.transform.localPosition = new Vector3(0, 0, 0);
+        go_txtTestRoom.transform.localPosition = new Vector3(20, 0, 0);
+        go_btnTestRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(580, 30);
         go_txtTestRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(580, 30);
 
         txtTestRoom.color = Color.black;
