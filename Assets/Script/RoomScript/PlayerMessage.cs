@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMessage : MonoBehaviour
+public class PlayerMessage 
 {
-    // Start is called before the first frame update
-    void Start()
+    #region ±äÁ¿
+    public string name;
+    public int score;
+    //image headphoto  Í·Ïñ£¬Í¼Æ¬
+
+    #endregion
+
+    public PlayerMessage()
     {
-        
+        name = "None Player";
+        score = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public PlayerMessage(string name)
     {
-        
+        this.name = name;
+        score = 0;
     }
 }

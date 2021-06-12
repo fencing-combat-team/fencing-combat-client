@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelMessage : MonoBehaviour
+public class LevelMessage
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    string name;
+    string information;
+    // image image ¹Ø¿¨ËõÂÔÍ¼
 }
