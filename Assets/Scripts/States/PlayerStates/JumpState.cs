@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using Utils;
 
@@ -13,7 +14,6 @@ public class JumpState : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateEnter(animator, stateInfo, layerIndex);
         this.InitComponents(animator);
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
     }

@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Singleton<T> where T : new()
+namespace Core
 {
-    private static T _instance;
-    private static object _lock = new object();
-
-    public static T Instance
+    public class Singleton<T> where T : new()
     {
-        get
+        private static T _instance;
+        private static object _lock = new object();
+
+        public static T Instance
         {
-            lock (_lock)
+            get
             {
-                if (_instance == null)
+                lock (_lock)
                 {
-                    _instance = new T();
+                    if (_instance == null)
+                    {
+                        _instance = new T();
+                    }
+                    return _instance;
                 }
-                return _instance;
             }
         }
     }

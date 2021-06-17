@@ -1,4 +1,5 @@
 using System.Reflection;
+using Core;
 using UnityEngine;
 
 namespace Utils
@@ -15,6 +16,11 @@ namespace Utils
             InitComponents(animator.gameObject, behaviour);
         }
 
+        /// <summary>
+        /// 从GameObject获取Component， 注入[Autowired]特性标记的变量
+        /// </summary>
+        /// <param name="go">从GameObject</param>
+        /// <param name="target">要注入的对象</param>
         public static void InitComponents(GameObject go, object target)
         {
             //自动GetComponent

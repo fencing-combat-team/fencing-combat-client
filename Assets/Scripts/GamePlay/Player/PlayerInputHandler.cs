@@ -1,9 +1,13 @@
 using System;
+using Core;
 using UnityEngine;
 using Utils;
 
 namespace GamePlay.Player
 {
+    /// <summary>
+    /// 玩家输入控制器（仅处理事件和动画）
+    /// </summary>
     public class PlayerInputHandler : MonoBehaviour
     {
         [Autowired] private Animator _animator;
