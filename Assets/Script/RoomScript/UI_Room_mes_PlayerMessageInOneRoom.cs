@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMessageInOneRoom : MonoBehaviour
+public class UI_Room_mes_PlayerMessageInOneRoom : MonoBehaviour
 {
-    private static PlayerMessageInOneRoom instance;
+    private static UI_Room_mes_PlayerMessageInOneRoom instance;
 
     private PlayerMessage player1;
     private PlayerMessage player2;
     private PlayerMessage player3;
     private PlayerMessage player4;
 
-    private RoomSetting RoomSetting;
+    private UI_Room_mes_RoomSetting RoomSetting;
 
     private void Awake()
     {
