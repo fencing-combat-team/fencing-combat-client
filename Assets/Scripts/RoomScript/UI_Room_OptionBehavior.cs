@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-//ÕâÊÇ¹Ø¿¨ÉèÖÃ½çÃæµÄ¿ØÖÆÀà
+//è¿™æ˜¯å…³å¡è®¾ç½®ç•Œé¢çš„æ§åˆ¶ç±»
 
 public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
 {
@@ -59,7 +59,7 @@ public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
                 break;
         }
 
-        text.text = "ĞèÒª½øĞĞµÄ¹Ø¿¨Êı£º"+sliderroundnum.value.ToString()+"\nÃ¿¾ÖÓÎÏ·Íæ¼ÒµÄÉúÃüÊı£º"+sliderlivesNum.value.ToString()+"\nÍæ¼Ò¸´»îÊ±¼ä£º"+sliderRecoverTime.value.ToString()+"\nÊÇ·ñ¿ªÆôµÀ¾ß£º" ;
+        text.text = "éœ€è¦è¿›è¡Œçš„å…³å¡æ•°ï¼š"+sliderroundnum.value.ToString()+"\næ¯å±€æ¸¸æˆç©å®¶çš„ç”Ÿå‘½æ•°ï¼š"+sliderlivesNum.value.ToString()+"\nç©å®¶å¤æ´»æ—¶é—´ï¼š"+sliderRecoverTime.value.ToString()+"\næ˜¯å¦å¼€å¯é“å…·ï¼š" ;
 
         this.Hide();
     }
