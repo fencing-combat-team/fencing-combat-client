@@ -53,12 +53,12 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    void CheckGround()//ÅĞ¶ÏÈËÎïÊÇ·ñÕ¾ÔÚµØÃæÉÏ
+    void CheckGround()//åˆ¤æ–­äººç‰©æ˜¯å¦ç«™åœ¨åœ°é¢ä¸Š
     {
         isGround = feet.IsTouchingLayers(LayerMask.GetMask("Ground"));
         Debug.Log(isGround);
     }
-    void GroundMovement()//½ÇÉ«ÒÆ¶¯
+    void GroundMovement()//è§’è‰²ç§»åŠ¨
     {
         float horizontalMove = Input.GetAxis("Horizontal");
         float facedirection = Input.GetAxisRaw("Horizontal");
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
  
    
     }
-    void Jump()//½ÇÉ«ÌøÔ¾£¨Ë³´øÍê³ÉÌøÔ¾¶¯»­µÄÇĞ»»£©
+    void Jump()//è§’è‰²è·³è·ƒï¼ˆé¡ºå¸¦å®Œæˆè·³è·ƒåŠ¨ç”»çš„åˆ‡æ¢ï¼‰
     {
         if (jumpPressed)
         {
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SwitchAnim()//ÕıÊ½ÊµÏÖÌøÔ¾Ö®ºó»Øµ½Õ¾Á¢×´Ì¬µÄ¶¯»­ÇĞ»»
+    void SwitchAnim()//æ­£å¼å®ç°è·³è·ƒä¹‹åå›åˆ°ç«™ç«‹çŠ¶æ€çš„åŠ¨ç”»åˆ‡æ¢
     {
         
 
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
     }
 
    
-    private void OnTriggerEnter2D(Collider2D collision) //Ê°È¡ÌØÊâµÀ¾ßµÄ»ù±¾´úÂë£¬Ö®ºó»¹»áÔÙ×öĞŞ¸Ä
+    private void OnTriggerEnter2D(Collider2D collision) //æ‹¾å–ç‰¹æ®Šé“å…·çš„åŸºæœ¬ä»£ç ï¼Œä¹‹åè¿˜ä¼šå†åšä¿®æ”¹
     {
         if(collision.tag == "Cherry") 
         {
