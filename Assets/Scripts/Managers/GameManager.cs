@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonBehaviour<GameManager>
 {
 
     public long DeltaTime { get; set; } = 100;
@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     {
         //´¦ÀíÍøÂç°ü
         //NetworkManager.Instance.ReceivedMessages;
-        _lastUpdate += Time.deltaTime;
+        _lastUpdate += Time.deltaTime * 1000;
         if (!IsSimulate && _lastUpdate < DeltaTime)
         {
             return;
