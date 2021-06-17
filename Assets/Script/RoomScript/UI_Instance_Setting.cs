@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UI_Instance_Setting : MonoBehaviour
 {
-    public UI_Room_mes_RoomSetting setting;
+    public static LevelsMessages instance;
 
+    private void Start()
+    {
+    }
 }

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class LevelMessage
 {
-    string name;
-    string information;
+    public string name;
+    public string information;
+    public string Levelname;
     // image image ¹Ø¿¨ËõÂÔÍ¼
+
+    public LevelMessage(string name,string information) 
+    { 
+        this.name = name;
+        this.information = information;
+    }
 }

@@ -8,7 +8,7 @@ using System;
 
 public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
 {
-    public UI_Room_mes_RoomSetting roomSetting;
+    UI_Room_mes_RoomSetting roomSetting;
 
     public Slider sliderroundnum;
     public Slider sliderplayerNum;
@@ -20,16 +20,16 @@ public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
     public Image player3;
     public Image player4;
 
-
+    public Text text;
 
 
     public void OnExitClick()
     {
         /*
-        roomSetting.GetInstance().PlayerNum = Convert.ToInt32(sliderplayerNum.value);
-        roomSetting.GetInstance().LivesNum = Convert.ToInt32(sliderlivesNum.value);
-        roomSetting.GetInstance().roundNums = Convert.ToInt32(sliderroundnum.value);
-        roomSetting.GetInstance().recovertime = sliderRecoverTime.value;
+        roomSetting.PlayerNum = Convert.ToInt32(sliderplayerNum.value);
+        roomSetting.LivesNum = Convert.ToInt32(sliderlivesNum.value);
+        roomSetting.roundNums = Convert.ToInt32(sliderroundnum.value);
+        roomSetting.recovertime = sliderRecoverTime.value;
         */
             
         switch (Convert.ToInt32(sliderplayerNum.value))
@@ -57,9 +57,9 @@ public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
 
             default:
                 break;
-
         }
-           
+
+        text.text = "需要进行的关卡数："+sliderroundnum.value.ToString()+"\n每局游戏玩家的生命数："+sliderlivesNum.value.ToString()+"\n玩家复活时间："+sliderRecoverTime.value.ToString()+"\n是否开启道具：" ;
 
         this.Hide();
     }

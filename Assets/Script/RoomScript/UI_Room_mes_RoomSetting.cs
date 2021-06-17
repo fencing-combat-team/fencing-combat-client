@@ -6,13 +6,16 @@ public class UI_Room_mes_RoomSetting
 {
     private static UI_Room_mes_RoomSetting instance;
 
-    public UI_Room_mes_RoomSetting GetInstance()
+    public static UI_Room_mes_RoomSetting Instance
     {
-        if (instance == null)
+        get
         {
-            instance = new UI_Room_mes_RoomSetting();
+            if (instance == null)
+            {
+                instance = new UI_Room_mes_RoomSetting();
+            }
+            return instance;
         }
-        return instance;
     }
 
 
