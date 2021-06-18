@@ -1,4 +1,5 @@
 using Core;
+using GamePlay.Player;
 using UnityEngine;
 using UnityEngine.Animations;
 using Utils;
@@ -12,7 +13,7 @@ namespace States.PlayerStates
         private float speed = 2f;
 
         [Autowired]
-        private Rigidbody2D _rigidbody2D;
+        private PlayerMovement _movement;
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -23,7 +24,7 @@ namespace States.PlayerStates
         {
             //移动
             float move = Input.GetAxis("Horizontal");
-            _rigidbody2D.velocity = new Vector2(move * speed, _rigidbody2D.velocity.y);
+            _movement.ChangeSpeed(move * speed);
         }
     }
 }

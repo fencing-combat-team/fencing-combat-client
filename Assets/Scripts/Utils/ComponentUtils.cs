@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Core;
 using UnityEngine;
@@ -10,11 +11,32 @@ namespace Utils
         {
             InitComponents(behaviour.gameObject, behaviour);
         }
-        
+
         public static void InitComponents(this StateMachineBehaviour behaviour, Animator animator)
         {
             InitComponents(animator.gameObject, behaviour);
         }
+
+        
+        private static Component GetComponent(GameObject defaultGo, Type type, AutowiredAttribute attribute)
+        {
+            Component result;
+            if (attribute.GameObject == null)
+                result = defaultGo.GetComponent(type);
+            else
+            {
+                var gameObject = GameObject.Find(attribute.GameObject);
+                result = gameObject.GetComponent(type);
+            }
+
+            if (result == null)
+            {
+                Debug.LogError($"无法加载类型为: {type}的组件");
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// 从GameObject获取Component， 注入[Autowired]特性标记的变量
@@ -30,15 +52,9 @@ namespace Utils
             {
                 var attr = property.GetCustomAttribute<AutowiredAttribute>();
                 if (attr == null) continue;
-                var comp = go.GetComponent(property.PropertyType);
+                var comp = GetComponent(go, property.PropertyType, attr);
                 if (comp != null)
-                {
                     property.SetValue(target, comp);
-                }
-                else
-                {
-                    Debug.LogError($"无法加载类型为: {property.PropertyType}的组件");
-                }
             }
 
             var fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -46,15 +62,9 @@ namespace Utils
             {
                 var attr = field.GetCustomAttribute<AutowiredAttribute>();
                 if (attr == null) continue;
-                var comp = go.GetComponent(field.FieldType);
+                var comp = GetComponent(go, field.FieldType, attr);
                 if (comp != null)
-                {
                     field.SetValue(target, comp);
-                }
-                else
-                {
-                    Debug.LogError($"无法加载类型为: {field.FieldType}的组件");
-                }
             }
         }
     }

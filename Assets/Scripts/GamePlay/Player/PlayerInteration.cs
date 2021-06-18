@@ -7,12 +7,19 @@ namespace GamePlay.Player
 {
     public class PlayerInteration : MonoBehaviour
     {
-        [Autowired] private BoxCollider2D _collider;
-        [Autowired] private Animator _animator;
-
-        [Tooltip("地面的碰撞箱子")] [SerializeField] private BoxCollider2D[] _ground;
-
         private static readonly int ONGround = Animator.StringToHash("onGround");
+        
+        
+        [Autowired]
+        private BoxCollider2D _collider;
+
+        [Autowired]
+        private Animator _animator;
+
+        [Tooltip("地面的碰撞箱子")]
+        [SerializeField]
+        private BoxCollider2D[] _ground;
+
 
         // Start is called before the first frame update
         void Start()

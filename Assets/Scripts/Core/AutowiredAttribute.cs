@@ -8,6 +8,6 @@ namespace Core
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class AutowiredAttribute : Attribute
     {
-
+        public string GameObject { get; set; }
     }
 }

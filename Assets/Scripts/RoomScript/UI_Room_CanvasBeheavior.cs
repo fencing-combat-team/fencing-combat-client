@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-// ÕâÊÇ·¿¼äÖ÷Òª½çÃæµÄ¿ØÖÆÀà
+// è¿™æ˜¯æˆ¿é—´ä¸»è¦ç•Œé¢çš„æ§åˆ¶ç±»
 
 
 public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
 {
-    #region ¿ÉÉèÖÃ±äÁ¿
+    #region å¯è®¾ç½®å˜é‡
     public UI_Room_OptionBehavior optionBehavior;
 
     public Text levelname;
@@ -25,8 +25,8 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     public Button settingButton;
     #endregion
 
-    #region µ¥Àı±äÁ¿
-    //ÄÚ²¿±äÁ¿
+    #region å•ä¾‹å˜é‡
+    //å†…éƒ¨å˜é‡
     LevelsMessages levelsMessages;
     LevelMessage temp1;
 
@@ -35,7 +35,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     private float t = 1;
     private float Timeleft = 10;
 
-    //Íâ²¿»áÒıÓÃµ½µÄ±äÁ¿
+    //å¤–éƒ¨ä¼šå¼•ç”¨åˆ°çš„å˜é‡
     public float TimeleftPercent = 1;
     public int Seconds = 10;
     public int Grounds = 3;
@@ -66,7 +66,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
 
     }
 
-    #region °´¼üµã»÷º¯Êı
+    #region æŒ‰é”®ç‚¹å‡»å‡½æ•°
     public void OnStartButtonClicked()
     {
         isPlay = true;

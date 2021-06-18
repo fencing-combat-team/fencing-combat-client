@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public partial class PlayerAttack : MonoBehaviour
 {
     public int playerDamage;
     public float timeStart, timeEnd;

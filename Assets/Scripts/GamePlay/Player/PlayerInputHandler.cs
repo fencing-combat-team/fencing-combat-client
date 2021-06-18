@@ -10,7 +10,8 @@ namespace GamePlay.Player
     /// </summary>
     public class PlayerInputHandler : MonoBehaviour
     {
-        [Autowired] private Animator _animator;
+        [Autowired]
+        private Animator _animator;
 
         private static readonly int Jump = Animator.StringToHash("jump");
         private static readonly int Move = Animator.StringToHash("move");
