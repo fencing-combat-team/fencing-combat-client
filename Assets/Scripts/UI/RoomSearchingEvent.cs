@@ -22,7 +22,7 @@ public class RoomSearchingEvent : MonoBehaviour
         txtTestRoom.transform.SetParent(go_btnTestRoom.transform);
         txtTestRoom.GetComponent<Text>().text = "≤‚ ‘∑øº‰";
         txtTestRoom.fontSize = 25;
-        txtTestRoom.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        txtTestRoom.font = UnityEngine.Resources.GetBuiltinResource<Font>("Arial.ttf");
         go_btnTestRoom.transform.localPosition = new Vector3(300,-25,0);
         go_btnTestRoom.transform.localScale = new Vector3(1, 1, 1);
         go_txtTestRoom.transform.localPosition = new Vector3(20, 0, 0);

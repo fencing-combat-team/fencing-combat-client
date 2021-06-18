@@ -15,7 +15,6 @@ namespace GamePlay.Player
 
         private static readonly int Jump = Animator.StringToHash("jump");
         private static readonly int Move = Animator.StringToHash("move");
-        private static readonly int Attack = Animator.StringToHash("attack");
         private static readonly int Defending = Animator.StringToHash("defending");
 
         // Start is called before the first frame update
@@ -39,11 +38,6 @@ namespace GamePlay.Player
             if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int) move, 1);
 
 
-            //攻击
-            if (Input.GetButtonDown("Fire1"))
-            {
-                _animator.SetTrigger(Attack);
-            }
 
             //格挡
             var defending = Input.GetButton("Fire2");
