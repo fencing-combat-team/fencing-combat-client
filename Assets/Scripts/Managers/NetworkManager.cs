@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
-public class NetworkManager : Singleton<NetworkManager>
+public class NetworkManager : SingletonBehaviour<NetworkManager>
 {
     // Start is called before the first frame update
     void Start()

@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 5
-  timeStart: 0.1
-  timeEnd: 0.2
+  timeStart: 0.2
+  timeEnd: 0.5
   damage: 5
 --- !u!60 &192861422
 PolygonCollider2D:
@@ -196,16 +196,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.6465974, y: -0.34139478}
-      - {x: 1.5394807, y: -0.18327796}
-      - {x: 1.3673263, y: 0.05262065}
-      - {x: 1.2724123, y: 0.14262879}
-      - {x: 1.1300144, y: 0.24236023}
-      - {x: 0.91079426, y: 0.27983713}
-      - {x: 0.53869194, y: -0.63001895}
-      - {x: 0.5842448, y: -0.907863}
-      - {x: 1.5550624, y: -0.8372587}
-      - {x: 1.6853404, y: -0.67944175}
+    - - {x: -0.005623102, y: -0.356183}
+      - {x: 0.06915569, y: -0.33855492}
+      - {x: 0.49574184, y: -0.32448053}
+      - {x: 0.49519402, y: -0.49188668}
+      - {x: 1.0033623, y: -0.49875915}
+      - {x: 0.9950323, y: -0.33778483}
+      - {x: 1.1721585, y: -0.34778178}
+      - {x: 1.1511481, y: 0.17220533}
+      - {x: 0.9860133, y: 0.1610247}
+      - {x: 0.99726164, y: 0.33548945}
+      - {x: 0.9259519, y: 0.34638444}
+      - {x: 0.8478028, y: 0.33644325}
+      - {x: 0.023320317, y: -0.17897633}
+      - {x: 0.015820086, y: -0.34590834}
+      - {x: 0.031684756, y: -0.3492454}
+      - {x: 0.033119917, y: -0.3540995}
 --- !u!60 &269306302 stripped
 PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 2487584769432852662, guid: 3606a31fbd36e6b4a8e6776a79889909, type: 3}
@@ -321,28 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &614739737
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +397,7 @@ GameObject:
   - component: {fileID: 931608029}
   - component: {fileID: 931608028}
   - component: {fileID: 931608030}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -477,7 +461,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1646056539
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1043,8 +1027,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024356365, y: -0.5115861}
-  m_Size: {x: 1.0378737, y: 1.4663411}
+  m_Offset: {x: -0.0033233943, y: 0.056134935}
+  m_Size: {x: 0.72938955, y: 1.4800233}
   m_Direction: 0
 --- !u!61 &1909179315
 BoxCollider2D:
@@ -1059,18 +1043,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0865767, y: -1.0914848}
+  m_Offset: {x: 0.002444595, y: -0.5853238}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 2.56}
+    pivot: {x: 0.375, y: 0.5}
+    oldSize: {x: 2.6666667, y: 2.6666667}
     newSize: {x: 0.33, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.53143454, y: 0.2904539}
+  m_Size: {x: 0.68567723, y: 0.16733402}
   m_EdgeRadius: 0
 --- !u!114 &1909179316
 MonoBehaviour:
@@ -1294,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2487584769432852660, guid: 3606a31fbd36e6b4a8e6776a79889909, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2487584769432852661, guid: 3606a31fbd36e6b4a8e6776a79889909, type: 3}
       propertyPath: m_RootOrder
@@ -1432,19 +1416,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.9910989
       objectReference: {fileID: 0}
     - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.0158763
       objectReference: {fileID: 0}
     - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.9910989
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.332
       objectReference: {fileID: 0}
     - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 1.767
       objectReference: {fileID: 0}
     - target: {fileID: 6112609605606779189, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1521,7 +1509,7 @@ PrefabInstance:
     - target: {fileID: 6112609605606779194, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
+      objectReference: {fileID: 8793639957104055765, guid: 49fc4fff8ec38cc45bf2c9000bce5a3a, type: 3}
     - target: {fileID: 6112609605606779195, guid: 39a07e5aa6efadc40a0e12279824ca60, type: 3}
       propertyPath: m_Material
       value: 
