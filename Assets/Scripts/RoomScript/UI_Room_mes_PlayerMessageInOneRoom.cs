@@ -13,15 +13,20 @@ public class UI_Room_mes_PlayerMessageInOneRoom : MonoBehaviour
 
     private UI_Room_mes_RoomSetting RoomSetting;
 
-    private void Awake()
+    public UI_Room_mes_PlayerMessageInOneRoom getInstance()
     {
-        if (instance == null)
+        return instance;
+    }
+
+    public static UI_Room_mes_PlayerMessageInOneRoom Instance
+    {
+        get
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }else
-        {
-            Destroy(gameObject);
+            if (instance == null)
+            {
+                instance = new UI_Room_mes_PlayerMessageInOneRoom();
+            }
+            return instance;
         }
     }
 

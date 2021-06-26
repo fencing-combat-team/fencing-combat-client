@@ -6,6 +6,8 @@ public class UI_Room_mes_RoomSetting
 {
     private static UI_Room_mes_RoomSetting instance;
 
+    public UI_Room_mes_PlayerMessageInOneRoom playerInstance = UI_Room_mes_PlayerMessageInOneRoom.Instance;
+
     public static UI_Room_mes_RoomSetting Instance
     {
         get

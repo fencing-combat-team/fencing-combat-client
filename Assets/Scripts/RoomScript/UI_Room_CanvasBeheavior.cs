@@ -27,7 +27,8 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
 
     #region 单例变量
     //内部变量
-    LevelsMessages levelsMessages;
+    LevelsMessages levelsMessages = LevelsMessages.Instance;
+    UI_Room_mes_RoomSetting roomsetting = UI_Room_mes_RoomSetting.Instance;
     LevelMessage temp1;
 
     bool isPlay = false;
@@ -45,7 +46,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Grounds = roomsetting.roundNums;
     }
 
     // Update is called once per frame
@@ -53,9 +54,14 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     {
         if (isPlay)
         {
-            startButton.interactable = !isPlay;
-            settingButton.interactable = !isPlay;
+            startButton.interactable = false;
+            settingButton.interactable = false;
             Timer();
+        }
+        else
+        {
+            startButton.interactable = true;
+            settingButton.interactable = true;
         }
 
 
@@ -70,6 +76,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     public void OnStartButtonClicked()
     {
         isPlay = true;
+        newLevelSet();
     }
 
 
@@ -99,29 +106,30 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
 
     void Timer()
     {
+        //计数器关卡倒计时
         if (Timeleft >= 0)
         {
             Timeleft -= Time.deltaTime;
-            TimeleftPercent = Timeleft / 10;
+            TimeleftPercent = Timeleft / 10f;
         }
-        else { Timeleft = 10; }
+        Seconds = (int)Timeleft;
 
-        t += Time.deltaTime;
-        if (t >= 1)
-        {
-            Seconds--;
-            t = 0;
-        }
-        if (Seconds < 0)
-        {
-            Seconds = 10;
-            newLevelSet();
-            OpenNewLevel();
-            if(Grounds != 0) { Grounds--; }
-        }
         if (Grounds == 0)
         {
             isPlay = false;
+        }
+
+        //关卡判定 每隔一段时间就重新选出一个关卡
+        if (Timeleft < 0.1f)
+        {
+            Timeleft = 10;
+            newLevelSet();
+            if(Grounds != 0)
+            {
+                OpenNewLevel();
+            }
+            Grounds--;
+            newLevelSet();
         }
     }
     #endregion

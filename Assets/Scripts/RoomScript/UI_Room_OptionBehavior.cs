@@ -8,8 +8,9 @@ using System;
 
 public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
 {
-    UI_Room_mes_RoomSetting roomSetting;
-
+    UI_Room_mes_RoomSetting roomSetting = UI_Room_mes_RoomSetting.Instance;
+    public UI_Room_CanvasBeheavior CanvasBeheavior;
+ 
     public Slider sliderroundnum;
     public Slider sliderplayerNum;
     public Slider sliderlivesNum;
@@ -25,12 +26,11 @@ public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
 
     public void OnExitClick()
     {
-        /*
+        
         roomSetting.PlayerNum = Convert.ToInt32(sliderplayerNum.value);
         roomSetting.LivesNum = Convert.ToInt32(sliderlivesNum.value);
         roomSetting.roundNums = Convert.ToInt32(sliderroundnum.value);
-        roomSetting.recovertime = sliderRecoverTime.value;
-        */
+        roomSetting.recovertime = sliderRecoverTime.value;       
             
         switch (Convert.ToInt32(sliderplayerNum.value))
         {
@@ -58,6 +58,7 @@ public class UI_Room_OptionBehavior : UI_Room_ViewPanelBehaviour
             default:
                 break;
         }
+        CanvasBeheavior.Grounds = roomSetting.roundNums;
 
         text.text = "需要进行的关卡数："+sliderroundnum.value.ToString()+"\n每局游戏玩家的生命数："+sliderlivesNum.value.ToString()+"\n玩家复活时间："+sliderRecoverTime.value.ToString()+"\n是否开启道具：" ;
 
