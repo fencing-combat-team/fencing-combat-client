@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI.Room;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +26,13 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     public Button settingButton;
     #endregion
 
+
+    [SerializeField]
+    [Tooltip("房间设置")]
+    private RoomSetting roomSetting;
     #region 单例变量
     //内部变量
     LevelsMessages levelsMessages = LevelsMessages.Instance;
-    UI_Room_mes_RoomSetting roomsetting = UI_Room_mes_RoomSetting.Instance;
     LevelMessage temp1;
 
     bool isPlay = false;
@@ -46,7 +50,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Grounds = roomsetting.roundNums;
+        Grounds = roomSetting.round;
     }
 
     // Update is called once per frame
