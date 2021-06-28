@@ -30,9 +30,13 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
+            
             //判断是否着地
             var onGround = _ground.Any(g => Physics2D.IsTouching(_collider, g));
             _animator.SetBool(ONGround, onGround);
         }
+
+
+
     }
 }
