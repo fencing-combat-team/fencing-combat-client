@@ -6,14 +6,14 @@ public class PlayerMessage
 {
     #region ±äÁ¿
     public string name;
-    public int score;
+    public int score = 0;
     //image headphoto  Í·Ïñ£¬Í¼Æ¬
 
     #endregion
 
     public PlayerMessage()
     {
-        name = "None Player";
+        name = "default";
         score = 0;
     }
 

@@ -6,17 +6,12 @@ public class UI_Room_mes_PlayerMessageInOneRoom : MonoBehaviour
 {
     private static UI_Room_mes_PlayerMessageInOneRoom instance;
 
-    private PlayerMessage player1;
-    private PlayerMessage player2;
-    private PlayerMessage player3;
-    private PlayerMessage player4;
+    public PlayerMessage player1;
+    public PlayerMessage player2;
+    public PlayerMessage player3;
+    public PlayerMessage player4;
 
     private UI_Room_mes_RoomSetting RoomSetting;
-
-    public UI_Room_mes_PlayerMessageInOneRoom getInstance()
-    {
-        return instance;
-    }
 
     public static UI_Room_mes_PlayerMessageInOneRoom Instance
     {
@@ -29,6 +24,9 @@ public class UI_Room_mes_PlayerMessageInOneRoom : MonoBehaviour
             return instance;
         }
     }
+    private UI_Room_mes_PlayerMessageInOneRoom() { resetPlayerMessage(); }
+
+
 
     #region º¯Êý
     public void resetPlayerMessage()

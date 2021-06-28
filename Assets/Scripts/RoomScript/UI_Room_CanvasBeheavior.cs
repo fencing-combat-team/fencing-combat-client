@@ -11,12 +11,18 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
 {
     #region 可设置变量
     public UI_Room_OptionBehavior optionBehavior;
+    public UI_Room_WinnerPanel winnerPanel;
 
     public Text levelname;
     public Text levelmessage;
     public Text setting;
     public Text time;
     public Text ground;
+
+    public Text score1;
+    public Text score2;
+    public Text score3;
+    public Text score4;
 
     public Image image;
 
@@ -29,6 +35,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     //内部变量
     LevelsMessages levelsMessages = LevelsMessages.Instance;
     UI_Room_mes_RoomSetting roomsetting = UI_Room_mes_RoomSetting.Instance;
+    UI_Room_mes_PlayerMessageInOneRoom messageInOneRoom = UI_Room_mes_PlayerMessageInOneRoom.Instance;
     LevelMessage temp1;
 
     bool isPlay = false;
@@ -52,6 +59,7 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
     // Update is called once per frame
     void Update()
     {
+        //计时以及计算局数部分
         if (isPlay)
         {
             startButton.interactable = false;
@@ -65,11 +73,14 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
         }
 
 
-        //
+        //文本同步
         time.text = Seconds.ToString();
         ground.text = Grounds.ToString();
         image.fillAmount = TimeleftPercent;
-
+        score1.text = messageInOneRoom.player1.score.ToString();
+        score2.text = messageInOneRoom.player2.score.ToString();
+        score3.text = messageInOneRoom.player3.score.ToString();
+        score4.text = messageInOneRoom.player4.score.ToString();
     }
 
     #region 按键点击函数
@@ -117,7 +128,10 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
         if (Grounds == 0)
         {
             isPlay = false;
+            winnerPanel.Show();
+            Reset();
         }
+
 
         //关卡判定 每隔一段时间就重新选出一个关卡
         if (Timeleft < 0.1f)
@@ -130,6 +144,11 @@ public class UI_Room_CanvasBeheavior : UI_Room_ViewPanelBehaviour
             }
             Grounds--;
             newLevelSet();
+        }
+
+        void Reset()
+        {
+            Grounds = roomsetting.roundNums;
         }
     }
     #endregion
