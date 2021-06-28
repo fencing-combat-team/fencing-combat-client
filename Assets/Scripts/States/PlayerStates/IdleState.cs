@@ -12,7 +12,6 @@ namespace States.PlayerStates
         [Tooltip("地面移动速度")]
         private float speed = 5f;
 
-
         [Autowired]
         private PlayerMovement _movement;
 
@@ -23,7 +22,7 @@ namespace States.PlayerStates
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            float move = Input.GetAxis("Horizontal1");
+            float move = _movement.gameObject.GetComponent<PlayerInputHandler>().move;
             _movement.ChangeSpeed(move * speed);
         }
     }
