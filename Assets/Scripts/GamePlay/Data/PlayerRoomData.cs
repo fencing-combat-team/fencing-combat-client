@@ -20,5 +20,10 @@ namespace GamePlay.Data
                 Array.Copy(old, players, Math.Min(4, old.Length));
             }
         }
+
+        public PlayerData GetById(int playerId)
+        {
+            return players.First(p => p.playerId == playerId);
+        }
     }
 }

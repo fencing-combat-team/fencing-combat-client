@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DefalutPlayerRoomData
   m_EditorClassIdentifier: 
   players:
-  - playerName: player1
-    score: 0
-  - playerName: player2
-    score: 0
-  - playerName: player3
-    score: 0
-  - playerName: player4
-    score: 0
+  - playerId: 1
+    playerName: player1
+  - playerId: 2
+    playerName: player2
+  - playerId: 3
+    playerName: player3
+  - playerId: 4
+    playerName: player4

@@ -452,7 +452,6 @@ GameObject:
   - component: {fileID: 63981005}
   - component: {fileID: 63981004}
   - component: {fileID: 63981003}
-  - component: {fileID: 63981007}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -544,18 +543,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &63981007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63981002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a71be85036de85429f09d70625d0d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &93427837
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +804,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &107291263
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +895,8 @@ GameObject:
   - component: {fileID: 110616813}
   - component: {fileID: 110616815}
   - component: {fileID: 110616814}
+  - component: {fileID: 110616817}
+  - component: {fileID: 110616816}
   m_Layer: 5
   m_Name: ColorPanel
   m_TagString: Untagged
@@ -978,6 +967,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110616812}
   m_CullTransparentMesh: 1
+--- !u!114 &110616816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110616812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 4
+--- !u!114 &110616817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110616812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &125799706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,6 +1613,8 @@ GameObject:
   - component: {fileID: 190520483}
   - component: {fileID: 190520485}
   - component: {fileID: 190520484}
+  - component: {fileID: 190520487}
+  - component: {fileID: 190520486}
   m_Layer: 5
   m_Name: ColorPanel
   m_TagString: Untagged
@@ -1668,6 +1685,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190520482}
   m_CullTransparentMesh: 1
+--- !u!114 &190520486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190520482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 2
+--- !u!114 &190520487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190520482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &201147879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,7 +2481,6 @@ GameObject:
   - component: {fileID: 332157689}
   - component: {fileID: 332157688}
   - component: {fileID: 332157687}
-  - component: {fileID: 332157690}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -2560,18 +2602,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332157685}
   m_CullTransparentMesh: 1
---- !u!114 &332157690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332157685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02e953cc1d797d438c79bf68e0140e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &335437073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,7 +3748,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &511276183
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,7 +5624,7 @@ MonoBehaviour:
   exitButton: {fileID: 1108935424}
   settingButton: {fileID: 496278277}
   roomSetting: {fileID: 11400000, guid: 909245718ea97db458136990b878061e, type: 2}
-  defaultRoomData: {fileID: 0}
+  defaultRoomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
   TimeleftPercent: 1
   Seconds: 10
   Grounds: 3
@@ -6652,7 +6682,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &946978295
 GameObject:
   m_ObjectHideFlags: 0
@@ -8672,6 +8702,8 @@ GameObject:
   - component: {fileID: 1292154676}
   - component: {fileID: 1292154678}
   - component: {fileID: 1292154677}
+  - component: {fileID: 1292154680}
+  - component: {fileID: 1292154679}
   m_Layer: 5
   m_Name: ColorPanel
   m_TagString: Untagged
@@ -8742,6 +8774,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292154675}
   m_CullTransparentMesh: 1
+--- !u!114 &1292154679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292154675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 3
+--- !u!114 &1292154680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292154675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &1296557821
 GameObject:
   m_ObjectHideFlags: 0
@@ -9505,7 +9563,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1453336519
 GameObject:
   m_ObjectHideFlags: 0
@@ -9705,6 +9763,8 @@ GameObject:
   - component: {fileID: 1498005994}
   - component: {fileID: 1498005996}
   - component: {fileID: 1498005995}
+  - component: {fileID: 1498005998}
+  - component: {fileID: 1498005997}
   m_Layer: 5
   m_Name: ColorPanel
   m_TagString: Untagged
@@ -9775,6 +9835,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498005993}
   m_CullTransparentMesh: 1
+--- !u!114 &1498005997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498005993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 1
+--- !u!114 &1498005998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498005993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &1515177215
 GameObject:
   m_ObjectHideFlags: 0

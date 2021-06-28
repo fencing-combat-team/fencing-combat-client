@@ -62,6 +62,12 @@ namespace UI.Room
         {
             Grounds = roomSetting.round;
             roomData = Instantiate(defaultRoomData);
+            
+            //初始化颜色选择器
+            foreach (var colorSelector in GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerColorSelector>())
+            {
+                colorSelector.playerData = roomData.GetById(colorSelector.playerId);
+            }
         }
 
         // Update is called once per frame
