@@ -33,7 +33,7 @@ namespace GamePlay.Player
             {
                 _attackCooldown -= Time.deltaTime;
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (Input.GetButtonDown("Attack1"))
             {
                 _animator.SetTrigger(Attack);
                 _attackCooldown = 1000f / _weapon.AttackFeq;

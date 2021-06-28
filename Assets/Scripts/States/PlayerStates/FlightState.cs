@@ -23,7 +23,7 @@ namespace States.PlayerStates
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //移动
-            float move = Input.GetAxis("Horizontal");
+            float move = Input.GetAxis("Horizontal1");
             _movement.ChangeSpeed(move * speed);
         }
     }

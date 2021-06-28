@@ -27,20 +27,21 @@ namespace GamePlay.Player
         void Update()
         {
             //跳跃
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump1"))
             {
                 _animator.SetTrigger(Jump);
             }
 
             //移动
-            var move = Input.GetAxisRaw("Horizontal");
+            var move = Input.GetAxisRaw("Horizontal1");
             _animator.SetFloat(Move, move);
+            Debug.Log(move);
             if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int) move, 1);
 
 
 
             //格挡
-            var defending = Input.GetButton("Fire2");
+            var defending = Input.GetButton("Block1");
             _animator.SetBool(Defending, defending);
         }
     }
