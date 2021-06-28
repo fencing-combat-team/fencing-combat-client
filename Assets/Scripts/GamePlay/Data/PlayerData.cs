@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace GamePlay.Data
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects/Player/PlayerData", order = 0)]
-    public class PlayerData : ScriptableObject
+    
+    [Serializable]
+    public class PlayerData
     {
         public string playerName;
         public int score;

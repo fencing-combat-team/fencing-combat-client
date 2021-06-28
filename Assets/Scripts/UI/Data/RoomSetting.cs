@@ -1,8 +1,7 @@
 using System;
-using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace UI.Room
+namespace UI.Data
 {
     [CreateAssetMenu(fileName = "New RoomSetting", menuName = "ScriptableObjects/Room/RoomSetting")]
     public class RoomSetting : ScriptableObject, ISerializationCallbackReceiver

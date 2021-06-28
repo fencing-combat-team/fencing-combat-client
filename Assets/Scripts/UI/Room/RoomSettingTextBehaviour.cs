@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Mime;
 using Core;
+using UI.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
