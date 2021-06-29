@@ -10,10 +10,11 @@ namespace States.PlayerStates
     {
         [SerializeField]
         [Tooltip("空中移动速度")]
-        private float speed = 2f;
+        private float speed = 3f;
 
         [Autowired]
         private PlayerMovement _movement;
+        private PlayerInputHandler _inputHandler;
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -23,7 +24,7 @@ namespace States.PlayerStates
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //移动
-            float move = Input.GetAxis("Horizontal1");
+            float move = _movement.gameObject.GetComponent<PlayerInputHandler>().move;
             _movement.ChangeSpeed(move * speed);
         }
     }

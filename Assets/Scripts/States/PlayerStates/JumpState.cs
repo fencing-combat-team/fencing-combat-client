@@ -8,7 +8,7 @@ public class JumpState : StateMachineBehaviour
 {
     [Tooltip("跳跃力量")]
     [SerializeField]
-    private float jumpForce = 10;
+    private float jumpForce = 100;
 
     [Autowired] private Rigidbody2D _rigidbody2D;
 

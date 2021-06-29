@@ -17,6 +17,7 @@ namespace GamePlay.Player
         [Tooltip("ÎäÆ÷")]
         private Weapon _weapon;
 
+        private bool attack;
         private float _attackCooldown = 0;
 
         // Start is called before the first frame update
@@ -28,12 +29,14 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
+            attack = this.gameObject.GetComponent<PlayerInputHandler>().attack;
+
             //¹¥»÷
             if (_attackCooldown > 0)
             {
                 _attackCooldown -= Time.deltaTime;
             }
-            else if (Input.GetButtonDown("Attack1"))
+            else if (attack)
             {
                 _animator.SetTrigger(Attack);
                 _attackCooldown = 1000f / _weapon.AttackFeq;

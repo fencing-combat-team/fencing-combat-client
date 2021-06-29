@@ -16,6 +16,9 @@ namespace GamePlay.Player
         private static readonly int Jump = Animator.StringToHash("jump");
         private static readonly int Move = Animator.StringToHash("move");
         private static readonly int Defending = Animator.StringToHash("defending");
+        public float move { get; set; }
+        public bool defending { get; set; }
+        public bool attack { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -26,23 +29,50 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-            //跳跃
-            if (Input.GetButtonDown("Jump1"))
+            GameObject gameObject = this.gameObject;
+            string name = gameObject.name;
+            switch (name)
             {
-                _animator.SetTrigger(Jump);
+                case "Player1":
+                    //跳跃
+                    if (Input.GetButtonDown("Jump1"))
+                    {
+                        _animator.SetTrigger(Jump);
+                    }
+
+
+                    attack = Input.GetButtonDown("Attack1");
+
+                    //移动
+                    move = Input.GetAxisRaw("Horizontal1");
+                    _animator.SetFloat(Move, move);
+                    if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int)move, 1);
+
+                    //格挡
+                    defending = Input.GetButton("Block1");
+                    _animator.SetBool(Defending, defending);
+                    break;
+
+                case "Player2":
+                    //跳跃
+                    if (Input.GetButtonDown("Jump2"))
+                    {
+                        _animator.SetTrigger(Jump);
+                    }
+
+
+                    attack = Input.GetButtonDown("Attack2");
+
+                    //移动
+                    move = Input.GetAxisRaw("Horizontal2");
+                    _animator.SetFloat(Move, move);
+                    if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int)move, 1);
+
+                    //格挡
+                    defending = Input.GetButton("Block2");
+                    _animator.SetBool(Defending, defending);
+                    break;
             }
-
-            //移动
-            var move = Input.GetAxisRaw("Horizontal1");
-            _animator.SetFloat(Move, move);
-            Debug.Log(move);
-            if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int) move, 1);
-
-
-
-            //格挡
-            var defending = Input.GetButton("Block1");
-            _animator.SetBool(Defending, defending);
         }
     }
 }
