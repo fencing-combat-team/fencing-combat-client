@@ -10,6 +10,8 @@ namespace GamePlay.Player
     {
         [Autowired]
         private Animator _animator;
+        [Autowired]
+        private PlayerInputHandler _input;
 
         private static readonly int Attack = Animator.StringToHash("attack");
 
@@ -29,7 +31,7 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-            attack = this.gameObject.GetComponent<PlayerInputHandler>().attack;
+            attack = _input.attack;
 
             //¹¥»÷
             if (_attackCooldown > 0)
