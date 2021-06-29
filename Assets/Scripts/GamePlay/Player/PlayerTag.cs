@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
+using Utils;
 
 public class PlayerTag : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Autowired(GameObject = "Main Camera")]
+    private AutoCamera _autoCamera;
+    private void Awake()
     {
-        
+        this.InitComponents();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        _autoCamera.AddPlayerTag(this);
     }
+
+    private void OnDisable()
+    {
+        _autoCamera.RemovePlayerTag(this);
+    }
+
 }
