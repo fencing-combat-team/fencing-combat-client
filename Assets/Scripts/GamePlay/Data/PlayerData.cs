@@ -9,7 +9,6 @@ namespace GamePlay.Data
     {
         public int playerId;
         public string playerName;
-        [NonSerialized]
         public int score;
         [NonSerialized]
         public Color playerColor;

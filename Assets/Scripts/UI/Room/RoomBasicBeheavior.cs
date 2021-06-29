@@ -2,6 +2,7 @@ using GamePlay.Data;
 using UI.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 // 这是房间主要界面的控制类
@@ -37,6 +38,7 @@ namespace UI.Room
         [Tooltip("房间设置")]
         public RoomSetting roomSetting;
         public PlayerRoomData defaultRoomData;
+        public RoomStatus roomStatu;
 
         private PlayerRoomData roomData;
     
@@ -54,15 +56,29 @@ namespace UI.Room
         public float TimeleftPercent = 1;
         public int Seconds = 10;
         public int Grounds = 3;
+
+        //暂停判断器
+        private bool PAUSE = false;
         #endregion
 
 
         // Start is called before the first frame update
         void Start()
         {
-            Grounds = roomSetting.round;
             roomData = Instantiate(defaultRoomData);
-            
+            if (roomStatu.isGaming)
+            {
+                isPlay = true;
+                Grounds = roomStatu.GroundsRemained;
+                roomData.GetById(1).score += roomStatu.score1;
+                roomData.GetById(2).score += roomStatu.score2;
+                roomData.GetById(3).score += roomStatu.score3;
+                roomData.GetById(4).score += roomStatu.score4;
+            }
+            else
+            {
+                Grounds = roomSetting.round;
+            }
             //初始化颜色选择器
             foreach (var colorSelector in GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerColorSelector>())
             {
@@ -73,17 +89,20 @@ namespace UI.Room
         // Update is called once per frame
         void Update()
         {
-            //计时以及计算局数部分
-            if (isPlay)
+            if (!PAUSE)
             {
-                startButton.interactable = false;
-                settingButton.interactable = false;
-                Timer();
-            }
-            else
-            {
-                startButton.interactable = true;
-                settingButton.interactable = true;
+                //计时以及计算局数部分
+                if (isPlay)
+                {
+                    startButton.interactable = false;
+                    settingButton.interactable = false;
+                    Timer();
+                }
+                else
+                {
+                    startButton.interactable = true;
+                    settingButton.interactable = true;
+                }
             }
 
 
@@ -101,7 +120,9 @@ namespace UI.Room
         public void OnStartButtonClicked()
         {
             isPlay = true;
-            newLevelSet();
+            roomStatu.Reset();
+            roomStatu.isGaming = true;
+            roomStatu.GroundsRemained = roomSetting.round;
         }
 
 
@@ -111,8 +132,10 @@ namespace UI.Room
         }
         public void OnExitButtonClicked()
         {
+            isPlay = false;
             startButton.interactable = true;
             settingButton.interactable = true;
+            roomStatu.Reset();
         }
         #endregion
 
@@ -126,11 +149,12 @@ namespace UI.Room
         }
         void OpenNewLevel()
         {
-
+            AsyncOperation ass = SceneManager.LoadSceneAsync(temp1.name, LoadSceneMode.Single);
         }
 
         void Timer()
         {
+
             //计数器关卡倒计时
             if (Timeleft >= 0)
             {
@@ -139,31 +163,30 @@ namespace UI.Room
             }
             Seconds = (int)Timeleft;
 
+            //开始计时时随机选择关卡
+            if (Timeleft > 9.9f)
+            {
+                newLevelSet();
+            }
+
+            //游戏结束判定
             if (Grounds == 0)
             {
                 isPlay = false;
+                roomStatu.isGaming = false;
                 winnerPanel.Show();
-                Reset();
             }
 
-
-            //关卡判定 每隔一段时间就重新选出一个关卡
+            //倒计时结束时打开新的关卡
             if (Timeleft < 0.1f)
             {
-                Timeleft = 10;
-                newLevelSet();
                 if(Grounds != 0)
                 {
+                    roomStatu.GroundsRemained--;
                     OpenNewLevel();
                 }
-                Grounds--;
-                newLevelSet();
             }
 
-            void Reset()
-            {
-                Grounds = roomSetting.round;
-            }
         }
         #endregion
     }

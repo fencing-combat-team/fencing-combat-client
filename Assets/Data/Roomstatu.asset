@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5bfe7c90e6bca47adf300a6dc195a9, type: 3}
+  m_Name: Roomstatu
+  m_EditorClassIdentifier: 
+  isGaming: 0
+  GroundsRemained: 0
+  score1: 0
+  score2: 0
+  score3: 0
+  score4: 0

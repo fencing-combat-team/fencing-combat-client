@@ -20,9 +20,7 @@ public class LevelsMessages
         }
     }
 
-    static LevelMessage TEST1 = new LevelMessage("Test1", "这是第一个测试关卡");
-    static LevelMessage TEST2 = new LevelMessage("Test2", "这是第二个测试关卡");
-    static LevelMessage TEST3 = new LevelMessage("Test3", "这是第三个测试关卡");
+    static LevelMessage TEST1 = new LevelMessage("GrassMapScene", "这是一个测试关卡,用来测试游戏的基本项目");
 
-    public List<LevelMessage> LevelsList = new List<LevelMessage> { TEST1,TEST2,TEST3 };
+    public List<LevelMessage> LevelsList = new List<LevelMessage> { TEST1};
 }
