@@ -17,9 +17,15 @@ namespace GamePlay.Player
         {
             if (life <= 0)
             {
-
+                Debug.Log("Game Over");
             }
                 
+        }
+
+        public void Die()
+        {
+            life--;
+            transform.position = new Vector3(-4, -2, 0);
         }
     }
 }

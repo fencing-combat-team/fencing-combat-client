@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
+using GamePlay.Player;
+
 
 public class Edge : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +20,8 @@ public class Edge : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("fdadf");
-        other.gameObject.transform.position = new Vector3(-4, -2, 0);
+        other.gameObject.GetComponent<PlayerHealth>().Die();
     }
 }
