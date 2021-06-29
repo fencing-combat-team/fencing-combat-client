@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02194843b819a5f4b9b6ea1baea7b005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 11
 --- !u!114 &-6731175285701165989
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02194843b819a5f4b9b6ea1baea7b005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 4
+  jumpForce: 9
 --- !u!1101 &3212020396203803948
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
