@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 58990442}
   - component: {fileID: 58990444}
   - component: {fileID: 58990443}
+  - component: {fileID: 58990445}
   m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
@@ -431,6 +432,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58990441}
   m_CullTransparentMesh: 1
+--- !u!114 &58990445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58990441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82709bb5f5d14c7ebf7a9a54e4378759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerName: {fileID: 531595343}
+  score: {fileID: 763807521}
+  playerId: 2
 --- !u!1 &63981002
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +806,7 @@ GameObject:
   - component: {fileID: 113802267}
   - component: {fileID: 113802269}
   - component: {fileID: 113802268}
+  - component: {fileID: 113802270}
   m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
@@ -852,6 +874,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113802266}
   m_CullTransparentMesh: 1
+--- !u!114 &113802270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113802266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82709bb5f5d14c7ebf7a9a54e4378759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerName: {fileID: 880634576}
+  score: {fileID: 108960107}
+  playerId: 3
 --- !u!1 &125205487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1659,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
   playerId: 2
+  toggleDatas:
+  - toggle: {fileID: 1446517879}
+    color: 0
+  - toggle: {fileID: 1556135716}
+    color: 1
+  - toggle: {fileID: 634341515}
+    color: 2
+  - toggle: {fileID: 1815251244}
+    color: 3
+  - toggle: {fileID: 1705962948}
+    color: 4
+  - toggle: {fileID: 556562918}
+    color: 5
 --- !u!114 &190520487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,7 +4440,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 2
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerId: 3
+  toggleDatas:
+  - toggle: {fileID: 901794410}
+    color: 0
+  - toggle: {fileID: 1027680311}
+    color: 1
+  - toggle: {fileID: 1801648685}
+    color: 2
+  - toggle: {fileID: 2025691641}
+    color: 3
+  - toggle: {fileID: 1684940217}
+    color: 4
+  - toggle: {fileID: 993423436}
+    color: 5
 --- !u!114 &625540400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5396,16 +5474,12 @@ MonoBehaviour:
   setting: {fileID: 2109701199}
   time: {fileID: 162607580}
   ground: {fileID: 378940727}
-  score1: {fileID: 1615257470}
-  score2: {fileID: 763807521}
-  score3: {fileID: 108960107}
-  score4: {fileID: 2111540878}
   image: {fileID: 1442937805}
   startButton: {fileID: 332157687}
   exitButton: {fileID: 1108935424}
   settingButton: {fileID: 496278277}
   roomSetting: {fileID: 11400000, guid: 909245718ea97db458136990b878061e, type: 2}
-  defaultRoomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
+  roomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
   roomStatu: {fileID: 11400000, guid: 58571a024aa8eed4da8fd1a1e864dd4a, type: 2}
   TimeleftPercent: 1
   Seconds: 10
@@ -5536,10 +5610,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomSetting: {fileID: 11400000, guid: 909245718ea97db458136990b878061e, type: 2}
   players:
-  - {fileID: 1109891781}
-  - {fileID: 58990443}
-  - {fileID: 113802268}
-  - {fileID: 1912719605}
+  - {fileID: 1109891779}
+  - {fileID: 58990441}
+  - {fileID: 113802266}
+  - {fileID: 1912719603}
 --- !u!1 &804982637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7769,6 +7843,7 @@ GameObject:
   - component: {fileID: 1109891780}
   - component: {fileID: 1109891782}
   - component: {fileID: 1109891781}
+  - component: {fileID: 1109891783}
   m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
@@ -7836,6 +7911,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109891779}
   m_CullTransparentMesh: 1
+--- !u!114 &1109891783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109891779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82709bb5f5d14c7ebf7a9a54e4378759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerName: {fileID: 917866879}
+  score: {fileID: 1615257470}
+  playerId: 1
 --- !u!1 &1129206383
 GameObject:
   m_ObjectHideFlags: 0
@@ -12076,6 +12171,7 @@ GameObject:
   - component: {fileID: 1912719604}
   - component: {fileID: 1912719606}
   - component: {fileID: 1912719605}
+  - component: {fileID: 1912719607}
   m_Layer: 5
   m_Name: Player4
   m_TagString: Untagged
@@ -12143,6 +12239,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912719603}
   m_CullTransparentMesh: 1
+--- !u!114 &1912719607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912719603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82709bb5f5d14c7ebf7a9a54e4378759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerName: {fileID: 804982639}
+  score: {fileID: 2111540878}
+  playerId: 4
 --- !u!1 &1924961436
 GameObject:
   m_ObjectHideFlags: 0
@@ -12390,7 +12506,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 2
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerId: 1
+  toggleDatas:
+  - toggle: {fileID: 1106807538}
+    color: 0
+  - toggle: {fileID: 449431082}
+    color: 1
+  - toggle: {fileID: 1063537350}
+    color: 2
+  - toggle: {fileID: 638876183}
+    color: 3
+  - toggle: {fileID: 562684754}
+    color: 4
+  - toggle: {fileID: 1755162281}
+    color: 5
 --- !u!114 &1980890400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13039,7 +13173,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe8254c3ebc441cba73a9b59c8ecee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 2
+  playerData:
+    playerId: 0
+    playerName: 
+    score: 0
+    playerColor: 0
+  playerId: 4
+  toggleDatas:
+  - toggle: {fileID: 325613609}
+    color: 0
+  - toggle: {fileID: 610845056}
+    color: 1
+  - toggle: {fileID: 905426034}
+    color: 2
+  - toggle: {fileID: 1369430938}
+    color: 3
+  - toggle: {fileID: 1038670638}
+    color: 4
+  - toggle: {fileID: 407806657}
+    color: 5
 --- !u!114 &2067112212
 MonoBehaviour:
   m_ObjectHideFlags: 0

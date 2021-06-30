@@ -13,6 +13,7 @@ namespace UI.Room
     public class RoomBasicBeheavior : ViewPanelBehaviourBase
     {
         #region 可设置变量
+
         public RoomOptionBehavior optionBehavior;
         public WinnerPanel winnerPanel;
 
@@ -22,27 +23,24 @@ namespace UI.Room
         public Text time;
         public Text ground;
 
-        public Text score1;
-        public Text score2;
-        public Text score3;
-        public Text score4;
-
         public Image image;
 
         public Button startButton;
         public Button exitButton;
         public Button settingButton;
+
         #endregion
 
 
         [Tooltip("房间设置")]
         public RoomSetting roomSetting;
-        public PlayerRoomData defaultRoomData;
+
+        public PlayerRoomData roomData;
         public RoomStatus roomStatu;
 
-        private PlayerRoomData roomData;
-    
+
         #region 单例变量
+
         //内部变量
         LevelsMessages levelsMessages = LevelsMessages.Instance;
         LevelMessage temp1;
@@ -59,13 +57,14 @@ namespace UI.Room
 
         //暂停判断器
         private bool PAUSE = false;
+
         #endregion
+
 
 
         // Start is called before the first frame update
         void Start()
         {
-            roomData = Instantiate(defaultRoomData);
             if (roomStatu.isGaming)
             {
                 isPlay = true;
@@ -79,12 +78,19 @@ namespace UI.Room
             {
                 Grounds = roomSetting.round;
             }
+
             //初始化颜色选择器
             foreach (var colorSelector in GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerColorSelector>())
             {
-                colorSelector.playerData = roomData.GetById(colorSelector.playerId);
+                colorSelector.PlayerData = roomData.GetById(colorSelector.playerId);
+            }
+
+            foreach (var dataShower in  GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerDataShower>())
+            {
+                dataShower.playerData = roomData.GetById(dataShower.playerId);
             }
         }
+
 
         // Update is called once per frame
         void Update()
@@ -110,13 +116,10 @@ namespace UI.Room
             time.text = Seconds.ToString();
             ground.text = Grounds.ToString();
             image.fillAmount = TimeleftPercent;
-            score1.text = roomData.players[0].score.ToString();
-            score2.text = roomData.players[1].score.ToString();
-            score3.text = roomData.players[2].score.ToString();
-            score4.text = roomData.players[3].score.ToString();
         }
 
         #region 按键点击函数
+
         public void OnStartButtonClicked()
         {
             isPlay = true;
@@ -130,6 +133,7 @@ namespace UI.Room
         {
             optionBehavior.Show();
         }
+
         public void OnExitButtonClicked()
         {
             isPlay = false;
@@ -137,9 +141,11 @@ namespace UI.Room
             settingButton.interactable = true;
             roomStatu.Reset();
         }
+
         #endregion
 
         #region
+
         void newLevelSet()
         {
             int temp = Random.Range(0, levelsMessages.LevelsList.Count);
@@ -147,6 +153,7 @@ namespace UI.Room
             levelname.text = temp1.name;
             levelmessage.text = temp1.information;
         }
+
         void OpenNewLevel()
         {
             AsyncOperation ass = SceneManager.LoadSceneAsync(temp1.name, LoadSceneMode.Single);
@@ -154,14 +161,14 @@ namespace UI.Room
 
         void Timer()
         {
-
             //计数器关卡倒计时
             if (Timeleft >= 0)
             {
                 Timeleft -= Time.deltaTime;
                 TimeleftPercent = Timeleft / 10f;
             }
-            Seconds = (int)Timeleft;
+
+            Seconds = (int) Timeleft;
 
             //开始计时时随机选择关卡
             if (Timeleft > 9.9f)
@@ -180,15 +187,14 @@ namespace UI.Room
             //倒计时结束时打开新的关卡
             if (Timeleft < 0.1f)
             {
-                if(Grounds != 0)
+                if (Grounds != 0)
                 {
                     roomStatu.GroundsRemained--;
                     OpenNewLevel();
                 }
             }
-
         }
+
         #endregion
     }
 }
-

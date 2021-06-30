@@ -1,4 +1,5 @@
 ﻿using System;
+using Enums;
 using UnityEngine;
 
 namespace GamePlay.Data
@@ -10,7 +11,14 @@ namespace GamePlay.Data
         public int playerId;
         public string playerName;
         public int score;
-        [NonSerialized]
-        public Color playerColor;
+        public PlayerColorEnum playerColor;
+    }
+
+
+    [Serializable]
+    public class PlayerColorPair
+    {
+        public PlayerColorEnum colorEnum;
+        public Color color;
     }
 }
