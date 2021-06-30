@@ -933,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1545687129011409060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1545687129028785278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1796,18 +1796,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd082c281ca4ce42a504456f1909dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerImage1: {fileID: 1545687128886626461}
-  playerCheck1: {fileID: 1545687129028785279}
-  playerlives1: {fileID: 1545687128712294343}
-  playerImage2: {fileID: 1545687129054854912}
-  playerCheck2: {fileID: 1545687130408257562}
-  playerlives2: {fileID: 1545687130254539807}
-  playerImage3: {fileID: 1545687128498345366}
-  playerCheck3: {fileID: 1545687129011409061}
-  playerlives3: {fileID: 1545687130083477674}
-  playerImage4: {fileID: 1545687130388435979}
-  playerCheck4: {fileID: 1545687130387909815}
-  playerlives4: {fileID: 1545687128849398536}
+  playerimages:
+  - {fileID: 1545687128886626461}
+  - {fileID: 1545687129054854912}
+  - {fileID: 1545687128498345366}
+  - {fileID: 1545687130388435979}
+  playerchecks:
+  - {fileID: 1545687129028785279}
+  - {fileID: 1545687130408257562}
+  - {fileID: 1545687129011409061}
+  - {fileID: 1545687130387909815}
+  playerlives:
+  - {fileID: 1545687130277834261}
+  - {fileID: 1545687128780398666}
+  - {fileID: 1545687129468721387}
+  - {fileID: 1545687129110371973}
   colors: {fileID: 11400000, guid: 2725cd307fb94a94bb9ba6588b4f4505, type: 2}
   roomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
 --- !u!1 &1545687129572194474
@@ -3346,7 +3349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1545687130387909814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3500,7 +3503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1545687130408257557
 RectTransform:
   m_ObjectHideFlags: 0

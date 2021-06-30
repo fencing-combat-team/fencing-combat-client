@@ -55,5 +55,10 @@ namespace GamePlay.Player
             defending = InputManager.Instance.GetKey(playerId, FencingKey.Defend);
             _animator.SetBool(Defending, defending);
         }
+
+        public int getId()
+        {
+            return _dataManager.playerId;
+        }
     }
 }
