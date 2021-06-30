@@ -13,9 +13,11 @@ using Utils;
 
 namespace Managers
 {
-    public class MapManager : MonoBehaviour
+    /// <summary>
+    /// 用于测试场景的静态地图加载
+    /// </summary>
+    public class MapManagerStatic : MonoBehaviour
     {
-        public LevelDefinitionData levelDefinition;
         public GameObject playerPrefab;
         public PlayerColors colors;
 
@@ -46,11 +48,11 @@ namespace Managers
             InitMap();
         }
 
+        [Tooltip("地图")]
+        public Map map;
+
         private void InitMap()
         {
-            
-            var mapId = GameManager.Instance.CurrentMapId;
-            var map = levelDefinition.GetMapById(mapId);
 
             var players = new List<GameObject>(GameManager.Instance.CurrentPlayers.Length);
             int spawnIndex = 0;
@@ -77,16 +79,15 @@ namespace Managers
             
             //碰撞
             var colliders = new List<BoxCollider2D>();
-            foreach (var groundPrefab in map.groundColliderPrefabs)
+            foreach (var ground in map.groundColliderPrefabs)
             {
-                var ground = PrefabUtility.InstantiatePrefab(groundPrefab) as GameObject;
                 colliders.AddRange(ground.GetComponentsInChildren<BoxCollider2D>());
             }
             players.ForEach(p =>p.GetComponent<PlayerInteration>().ground = colliders.ToArray());
             
             
             //背景
-            var bg = PrefabUtility.InstantiatePrefab(map.backgroundPrefab) as GameObject;
+            var bg = map.backgroundPrefab;
             bg.transform.position = bg.transform.position + new Vector3(0, 0, 10);
             _autoCamera.background = bg.GetComponent<SpriteRenderer>();
             _autoCamera.ResetBackground();

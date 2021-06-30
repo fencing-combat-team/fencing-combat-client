@@ -3,6 +3,7 @@ using UI.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
 // 这是房间主要界面的控制类
@@ -36,7 +37,8 @@ namespace UI.Room
         public RoomSetting roomSetting;
 
         public PlayerRoomData roomData;
-        public RoomStatus roomStatu;
+        [FormerlySerializedAs("roomStatu")]
+        public RoomStatus roomStatus;
 
 
         #region 单例变量
@@ -65,14 +67,14 @@ namespace UI.Room
         // Start is called before the first frame update
         void Start()
         {
-            if (roomStatu.isGaming)
+            if (roomStatus.isGaming)
             {
                 isPlay = true;
-                Grounds = roomStatu.GroundsRemained;
-                roomData.GetById(1).score += roomStatu.score1;
-                roomData.GetById(2).score += roomStatu.score2;
-                roomData.GetById(3).score += roomStatu.score3;
-                roomData.GetById(4).score += roomStatu.score4;
+                Grounds = roomStatus.GroundsRemained;
+                roomData.GetById(1).score += roomStatus.score1;
+                roomData.GetById(2).score += roomStatus.score2;
+                roomData.GetById(3).score += roomStatus.score3;
+                roomData.GetById(4).score += roomStatus.score4;
             }
             else
             {
@@ -123,9 +125,9 @@ namespace UI.Room
         public void OnStartButtonClicked()
         {
             isPlay = true;
-            roomStatu.Reset();
-            roomStatu.isGaming = true;
-            roomStatu.GroundsRemained = roomSetting.round;
+            roomStatus.Reset();
+            roomStatus.isGaming = true;
+            roomStatus.GroundsRemained = roomSetting.round;
         }
 
 
@@ -139,7 +141,7 @@ namespace UI.Room
             isPlay = false;
             startButton.interactable = true;
             settingButton.interactable = true;
-            roomStatu.Reset();
+            roomStatus.Reset();
         }
 
         #endregion
@@ -180,7 +182,7 @@ namespace UI.Room
             if (Grounds == 0)
             {
                 isPlay = false;
-                roomStatu.isGaming = false;
+                roomStatus.isGaming = false;
                 winnerPanel.Show();
             }
 
@@ -189,7 +191,7 @@ namespace UI.Room
             {
                 if (Grounds != 0)
                 {
-                    roomStatu.GroundsRemained--;
+                    roomStatus.GroundsRemained--;
                     OpenNewLevel();
                 }
             }
