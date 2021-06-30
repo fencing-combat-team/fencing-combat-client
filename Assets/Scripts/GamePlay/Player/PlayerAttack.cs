@@ -20,7 +20,7 @@ namespace GamePlay.Player
 
         [SerializeField]
         [Tooltip("ÎäÆ÷")]
-        private Weapon _weapon=new Weapon();
+        private Weapon _weapon;
         private Sword _sword=new Sword();
 
         private bool attack;
