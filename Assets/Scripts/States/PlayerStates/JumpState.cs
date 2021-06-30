@@ -10,11 +10,22 @@ public class JumpState : StateMachineBehaviour
     [SerializeField]
     private float jumpForce = 100;
 
-    [Autowired] private Rigidbody2D _rigidbody2D;
+    [Autowired]
+    private Rigidbody2D _rigidbody2D;
+
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         this.InitComponents(animator);
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Jump();
+    }
+
+    void Jump()
+    {
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
     }
 }
