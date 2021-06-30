@@ -1,6 +1,7 @@
 using System.Linq;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace GamePlay.Player
@@ -16,9 +17,9 @@ namespace GamePlay.Player
         [Autowired]
         private Animator _animator;
 
+        [FormerlySerializedAs("_ground")]
         [Tooltip("地面的碰撞箱子")]
-        [SerializeField]
-        private BoxCollider2D[] _ground;
+        public BoxCollider2D[] ground;
 
 
         // Start is called before the first frame update
@@ -32,7 +33,7 @@ namespace GamePlay.Player
         {
             
             //判断是否着地
-            var onGround = _ground.Any(g => Physics2D.IsTouching(_collider, g));
+            var onGround = ground.Any(g => Physics2D.IsTouching(_collider, g));
             _animator.SetBool(ONGround, onGround);
         }
 

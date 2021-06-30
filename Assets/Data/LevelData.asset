@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8408271cba3a4cd0a675c45b710c4f49, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  maps:
+  - mapId: grass_map
+    groundColliderPrefabs:
+    - {fileID: 5088770166084817731, guid: ab32addb742deba4b836f473dc2a257a, type: 3}
+    - {fileID: 2335702607620933359, guid: 9fe9dec8abcfc684f928b779ea71b8de, type: 3}
+    - {fileID: 2634615350458028546, guid: bb49454193371aa428a9f02feaca6950, type: 3}
+    backgroundPrefab: {fileID: 5461197996397608462, guid: 04c3b224ed581c24490e3c3d43ffba4d, type: 3}
+    spawnPoints:
+    - {x: -5, y: -3}
+    - {x: 5, y: -3}
+    - {x: -16, y: -3}
+    - {x: 16, y: -3}

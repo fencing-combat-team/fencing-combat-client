@@ -21,6 +21,15 @@ namespace GamePlay.Camera
         private void Start()
         {
             this.InitComponents();
+            if (background != null)
+            {
+                ResetBackground();
+            }
+        }
+    
+
+        public void ResetBackground()
+        {
             _boundary = new Rect()
             {
                 size = new Vector2(
@@ -48,6 +57,10 @@ namespace GamePlay.Camera
         // Update is called once per frame
         void Update()
         {
+            if (objList.Count <= 0)
+            {
+                return;
+            }
             //ÎïÆ·xy×ø±ê
             var objX = objList.Select(o => o.transform.position.x).ToArray();
             var objY = objList.Select(o => o.transform.position.y).ToArray();

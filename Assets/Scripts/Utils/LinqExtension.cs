@@ -11,7 +11,7 @@ namespace Utils
             var enumerable = source as float[] ?? source.ToArray();
             if (!enumerable.Any())
             {
-                throw new InvalidOperationException("Cannot compute median for a null or empty set.");
+                throw new InvalidOperationException("Cannot compute range for a null or empty set.");
             }
 
             return enumerable.Max() - enumerable.Min();

@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Linq;
+using GamePlay.Entity;
 using UnityEngine.UI;
 
 namespace GamePlay.Data

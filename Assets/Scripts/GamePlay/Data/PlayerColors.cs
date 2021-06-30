@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Enums;
+using GamePlay.Entity;
 using UnityEngine;
 
 namespace GamePlay.Data

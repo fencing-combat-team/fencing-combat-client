@@ -3,6 +3,7 @@ using System.Linq;
 using Core;
 using Enums;
 using GamePlay.Data;
+using GamePlay.Entity;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;

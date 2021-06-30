@@ -1,10 +1,11 @@
 ﻿using System;
 using Enums;
-using UnityEngine;
 
-namespace GamePlay.Data
+namespace GamePlay.Entity
 {
-    
+    /// <summary>
+    /// 玩家数据（关卡外）
+    /// </summary>
     [Serializable]
     public class PlayerData
     {
@@ -15,10 +16,5 @@ namespace GamePlay.Data
     }
 
 
-    [Serializable]
-    public class PlayerColorPair
-    {
-        public PlayerColorEnum colorEnum;
-        public Color color;
-    }
+    
 }

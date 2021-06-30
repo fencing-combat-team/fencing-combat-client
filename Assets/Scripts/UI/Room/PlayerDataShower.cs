@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Mime;
 using GamePlay.Data;
+using GamePlay.Entity;
 using UnityEngine;
 using UnityEngine.UI;
 
