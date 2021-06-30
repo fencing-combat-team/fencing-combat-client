@@ -30,7 +30,7 @@ namespace UI.Play
         // Update is called once per frame
         void Update()
         {
-            for(int i = 0; i < players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 if (players[i].GetComponent<PlayerHealth>().life < 0)
                 {
@@ -60,15 +60,26 @@ namespace UI.Play
             playerimages[3].color = color4;
         }
 
+
+        //TODO:²éÕÒ²»µ½player
         private GameObject[] FindAllPlayers()
         {
+            GameObject[] Currentplayers = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log(Currentplayers.Length);
+            return Currentplayers;
+
+
+
+            /*
             object[] playerInput = FindObjectsOfType<PlayerInputHandler>();
+            Debug.Log(playerInput.Length);
             GameObject[] Currentplayers = new GameObject[playerInput.Length];
             for(int i= 0; i < Currentplayers.Length; i++)
             {
                 if(playerInput[i] is PlayerInputHandler)
                 {
                     Currentplayers[i] = (playerInput[i] as PlayerInputHandler).gameObject;
+                    Debug.Log(Currentplayers[i].name);
                 }
                 else
                 {
@@ -77,6 +88,7 @@ namespace UI.Play
                 }
             }
             return Currentplayers;
+            */
         }
         #endregion
     }
