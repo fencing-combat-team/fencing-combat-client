@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map/GrassMapScene.unity
     guid: 622d749620c0c354dac722dd52354ae7
+  - enabled: 1
+    path: Assets/Scenes/GamePlay/GamePlay.unity
+    guid: e5e3180e2c9170747a28b5550c3a51fd
   m_configObjects: {}

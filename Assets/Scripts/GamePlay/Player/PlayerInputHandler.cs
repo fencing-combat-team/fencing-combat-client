@@ -52,7 +52,7 @@ namespace GamePlay.Player
             if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int) move, 1);
 
             //格挡
-            defending = InputManager.Instance.GetKeyDown(playerId, FencingKey.Defend);
+            defending = InputManager.Instance.GetKey(playerId, FencingKey.Defend);
             _animator.SetBool(Defending, defending);
         }
     }

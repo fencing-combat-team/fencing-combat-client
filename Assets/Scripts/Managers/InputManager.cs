@@ -34,16 +34,19 @@ namespace Managers
 
         public bool GetKey(int playerId, FencingKey key)
         {
+            if (!keyMap.ContainsKey(playerId)) return false;
             return Input.GetButton(keyMap[playerId][key]);
         }
         
         public bool GetKeyDown(int playerId, FencingKey key)
         {
+            if (!keyMap.ContainsKey(playerId)) return false;
             return Input.GetButtonDown(keyMap[playerId][key]);
         }
 
         public float GetHorizontalAxis(int playerId)
         {
+            if (!axisMap.ContainsKey(playerId)) return 0;
             return Input.GetAxis(axisMap[playerId]);
         }
     }

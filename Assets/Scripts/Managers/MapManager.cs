@@ -23,25 +23,6 @@ namespace Managers
         private AutoCamera _autoCamera;
         private void Start()
         {
-            //TODO: 这个放到主菜单
-            GameManager.Instance.CurrentMapId = "grass_map";
-            GameManager.Instance.CurrentPlayers = new[]
-            {
-                new PlayerData()
-                {
-                    playerId = 1,
-                    playerColor = PlayerColorEnum.Blue,
-                    playerName = "Player1"
-                },
-                new PlayerData()
-                {
-
-                    playerId = 2,
-                    playerColor = PlayerColorEnum.Red,
-                    playerName = "Player2"
-                },
-            };
-            
             this.InitComponents();
             InitMap();
         }

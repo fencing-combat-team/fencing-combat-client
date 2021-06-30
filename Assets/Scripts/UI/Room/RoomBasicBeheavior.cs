@@ -1,4 +1,6 @@
+using System.Linq;
 using GamePlay.Data;
+using Managers;
 using UI.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,10 +45,6 @@ namespace UI.Room
 
         #region 单例变量
 
-        //内部变量
-        LevelsMessages levelsMessages = LevelsMessages.Instance;
-        LevelMessage temp1;
-
         bool isPlay = false;
 
         private float t = 1;
@@ -62,6 +60,7 @@ namespace UI.Room
 
         #endregion
 
+        private PlayerDataShower[] players;
 
 
         // Start is called before the first frame update
@@ -87,7 +86,8 @@ namespace UI.Room
                 colorSelector.PlayerData = roomData.GetById(colorSelector.playerId);
             }
 
-            foreach (var dataShower in  GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerDataShower>())
+            players = GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerDataShower>();
+            foreach (var dataShower in  players)
             {
                 dataShower.playerData = roomData.GetById(dataShower.playerId);
             }
@@ -150,15 +150,19 @@ namespace UI.Room
 
         void newLevelSet()
         {
-            int temp = Random.Range(0, levelsMessages.LevelsList.Count);
-            temp1 = levelsMessages.LevelsList[temp];
-            levelname.text = temp1.name;
-            levelmessage.text = temp1.information;
+            //TODO: new level
         }
 
         void OpenNewLevel()
         {
-            AsyncOperation ass = SceneManager.LoadSceneAsync(temp1.name, LoadSceneMode.Single);
+            GameManager.Instance.CurrentPlayers = 
+                players
+                    .Where(p => p.isActiveAndEnabled)
+                    .Select(p=>p.playerData)
+                    .ToArray();
+            //TODO: 地图选择
+            GameManager.Instance.CurrentMapId = "grass_map";
+            AsyncOperation ass = SceneManager.LoadSceneAsync("GamePlay", LoadSceneMode.Single);
         }
 
         void Timer()

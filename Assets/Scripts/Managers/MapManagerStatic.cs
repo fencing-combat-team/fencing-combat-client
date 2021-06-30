@@ -25,8 +25,6 @@ namespace Managers
         private AutoCamera _autoCamera;
         private void Start()
         {
-            //TODO: 这个放到主菜单
-            GameManager.Instance.CurrentMapId = "grass_map";
             GameManager.Instance.CurrentPlayers = new[]
             {
                 new PlayerData()
