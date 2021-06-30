@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - colorEnum: 0
-<<<<<<< Updated upstream
     color: {r: 0.9811321, g: 0.46742615, b: 0.46742615, a: 1}
   - colorEnum: 1
     color: {r: 1, g: 0.99802077, b: 0.495283, a: 1}
@@ -26,16 +25,3 @@ MonoBehaviour:
     color: {r: 0.97069925, g: 0.5330188, b: 1, a: 1}
   - colorEnum: 5
     color: {r: 1, g: 0.7674251, b: 0.5330188, a: 1}
-=======
-    color: {r: 1, g: 0, b: 0, a: 1}
-  - colorEnum: 1
-    color: {r: 1, g: 0.9975273, b: 0, a: 1}
-  - colorEnum: 2
-    color: {r: 0, g: 0.1215651, b: 1, a: 1}
-  - colorEnum: 3
-    color: {r: 0.023584902, g: 1, b: 0.14996307, a: 1}
-  - colorEnum: 4
-    color: {r: 0.93849754, g: 0, b: 1, a: 1}
-  - colorEnum: 5
-    color: {r: 1, g: 0.5026138, b: 0, a: 1}
->>>>>>> Stashed changes
