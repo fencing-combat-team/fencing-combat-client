@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayerRoom/Room.unity
     guid: fa788c6fc24f8b947b0e8ec55bd61a07
   - enabled: 1
-    path: Assets/Scenes/Map/GrassMapScene.unity
+    path: Assets/Scenes/Map/PixelMapScene.unity
     guid: 622d749620c0c354dac722dd52354ae7
   - enabled: 1
     path: Assets/Scenes/GamePlay/GamePlay.unity
