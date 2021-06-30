@@ -2,9 +2,6 @@ using UnityEngine;
 
 
 //这是所有界面控制类的基础类
-
-namespace UI.Room
-{
     public class ViewPanelBehaviourBase : MonoBehaviour
     {
         public void Show()
@@ -31,4 +28,4 @@ namespace UI.Room
             return true;
         }
     }
-}
+
