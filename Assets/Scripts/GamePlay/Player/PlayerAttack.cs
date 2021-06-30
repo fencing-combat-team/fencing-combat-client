@@ -53,11 +53,18 @@ namespace GamePlay.Player
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
             _sword.Attack(gameObject.transform.position, direction).
-                FindAll(g => g != this.gameObject && 
-                (!g.GetComponent<PlayerInputHandler>().defending || 
-                g.GetComponent<PlayerInputHandler>().direction ==
-                this.gameObject.GetComponent<PlayerInputHandler>().direction)).
-                ForEach(g => g.GetComponent<PlayerHealth>().Die());
+                FindAll(g => g != this.gameObject ).ForEach(g =>
+                {
+                    if(!g.GetComponent<PlayerInputHandler>().defending || 
+                    g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                    {
+                        g.GetComponent<PlayerHealth>().Die();
+                    }
+                    else
+                    {
+                        g.GetComponent<PlayerMovement>().ChangeSpeed(direction.x * 4f);
+                    }
+                });
 
         }
     }
