@@ -20,7 +20,8 @@ namespace GamePlay.Player
 
         [SerializeField]
         [Tooltip("ÎäÆ÷")]
-        private Weapon _weapon;
+        private Weapon _weapon=new Weapon();
+        private Sword _sword=new Sword();
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -50,10 +51,10 @@ namespace GamePlay.Player
 
         public void DoAttack()
         {
-            float move = gameObject.GetComponent<PlayerInputHandler>().move;
-            Vector2 direction = new Vector2((int)move / Mathf.Abs(move), 0);
-            _weapon = ScriptableObject.CreateInstance<Sword>();
-            _weapon.Attack(gameObject.transform.position, direction);
+            Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
+            _sword.Attack(gameObject.transform.position, direction).
+                FindAll(g => g != this.gameObject).
+                ForEach(g => g.GetComponent<PlayerHealth>().Die());
 
         }
     }

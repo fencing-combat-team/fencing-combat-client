@@ -14,12 +14,13 @@ namespace States.PlayerStates
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             this.InitComponents(animator);
+            _attack.DoAttack();
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
-            _attack.DoAttack();
+
         }
 
     }

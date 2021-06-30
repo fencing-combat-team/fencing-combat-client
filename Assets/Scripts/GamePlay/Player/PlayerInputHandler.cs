@@ -22,12 +22,14 @@ namespace GamePlay.Player
         private static readonly int Move = Animator.StringToHash("move");
         private static readonly int Defending = Animator.StringToHash("defending");
         public float move { get; set; }
+        public Vector2 direction { get; set; }
         public bool defending { get; set; }
         public bool attack { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
+            direction = Vector2.right;
             this.InitComponents();
         }
 
@@ -35,7 +37,6 @@ namespace GamePlay.Player
         void Update()
         {
             var playerId = _dataManager.playerId;
-
 
             //跳跃
             if (InputManager.Instance.GetKeyDown(playerId, FencingKey.Jump))
@@ -49,7 +50,11 @@ namespace GamePlay.Player
             //移动
             move = InputManager.Instance.GetHorizontalAxis(playerId);
             _animator.SetFloat(Move, move);
-            if (Mathf.Abs(move) > 0.01f) this.transform.localScale = new Vector3((int) move, 1);
+            if (Mathf.Abs(move) > 0.01f)
+            {
+                this.transform.localScale = new Vector3((int)move, 1);
+                direction = new Vector2(move,0);
+            }
 
             //格挡
             defending = InputManager.Instance.GetKey(playerId, FencingKey.Defend);
