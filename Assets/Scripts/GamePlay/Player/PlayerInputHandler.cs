@@ -34,7 +34,7 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-            var playerId = _dataManager.playerData.playerId;
+            var playerId = _dataManager.playerId;
 
 
             //跳跃
