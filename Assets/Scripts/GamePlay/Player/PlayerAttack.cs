@@ -13,6 +13,9 @@ namespace GamePlay.Player
         [Autowired]
         private PlayerInputHandler _input;
 
+        [Autowired]
+        private Rigidbody2D _rigidbody2D;
+
         private static readonly int Attack = Animator.StringToHash("attack");
 
         [SerializeField]
@@ -47,8 +50,10 @@ namespace GamePlay.Player
 
         public void DoAttack()
         {
-            _weapon = new Sword();
-            _weapon.Attack(gameObject.transform.position, Vector2.right);
+            float move = gameObject.GetComponent<PlayerInputHandler>().move;
+            Vector2 direction = new Vector2((int)move / Mathf.Abs(move), 0);
+            _weapon = ScriptableObject.CreateInstance<Sword>();
+            _weapon.Attack(gameObject.transform.position, direction);
 
         }
     }
