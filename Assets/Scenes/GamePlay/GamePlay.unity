@@ -265,3 +265,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDefinition: {fileID: 11400000, guid: 7bf2cd0546af5214890937ca08784e95, type: 2}
   playerPrefab: {fileID: 1689565358304176717, guid: 152c999df928e6748b168f4d4fc08363, type: 3}
+  colors: {fileID: 11400000, guid: 2725cd307fb94a94bb9ba6588b4f4505, type: 2}
