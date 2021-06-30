@@ -1715,6 +1715,7 @@ GameObject:
   - component: {fileID: 1545687129551290110}
   - component: {fileID: 1545687129551290108}
   - component: {fileID: 1545687129551290111}
+  - component: {fileID: 8081607377896506267}
   m_Layer: 5
   m_Name: PlayerPanel
   m_TagString: Untagged
@@ -1783,6 +1784,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8081607377896506267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545687129551290105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd082c281ca4ce42a504456f1909dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerImage1: {fileID: 1545687128886626461}
+  playerCheck1: {fileID: 1545687129028785279}
+  playerlives1: {fileID: 1545687128712294343}
+  playerImage2: {fileID: 1545687129054854912}
+  playerCheck2: {fileID: 1545687130408257562}
+  playerlives2: {fileID: 1545687130254539807}
+  playerImage3: {fileID: 1545687128498345366}
+  playerCheck3: {fileID: 1545687129011409061}
+  playerlives3: {fileID: 1545687130083477674}
+  playerImage4: {fileID: 1545687130388435979}
+  playerCheck4: {fileID: 1545687130387909815}
+  playerlives4: {fileID: 1545687128849398536}
+  colors: {fileID: 11400000, guid: 2725cd307fb94a94bb9ba6588b4f4505, type: 2}
+  roomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
 --- !u!1 &1545687129572194474
 GameObject:
   m_ObjectHideFlags: 0

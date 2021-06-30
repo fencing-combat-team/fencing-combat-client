@@ -161,7 +161,7 @@ namespace UI.Room
                     .Select(p=>p.playerData)
                     .ToArray();
             //TODO: 地图选择
-            GameManager.Instance.CurrentMapId = "grass_map";
+            GameManager.Instance.CurrentMapId = "realworld_map";
             AsyncOperation ass = SceneManager.LoadSceneAsync("GamePlay", LoadSceneMode.Single);
         }
 

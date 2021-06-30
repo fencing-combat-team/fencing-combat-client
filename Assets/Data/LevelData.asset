@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   maps:
-  - mapId: grass_map
+  - mapId: pixel_map
     groundColliderPrefabs:
     - {fileID: 5088770166084817731, guid: ab32addb742deba4b836f473dc2a257a, type: 3}
     - {fileID: 2335702607620933359, guid: 9fe9dec8abcfc684f928b779ea71b8de, type: 3}
@@ -24,3 +24,30 @@ MonoBehaviour:
     - {x: 5, y: -3}
     - {x: -16, y: -3}
     - {x: 16, y: -3}
+  - mapId: sketch_map
+    groundColliderPrefabs:
+    - {fileID: 2731924523474754655, guid: 15a05497d580e1e4a92349077fa6a654, type: 3}
+    backgroundPrefab: {fileID: 773208259874370242, guid: 4342878004be4ec45b91e74ab273545c, type: 3}
+    spawnPoints:
+    - {x: -15, y: 1}
+    - {x: -7, y: 11}
+    - {x: 7, y: 11}
+    - {x: 15, y: 1}
+  - mapId: color_map
+    groundColliderPrefabs:
+    - {fileID: 2699839079109569708, guid: 1a7a6a1ef7091e642bb8278e5c57561c, type: 3}
+    backgroundPrefab: {fileID: 4269730932571263143, guid: 122c9dab50e6eaa4b9d13069224a52c3, type: 3}
+    spawnPoints:
+    - {x: -8, y: 7}
+    - {x: -5, y: -3}
+    - {x: 5, y: -3}
+    - {x: 8, y: 7}
+  - mapId: realworld_map
+    groundColliderPrefabs:
+    - {fileID: 7122103553112089594, guid: 0b8f6e862faabe84eb0428d4e2654e90, type: 3}
+    backgroundPrefab: {fileID: 1299740142159763457, guid: 52ecb687bb45c26489c7bcc32948c62e, type: 3}
+    spawnPoints:
+    - {x: -20, y: 7}
+    - {x: -8, y: 6}
+    - {x: 8, y: 6}
+    - {x: 20, y: 7}
