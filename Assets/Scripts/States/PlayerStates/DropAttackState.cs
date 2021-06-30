@@ -27,7 +27,7 @@ namespace States.PlayerStates
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
-            _attack.DoAttack();
+            _attack.DoDropAttack();
         }
     }
 }
