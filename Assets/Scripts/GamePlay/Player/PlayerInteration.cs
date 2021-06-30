@@ -31,7 +31,6 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-
             //判断是否着地
             var onGround = OnGround();
             _animator.SetBool(ONGround, onGround);
@@ -39,15 +38,28 @@ namespace GamePlay.Player
 
         bool OnGround()
         {
-            Ray2D ray = new Ray2D(transform.position, Vector2.down);
-            LayerMask ignoreMask = ~LayerMask.GetMask("Player");
-            Debug.DrawLine(ray.origin, ray.origin + Vector2.down * 0.9f, Color.white);
-            RaycastHit2D info = Physics2D.Raycast(ray.origin, ray.direction,0.95f,ignoreMask);
+            Ray2D[] ray=new Ray2D[3];
+            ray[0] = new Ray2D(transform.position, Vector2.down);
+            ray[1]= new Ray2D(transform.position + Vector3.left * 0.4f, Vector2.down);
+            ray[2] = new Ray2D(transform.position + Vector3.right * 0.4f, Vector2.down);
 
-            if (info.collider != null && info.collider.gameObject.tag == "Ground")
-                return true;
-            else
-                return false;
+            RaycastHit2D[] info = new RaycastHit2D[3];
+
+            LayerMask ignoreMask = ~LayerMask.GetMask("Player");
+
+
+            for(int i=0;i<=2;i++)
+            {
+                Debug.DrawLine(ray[i].origin, ray[i].origin + Vector2.down * 0.9f, Color.white);
+                info[i] = Physics2D.Raycast(ray[i].origin, ray[i].direction, 0.9f, ignoreMask);
+            }
+
+            foreach (var i in info)
+            {
+                if (i && i.collider.gameObject.CompareTag("Ground"))
+                    return true;
+            }
+             return false;
         }
 
     }

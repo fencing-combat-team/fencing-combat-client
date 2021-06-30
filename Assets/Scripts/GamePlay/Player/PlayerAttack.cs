@@ -47,7 +47,9 @@ namespace GamePlay.Player
 
         public void DoAttack()
         {
-            
+            _weapon = new Sword();
+            _weapon.Attack(gameObject.transform.position, Vector2.right);
+
         }
     }
 }
