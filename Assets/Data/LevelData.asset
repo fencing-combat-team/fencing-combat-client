@@ -44,7 +44,7 @@ MonoBehaviour:
     - {x: 8, y: 7}
   - mapId: realworld_map
     groundColliderPrefabs:
-    - {fileID: 7122103553112089594, guid: 0b8f6e862faabe84eb0428d4e2654e90, type: 3}
+    - {fileID: 8103761562767263591, guid: 0b8f6e862faabe84eb0428d4e2654e90, type: 3}
     backgroundPrefab: {fileID: 1299740142159763457, guid: 52ecb687bb45c26489c7bcc32948c62e, type: 3}
     spawnPoints:
     - {x: -20, y: 7}
