@@ -15,9 +15,14 @@ namespace States.PlayerStates
         [Autowired]
         private PlayerMovement _movement;
 
+        private static readonly int Jump = Animator.StringToHash("jump");
+        private static readonly int Attack = Animator.StringToHash("attack");
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             this.InitComponents(animator);
+            
+            animator.ResetTrigger(Jump);
+            animator.ResetTrigger(Attack);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

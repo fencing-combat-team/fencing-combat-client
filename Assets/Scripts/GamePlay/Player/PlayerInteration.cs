@@ -27,7 +27,7 @@ namespace GamePlay.Player
         {
             this.InitComponents();
         }
-
+        
         // Update is called once per frame
         void Update()
         {
@@ -59,7 +59,7 @@ namespace GamePlay.Player
                 if (i && i.collider.gameObject.CompareTag("Ground"))
                     return true;
             }
-             return false;
+            return false;
         }
 
     }
