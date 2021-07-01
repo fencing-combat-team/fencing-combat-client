@@ -3,6 +3,7 @@ using Core;
 using Enums;
 using Managers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
 
 namespace GamePlay.Player
@@ -37,29 +38,30 @@ namespace GamePlay.Player
         void Update()
         {
             var playerId = _dataManager.playerId;
-
+            
             //跳跃
-            if (InputManager.Instance.GetKeyDown(playerId, FencingKey.Jump))
+            if (InputProvider.GetPlayerInput(playerId).GetKeyDown(FencingKey.Jump))
             {
                 _animator.SetTrigger(Jump);
             }
-
-            attack = InputManager.Instance.GetKeyDown(playerId, FencingKey.Attack);
-
-
+            
+            attack = InputProvider.GetPlayerInput(playerId).GetKeyDown(FencingKey.Attack);
+            
+            
             //移动
-            move = InputManager.Instance.GetHorizontalAxis(playerId);
+            move = InputProvider.GetPlayerInput(playerId).GetHorizontalAxis();
             _animator.SetFloat(Move, move);
-            if (Mathf.Abs(move) > 0.01f)
+            if (move != 0)
             {
                 this.transform.localScale = new Vector3((int)move, 1);
                 direction = new Vector2(move,0);
             }
-
+            
             //格挡
-            defending = InputManager.Instance.GetKey(playerId, FencingKey.Defend);
+            defending = InputProvider.GetPlayerInput(playerId).GetKey(FencingKey.Defend);
             _animator.SetBool(Defending, defending);
         }
+
 
         public int getId()
         {
