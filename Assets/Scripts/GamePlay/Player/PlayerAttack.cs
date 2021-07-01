@@ -22,6 +22,7 @@ namespace GamePlay.Player
         [Tooltip("ÎäÆ÷")]
         private Weapon _weapon;
         private Sword _sword=new Sword();
+        private LongSword _longSword = new LongSword();
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -52,7 +53,7 @@ namespace GamePlay.Player
         public void DoAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _sword.Attack(gameObject.transform.position, direction).
+            _longSword.Attack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject ).ForEach(g =>
                 {
                     if(!g.GetComponent<PlayerInputHandler>().defending || 
@@ -71,7 +72,7 @@ namespace GamePlay.Player
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _sword.DropAttack(gameObject.transform.position, direction).
+            _longSword.DropAttack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject).ForEach(g =>
                 {
                     if (!g.GetComponent<PlayerInputHandler>().defending ||
