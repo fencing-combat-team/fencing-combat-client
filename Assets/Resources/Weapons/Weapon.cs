@@ -1,4 +1,5 @@
 using UnityEngine;
+using GamePlay.Player;
 using System.Collections.Generic;
 
 namespace Resources.Weapons
@@ -96,7 +97,7 @@ namespace Resources.Weapons
     {
         public LongSword()
         {
-            AttackDistance = 2f;
+            AttackDistance = 1.5f;
             AttackFeq = 2000f;
             ImpactingForce = 2f;
         }
@@ -142,7 +143,7 @@ namespace Resources.Weapons
         public Hammer()
         {
             AttackDistance = 2f;
-            AttackFeq = 2000f;
+            AttackFeq = 1000f;
             ImpactingForce = 2f;
         }
 
@@ -151,14 +152,17 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position, direction);
+            Ray2D ray = new Ray2D(position+direction*0.4f+Vector2.down*0.5f-direction*AttackDistance, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance * 2f, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, AttackDistance, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f*AttackDistance, Mask);
 
             for (int i = 0; i < info.Length; i++)
-                if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
+                if (info[i].collider != null && 
+                    info[i].collider.gameObject.GetComponent<PlayerInteration>().OnGround() && 
+                    !gameObject.Exists(g => g == info[i].collider.gameObject))
+
                     gameObject.Add(info[i].collider.gameObject);
             return gameObject;
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Resources.Weapons;
@@ -62,8 +63,13 @@ namespace GamePlay.Player
                     g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
                         g.GetComponent<PlayerHealth>().Die();
                     else
+                    {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_longSword.AttackDistance - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
+                           (direction.x * (_longSword.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
+                        StartCoroutine(Slide(g));
+
+                    }
+                        
                 });
 
         }
@@ -80,10 +86,22 @@ namespace GamePlay.Player
                     g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
                         g.GetComponent<PlayerHealth>().Die();
                     else
+                    {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_longSword.AttackDistance+1f-Mathf.Abs(g.transform.position.x-this.transform.position.x))*_longSword.ImpactingForce);
+                        (direction.x * (_longSword.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
+                        StartCoroutine(Slide(g));
+
+                    }
+
                 });
 
+        }
+
+        IEnumerator Slide(GameObject gameObject)
+        {
+
+            yield return new WaitForSeconds(0.5f);
+            gameObject.GetComponent<PlayerMovement>().ChangeSpeed(0);
         }
 
     }

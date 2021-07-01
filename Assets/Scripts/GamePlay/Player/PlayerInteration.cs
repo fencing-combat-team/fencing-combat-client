@@ -36,7 +36,7 @@ namespace GamePlay.Player
             _animator.SetBool(ONGround, onGround);
         }
 
-        bool OnGround()
+        public bool OnGround()
         {
             Ray2D[] ray=new Ray2D[3];
             ray[0] = new Ray2D(transform.position, Vector2.down);
