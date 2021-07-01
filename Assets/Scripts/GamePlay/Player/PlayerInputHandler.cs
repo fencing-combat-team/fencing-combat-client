@@ -38,27 +38,27 @@ namespace GamePlay.Player
         void Update()
         {
             var playerId = _dataManager.playerId;
-            
+            var provider = InputProvider.GetPlayerInput(playerId);
             //跳跃
-            if (InputProvider.GetPlayerInput(playerId).GetKeyDown(FencingKey.Jump))
+            if (provider.GetKeyDown(FencingKey.Jump))
             {
                 _animator.SetTrigger(Jump);
             }
-            
-            attack = InputProvider.GetPlayerInput(playerId).GetKeyDown(FencingKey.Attack);
-            
-            
+
+
+            attack = provider.GetKeyDown(FencingKey.Attack);
+
             //移动
-            move = InputProvider.GetPlayerInput(playerId).GetHorizontalAxis();
+            move = provider.GetHorizontalAxis();
             _animator.SetFloat(Move, move);
             if (move != 0)
             {
-                this.transform.localScale = new Vector3((int)move, 1);
-                direction = new Vector2(move,0);
+                this.transform.localScale = new Vector3((int) move, 1);
+                direction = new Vector2(move, 0);
             }
-            
+
             //格挡
-            defending = InputProvider.GetPlayerInput(playerId).GetKey(FencingKey.Defend);
+            defending = provider.GetKey(FencingKey.Defend);
             _animator.SetBool(Defending, defending);
         }
 
