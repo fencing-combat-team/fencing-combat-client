@@ -79,5 +79,44 @@ namespace Resources.Weapons
         }
     }
 
+    //´Ì½£¹¥»÷
+    public class LongSword : Weapon
+    {
+        private float AttackDistace = 2f;
+        override public List<GameObject> Attack(Vector2 position, Vector2 direction)
+        {
+            List<GameObject> gameObject = new List<GameObject>();
+
+            LayerMask Mask = LayerMask.GetMask("Player");
+            Ray2D ray = new Ray2D(position,direction);
+
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistace, Color.red);
+
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, AttackDistace, Mask);
+            
+            for(int i=0;i<info.Length;i++)
+                if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
+                    gameObject.Add(info[i].collider.gameObject);
+            return gameObject;
+        }
+
+        override public List<GameObject> DropAttack(Vector2 position, Vector2 direction)
+        {
+            List<GameObject> gameObject = new List<GameObject>();
+
+            LayerMask Mask = LayerMask.GetMask("Player");
+            Ray2D ray = new Ray2D(position + direction * 0.3f , Vector2.down);
+
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistace, Color.red);
+
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, AttackDistace, Mask);
+
+            for (int i = 0; i < info.Length; i++)
+                if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
+                    gameObject.Add(info[i].collider.gameObject);
+            return gameObject;
+
+        }
+    }
 
 }
