@@ -53,6 +53,11 @@ namespace GamePlay.Camera
             objList.Remove(tag);
         }
 
+        private float cameraScaleSpeed = 0;
+        private Vector3 cameraMoveSpeed = Vector3.zero;
+
+        public float smoothTime = 0.3f;
+
 
         // Update is called once per frame
         void Update()
@@ -67,10 +72,12 @@ namespace GamePlay.Camera
             //求物体xy坐标差值
             float dist = Mathf.Max(objX.Range(), objY.Range());
 
-            float size = dist * 0.18f + 5;
+            float size = dist * 0.22f + 5;
             //相机高度一半
             float cameraSize = Mathf.Min(size, _boundary.height / 2);
-            _camera.orthographicSize = cameraSize;
+            // _camera.orthographicSize = cameraSize;
+            _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, cameraSize, ref cameraScaleSpeed, smoothTime);
+
 
             //屏幕宽高比
             float aspectRatio = 1.0f * Screen.width / Screen.height;
@@ -88,9 +95,13 @@ namespace GamePlay.Camera
             float cameraY = Mathf.Clamp(avgY, cameraYMin, cameraYMax);
 
             Vector3 pos = new Vector3(cameraX, cameraY, -10);
-            _camera.transform.position = pos;
+            // _camera.transform.position = pos;
+            
+            _camera.transform.position = 
+                Vector3.SmoothDamp(_camera.transform.position, pos, ref cameraMoveSpeed, smoothTime);
 
-      
+
         }
+        
     }
 }

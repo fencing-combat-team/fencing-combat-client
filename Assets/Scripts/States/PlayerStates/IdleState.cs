@@ -14,6 +14,8 @@ namespace States.PlayerStates
 
         [Autowired]
         private PlayerMovement _movement;
+        [Autowired]
+        private PlayerInputHandler _input;
 
         private static readonly int Jump = Animator.StringToHash("jump");
         private static readonly int Attack = Animator.StringToHash("attack");
@@ -27,7 +29,7 @@ namespace States.PlayerStates
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            float move = _movement.gameObject.GetComponent<PlayerInputHandler>().move;
+            float move = _input.move;
             _movement.ChangeSpeed(move * speed);
         }
     }

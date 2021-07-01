@@ -10,9 +10,21 @@ namespace Managers
 {
     public abstract class InputProvider
     {
-        public abstract bool GetKey(FencingKey key);
+        private Dictionary<FencingKey, bool> downLastFrame = new Dictionary<FencingKey, bool>();
 
-        public abstract bool GetKeyDown(FencingKey key);
+        public void UpdateKey(FencingKey key)
+        {
+            downLastFrame[key] = GetKey(key);
+        }
+
+        public bool GetKeyDown(FencingKey key)
+        {
+            var result = GetKey(key) && (!(downLastFrame.ContainsKey(key) && downLastFrame[key]));
+            UpdateKey(key);
+            return result;
+        }
+
+        public abstract bool GetKey(FencingKey key);
 
         public abstract int GetHorizontalAxis();
 
@@ -38,10 +50,13 @@ namespace Managers
     public class DummyInputProvider : InputProvider
     {
         private static DummyInputProvider _dummy = new DummyInputProvider();
-        private DummyInputProvider(){}
+
+        private DummyInputProvider()
+        {
+        }
+
         public static DummyInputProvider Instance => _dummy;
         public override bool GetKey(FencingKey key) => false;
-        public override bool GetKeyDown(FencingKey key) => false;
         public override int GetHorizontalAxis() => 0;
     }
 
@@ -55,9 +70,6 @@ namespace Managers
 
         protected abstract KeyControl GetKeyControl(FencingKey key);
         protected abstract KeyControl GetKeyControl(DirectionKey key);
-
-        public override bool GetKeyDown(FencingKey key)
-            => GetKeyControl(key).wasPressedThisFrame;
 
         public override bool GetKey(FencingKey key)
             => GetKeyControl(key).isPressed;
@@ -109,7 +121,6 @@ namespace Managers
     public class GamePadInput : InputProvider
     {
         private int _index;
-
         public GamePadInput(int index)
         {
             _index = index;
@@ -128,13 +139,9 @@ namespace Managers
             };
         }
 
-        public override bool GetKeyDown(FencingKey key)
-            => GetButtonControl(key)?.wasPressedThisFrame ?? false;
-
         public override bool GetKey(FencingKey key)
             => GetButtonControl(key)?.isPressed ?? false;
-
-
+        
         public override int GetHorizontalAxis()
         {
             if (_index >= Gamepad.all.Count)

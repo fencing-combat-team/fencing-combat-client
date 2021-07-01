@@ -22,6 +22,7 @@ namespace GamePlay.Player
         [Tooltip("ÎäÆ÷")]
         private Weapon _weapon;
         private Sword _sword=new Sword();
+        private LongSword _longSword = new LongSword();
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -45,25 +46,24 @@ namespace GamePlay.Player
             else if (attack)
             {
                 _animator.SetTrigger(Attack);
-                _attackCooldown = 1000f / _weapon.AttackFeq;
+                _attackCooldown = 1000f / _longSword.AttackFeq;
             }
         }
 
         public void DoAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _sword.Attack(gameObject.transform.position, direction).
+            _longSword.Attack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject ).ForEach(g =>
                 {
-                    if(!g.GetComponent<PlayerInputHandler>().defending || 
-                    g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
-                    {
+                    if (g.GetComponent<PlayerAttack>()._longSword.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
-                    }
+                    else if(!g.GetComponent<PlayerInputHandler>().defending || 
+                    g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                        g.GetComponent<PlayerHealth>().Die();
                     else
-                    {
-                        g.GetComponent<PlayerMovement>().ChangeSpeed(direction.x * 4f);
-                    }
+                        g.GetComponent<PlayerMovement>().ChangeSpeed
+                        (direction.x * (_longSword.AttackDistance - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
                 });
 
         }
@@ -71,19 +71,17 @@ namespace GamePlay.Player
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _sword.DropAttack(gameObject.transform.position, direction).
+            _longSword.DropAttack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject).ForEach(g =>
                 {
-                    if (!g.GetComponent<PlayerInputHandler>().defending ||
-                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
-                    {
+                    if (g.GetComponent<PlayerAttack>()._longSword.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
-                    }
+                    else if(!g.GetComponent<PlayerInputHandler>().defending ||
+                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                        g.GetComponent<PlayerHealth>().Die();
                     else
-                    {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (12f-12f*Mathf.Abs(g.gameObject.transform.position.x-this.transform.position.x)));
-                    }
+                        (direction.x * (_longSword.AttackDistance+1f-Mathf.Abs(g.transform.position.x-this.transform.position.x))*_longSword.ImpactingForce);
                 });
 
         }

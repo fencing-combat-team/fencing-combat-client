@@ -14,7 +14,8 @@ namespace States.PlayerStates
 
         [Autowired]
         private PlayerMovement _movement;
-        private PlayerInputHandler _inputHandler;
+        [Autowired]
+        private PlayerInputHandler _input;
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -24,7 +25,7 @@ namespace States.PlayerStates
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //移动
-            float move = _movement.gameObject.GetComponent<PlayerInputHandler>().move;
+            float move = _input.move;
             _movement.ChangeSpeed(move * speed);
         }
     }

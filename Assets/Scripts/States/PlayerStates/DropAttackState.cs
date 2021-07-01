@@ -12,6 +12,8 @@ namespace States.PlayerStates
         private PlayerAttack _attack;
         [Autowired]
         private Rigidbody2D _rigidbody2D;
+        [Autowired]
+        private PlayerMovement _movement;
         
         [Tooltip("下落攻击力量")]
         [SerializeField]
@@ -21,7 +23,8 @@ namespace States.PlayerStates
             int layerIndex)
         {
             this.InitComponents(animator);
-            _rigidbody2D.velocity = new Vector2(0, -downForce);
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -downForce);
+            _movement.ChangeSpeed(0, false);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
@@ -29,5 +32,7 @@ namespace States.PlayerStates
         {
             _attack.DoDropAttack();
         }
+
+
     }
 }
