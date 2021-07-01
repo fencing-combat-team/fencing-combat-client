@@ -81,7 +81,8 @@ namespace GamePlay.Player
                     }
                     else
                     {
-                        g.GetComponent<PlayerMovement>().ChangeSpeed(direction.x * 4f);
+                        g.GetComponent<PlayerMovement>().ChangeSpeed
+                        (direction.x * (12f-12f*Mathf.Abs(g.gameObject.transform.position.x-this.transform.position.x)));
                     }
                 });
 

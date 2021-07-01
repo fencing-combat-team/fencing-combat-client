@@ -37,7 +37,7 @@ namespace Resources.Weapons
                     dir = new Vector2(Mathf.Cos(angle*Mathf.PI/180), Mathf.Sin(angle*Mathf.PI / 180));
                 else
                     dir = new Vector2(Mathf.Cos((180-angle) * Mathf.PI / 180), Mathf.Sin((180-angle) * Mathf.PI / 180));
-                ray[i] = new Ray2D(position+direction*0.4f,dir);
+                ray[i] = new Ray2D(position+direction*0.45f,dir);
                 Debug.DrawLine(ray[i].origin, ray[i].origin+ray[i].direction*AttackDistace, Color.red);
                 angle -= rotate ;
             }

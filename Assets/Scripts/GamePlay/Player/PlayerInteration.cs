@@ -40,8 +40,8 @@ namespace GamePlay.Player
         {
             Ray2D[] ray=new Ray2D[3];
             ray[0] = new Ray2D(transform.position, Vector2.down);
-            ray[1]= new Ray2D(transform.position + Vector3.left * 0.4f, Vector2.down);
-            ray[2] = new Ray2D(transform.position + Vector3.right * 0.4f, Vector2.down);
+            ray[1]= new Ray2D(transform.position + Vector3.left * 0.38f, Vector2.down);
+            ray[2] = new Ray2D(transform.position + Vector3.right * 0.38f, Vector2.down);
 
             RaycastHit2D[] info = new RaycastHit2D[3];
 
