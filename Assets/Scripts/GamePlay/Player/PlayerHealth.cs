@@ -1,4 +1,5 @@
 using Core;
+using GamePlay.Data;
 using GamePlay.Entity;
 using Managers;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace GamePlay.Player
         {
             if (_dataManager.Properties.life < 0)
             {
-                Debug.Log("Game Over");
+                PlayerInGameData.Instance.OnPlayerDead(_dataManager.PlayerId);
                 Destroy(this.gameObject);
             }
                 

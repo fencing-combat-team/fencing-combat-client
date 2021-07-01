@@ -22,11 +22,16 @@ namespace UI.Play
         public PlayerColors colors;
         public PlayerRoomData roomData;
 
+        private void Awake()
+        {
+            PlayerInGameData.Instance.Reset.AddListener(Load);
+            Load();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
             SetColor();
-            PlayerInGameData.Instance.Reset += Load;
         }
 
         private void Load()
@@ -39,12 +44,6 @@ namespace UI.Play
             }
         }
 
-        private void OnDestroy()
-        {
-            PlayerInGameData.Instance.Reset -= Load;
-            
-        }
-
         void Update()
         {
             foreach (var playerProp in PlayerInGameData.Instance.Properties)
@@ -52,14 +51,15 @@ namespace UI.Play
                 if (playerProp.life < 0)
                 {
                     playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 1);
+                    playerlives[playerProp.playerId - 1].text = "";
                 }
                 else
                 {
                     playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 0);
+                    playerlives[playerProp.playerId - 1].text =
+                        playerProp.life.ToString();
                 }
 
-                playerlives[playerProp.playerId - 1].text =
-                    playerProp.life.ToString();
             }
         }
 

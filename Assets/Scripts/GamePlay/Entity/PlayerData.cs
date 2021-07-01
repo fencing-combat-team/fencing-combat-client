@@ -12,7 +12,6 @@ namespace GamePlay.Entity
         public int playerId;
         public string playerName;
         public PlayerColorEnum playerColor;
-        [NonSerialized]
         public int score;
     }
 

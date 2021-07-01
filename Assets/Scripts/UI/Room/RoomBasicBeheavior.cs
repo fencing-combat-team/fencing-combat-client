@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Linq;
 using GamePlay.Data;
 using Managers;
@@ -6,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 
 // 这是房间主要界面的控制类
@@ -19,10 +22,11 @@ namespace UI.Room
 
         public RoomOptionBehavior optionBehavior;
         public WinnerPanel winnerPanel;
+        public LevelDefinitionData levelDefinitionData;
 
         public Text levelname;
         public Text levelmessage;
-        public Text setting;
+        public Image levelPic;
         public Text time;
         public Text ground;
 
@@ -38,16 +42,11 @@ namespace UI.Room
         [Tooltip("房间设置")]
         public RoomSetting roomSetting;
 
-        public PlayerRoomData roomData;
-        [FormerlySerializedAs("roomStatu")]
-        public RoomStatus roomStatus;
-
 
         #region 单例变量
 
         bool isPlay = false;
 
-        private float t = 1;
         private float Timeleft = 10;
 
         //外部会引用到的变量
@@ -55,62 +54,54 @@ namespace UI.Room
         public int Seconds = 10;
         public int Grounds = 3;
 
-        //暂停判断器
-        private bool PAUSE = false;
-
         #endregion
 
         private PlayerDataShower[] players;
+        private RoomSettingTextBehaviour _roomSettingTextBehaviour;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            if (roomStatus.isGaming)
-            {
-                isPlay = true;
-                Grounds = roomStatus.GroundsRemained;
-                roomData.GetById(1).score += roomStatus.score1;
-                roomData.GetById(2).score += roomStatus.score2;
-                roomData.GetById(3).score += roomStatus.score3;
-                roomData.GetById(4).score += roomStatus.score4;
-            }
-            else
-            {
-                Grounds = roomSetting.round;
-            }
+            
+            Random.InitState((int) DateTime.Now.Ticks);
 
             //初始化颜色选择器
             foreach (var colorSelector in GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerColorSelector>())
             {
-                colorSelector.PlayerData = roomData.GetById(colorSelector.playerId);
+                colorSelector.PlayerData = GameManager.Instance.PlayerRoomData.GetById(colorSelector.playerId);
             }
 
             players = GameObject.Find("PlayerPanel").GetComponentsInChildren<PlayerDataShower>();
-            foreach (var dataShower in  players)
+            foreach (var dataShower in players)
             {
-                dataShower.playerData = roomData.GetById(dataShower.playerId);
+                dataShower.playerData = GameManager.Instance.PlayerRoomData.GetById(dataShower.playerId);
+            }
+
+            _roomSettingTextBehaviour = GetComponentInChildren<RoomSettingTextBehaviour>();
+            
+            if (GameManager.Instance.RoomStatus.isGaming)
+            {
+                isPlay = true;
+                Grounds = GameManager.Instance.RoomStatus.GroundsRemained;
+                
+                StartCoroutine(nameof(NewLevelSet));
             }
         }
-
 
         // Update is called once per frame
         void Update()
         {
-            if (!PAUSE)
+            //计时以及计算局数部分
+            if (isPlay)
             {
-                //计时以及计算局数部分
-                if (isPlay)
-                {
-                    startButton.interactable = false;
-                    settingButton.interactable = false;
-                    Timer();
-                }
-                else
-                {
-                    startButton.interactable = true;
-                    settingButton.interactable = true;
-                }
+                startButton.interactable = false;
+                settingButton.interactable = false;
+            }
+            else
+            {
+                startButton.interactable = true;
+                settingButton.interactable = true;
             }
 
 
@@ -125,9 +116,10 @@ namespace UI.Room
         public void OnStartButtonClicked()
         {
             isPlay = true;
-            roomStatus.Reset();
-            roomStatus.isGaming = true;
-            roomStatus.GroundsRemained = roomSetting.round;
+            GameManager.Instance.RoomStatus.Reset();
+            GameManager.Instance.RoomStatus.isGaming = true;
+            GameManager.Instance.RoomStatus.GroundsRemained = roomSetting.round;
+            StartCoroutine(nameof(NewLevelSet));
         }
 
 
@@ -141,63 +133,88 @@ namespace UI.Room
             isPlay = false;
             startButton.interactable = true;
             settingButton.interactable = true;
-            roomStatus.Reset();
+            GameManager.Instance.RoomStatus.Reset();
+            StopCoroutine(nameof(NewLevelSet));
+            StopCoroutine(nameof(Timer));
         }
 
         #endregion
 
+        private int mapIndex = 0;
+
         #region
 
-        void newLevelSet()
+        IEnumerator NewLevelSet()
         {
-            //TODO: new level
-        }
-
-        void OpenNewLevel()
-        {
-            GameManager.Instance.CurrentPlayers = 
-                players
-                    .Where(p => p.isActiveAndEnabled)
-                    .Select(p=>p.playerData)
-                    .ToArray();
-            //TODO: 地图选择
-            GameManager.Instance.CurrentMapId = "realworld_map";
-            AsyncOperation ass = SceneManager.LoadSceneAsync("GamePlay", LoadSceneMode.Single);
-        }
-
-        void Timer()
-        {
-            //计数器关卡倒计时
-            if (Timeleft >= 0)
-            {
-                Timeleft -= Time.deltaTime;
-                TimeleftPercent = Timeleft / 10f;
-            }
-
-            Seconds = (int) Timeleft;
-
-            //开始计时时随机选择关卡
-            if (Timeleft > 9.9f)
-            {
-                newLevelSet();
-            }
-
+            
             //游戏结束判定
             if (Grounds == 0)
             {
                 isPlay = false;
-                roomStatus.isGaming = false;
+                GameManager.Instance.RoomStatus.isGaming = false;
                 winnerPanel.Show();
             }
-
-            //倒计时结束时打开新的关卡
-            if (Timeleft < 0.1f)
+            else
             {
-                if (Grounds != 0)
+                int random = Random.Range(0, levelDefinitionData.maps.Length);
+                int index = random;
+                float waitTime = 0.02f;
+                for (int i = 0; i < 20; i++)
                 {
-                    roomStatus.GroundsRemained--;
-                    OpenNewLevel();
+                    index = (random + i) % levelDefinitionData.maps.Length;
+                    var map = levelDefinitionData.maps[index];
+                    levelmessage.text = map.description;
+                    levelname.text = map.title;
+                    levelPic.sprite = map.shortcut;
+                    yield return new WaitForSeconds(waitTime);
+
+                    waitTime *= 1.2f;
                 }
+
+                mapIndex = index;
+
+                StartCoroutine(nameof(Timer));
+            }
+        }
+
+        void OpenNewLevel()
+        {
+            GameManager.Instance.CurrentPlayers =
+                players
+                    .Where(p => p.isActiveAndEnabled)
+                    .Select(p => p.playerData)
+                    .ToArray();
+
+            PlayerInGameData.Instance.ResetFor(
+                GameManager.Instance.CurrentPlayers.Length,
+                roomSetting.lives);
+
+            GameManager.Instance.CurrentMapId = levelDefinitionData.maps[mapIndex].mapId;
+            SceneManager.LoadSceneAsync("GamePlay", LoadSceneMode.Single);
+        }
+
+        IEnumerator Timer()
+        {
+            while (true)
+            {
+                //计数器关卡倒计时
+                if (Timeleft >= 0)
+                {
+                    Timeleft -= Time.deltaTime;
+                    TimeleftPercent = Timeleft / 10f;
+                }
+
+                Seconds = (int) Timeleft;
+
+                //倒计时结束时打开新的关卡
+                if (Timeleft < 0.1f)
+                {
+                    GameManager.Instance.RoomStatus.GroundsRemained--;
+                    OpenNewLevel();
+                    break;
+                }
+
+                yield return null;
             }
         }
 

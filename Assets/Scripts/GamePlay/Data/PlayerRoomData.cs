@@ -8,10 +8,10 @@ namespace GamePlay.Data
 {
 
     [CreateAssetMenu(fileName = "New PlayerRoomData", menuName = "ScriptableObjects/Player/PlayerRoomData")]
-    public class PlayerRoomData : ScriptableObject, ISerializationCallbackReceiver
+    public class PlayerRoomData : ScriptableObject
     {
         public PlayerData[] players = new PlayerData[4];
-
+        
         void OnValidate()
         {
             if (players.Length != 4)
@@ -25,16 +25,6 @@ namespace GamePlay.Data
         public PlayerData GetById(int playerId)
         {
             return players.First(p => p.playerId == playerId);
-        }
-
-        public void OnBeforeSerialize()
-        {
-            
-        }
-
-        public void OnAfterDeserialize()
-        {
-            
         }
     }
 }

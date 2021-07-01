@@ -42,7 +42,7 @@ namespace Managers
                 },
             };
             
-            PlayerInGameData.Instance.ResetFor(2);
+            PlayerInGameData.Instance.ResetFor(2, 3);
             
             this.InitComponents();
             InitMap();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,20 +11,18 @@ namespace UI.Data
     {
         public bool isGaming = false;
         public int GroundsRemained = 0;
-        public int score1 = 0;
-        public int score2 = 0;
-        public int score3 = 0;
-        public int score4 = 0;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
 
         public void Reset()
         {
             isGaming = false;
             GroundsRemained = 0;
-            score1 = 0;
-            score2 = 0;
-            score3 = 0;
-            score4 = 0;
         }
+        
     }
 
 }

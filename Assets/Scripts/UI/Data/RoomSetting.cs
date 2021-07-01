@@ -21,6 +21,25 @@ namespace UI.Data
         public event Action<RoomSetting> SettingChange;
         public void OnSettingChange() => SettingChange?.Invoke(this);
 
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+            round = PlayerPrefs.GetInt("round", round);
+            lives = PlayerPrefs.GetInt("lives", lives);
+            playerNumbers = PlayerPrefs.GetInt("playerNumbers", playerNumbers);
+            recoveryTime = PlayerPrefs.GetFloat("recoveryTime", recoveryTime);
+        }
+
+        public void OnDisable()
+        {
+            PlayerPrefs.SetInt("round", round);
+            PlayerPrefs.SetInt("lives", lives);
+            PlayerPrefs.SetInt("playerNumbers", playerNumbers);
+            PlayerPrefs.SetFloat("recoveryTime", recoveryTime);
+            PlayerPrefs.Save();
+        }
+
         public void OnBeforeSerialize()
         {
         }

@@ -447,8 +447,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerName: {fileID: 531595343}
   score: {fileID: 763807521}
   playerId: 2
@@ -889,8 +889,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerName: {fileID: 880634576}
   score: {fileID: 108960107}
   playerId: 3
@@ -1662,8 +1662,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerId: 2
   toggleDatas:
   - toggle: {fileID: 1446517879}
@@ -2693,10 +2693,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 69ca3405bc073ee448fba36fef0188cd, type: 3}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -2704,7 +2704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &339250978
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4443,8 +4443,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerId: 3
   toggleDatas:
   - toggle: {fileID: 901794410}
@@ -5477,9 +5477,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionBehavior: {fileID: 2000487613}
   winnerPanel: {fileID: 1515177219}
+  levelDefinitionData: {fileID: 11400000, guid: 7bf2cd0546af5214890937ca08784e95, type: 2}
   levelname: {fileID: 1094772657}
   levelmessage: {fileID: 339250977}
-  setting: {fileID: 2109701199}
+  levelPic: {fileID: 411877051}
   time: {fileID: 162607580}
   ground: {fileID: 378940727}
   image: {fileID: 1442937805}
@@ -7388,7 +7389,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Title
 --- !u!222 &1094772658
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7934,8 +7935,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerName: {fileID: 917866879}
   score: {fileID: 1615257470}
   playerId: 1
@@ -12262,8 +12263,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerName: {fileID: 804982639}
   score: {fileID: 2111540878}
   playerId: 4
@@ -12517,8 +12518,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerId: 1
   toggleDatas:
   - toggle: {fileID: 1106807538}
@@ -13184,8 +13185,8 @@ MonoBehaviour:
   playerData:
     playerId: 0
     playerName: 
-    score: 0
     playerColor: 0
+    score: 0
   playerId: 4
   toggleDatas:
   - toggle: {fileID: 325613609}
@@ -13386,17 +13387,17 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 69ca3405bc073ee448fba36fef0188cd, type: 3}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: "\u9700\u8981\u8FDB\u884C\u7684\u5173\u5361\u6570\uFF1A1\n\u6BCF\u5C40\u6E38\u620F\u73A9\u5BB6\u7684\u751F\u547D\uFF1A3\n\u590D\u6D3B\u65F6\u95F4\uFF1A0"
 --- !u!222 &2109701200
 CanvasRenderer:
@@ -13419,6 +13420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSetting: {fileID: 11400000, guid: 909245718ea97db458136990b878061e, type: 2}
+  roomStatus: {fileID: 11400000, guid: 58571a024aa8eed4da8fd1a1e864dd4a, type: 2}
 --- !u!1 &2111540876
 GameObject:
   m_ObjectHideFlags: 0

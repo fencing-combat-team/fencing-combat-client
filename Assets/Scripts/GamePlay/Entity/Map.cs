@@ -20,6 +20,10 @@ namespace GamePlay.Entity
 
         public Vector2[] spawnPoints;
 
+        public string title;
+        public string description;
+        public Sprite shortcut;
+
 
     }
 }
