@@ -121,7 +121,6 @@ namespace Managers
     public class GamePadInput : InputProvider
     {
         private int _index;
-
         public GamePadInput(int index)
         {
             _index = index;
@@ -142,8 +141,7 @@ namespace Managers
 
         public override bool GetKey(FencingKey key)
             => GetButtonControl(key)?.isPressed ?? false;
-
-
+        
         public override int GetHorizontalAxis()
         {
             if (_index >= Gamepad.all.Count)
