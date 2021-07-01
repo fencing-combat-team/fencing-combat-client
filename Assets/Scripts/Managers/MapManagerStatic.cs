@@ -79,6 +79,7 @@ namespace Managers
             var colliders = new List<BoxCollider2D>();
             foreach (var ground in map.groundColliderPrefabs)
             {
+                SetTagForAllChildren(ground, "Ground");
                 colliders.AddRange(ground.GetComponentsInChildren<BoxCollider2D>());
             }
             players.ForEach(p =>p.GetComponent<PlayerInteration>().ground = colliders.ToArray());
@@ -91,6 +92,15 @@ namespace Managers
             _autoCamera.ResetBackground();
             
 
+        }
+        private void SetTagForAllChildren(GameObject go, string tag)
+        {
+            go.tag = tag;
+            if (!go.transform.hasChanged) return;
+            foreach (Transform child in go.transform)
+            {
+                SetTagForAllChildren(child.gameObject, tag);
+            }
         }
     }
 }
