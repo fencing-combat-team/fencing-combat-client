@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1545687128498345361}
   - component: {fileID: 1545687128498345367}
   - component: {fileID: 1545687128498345366}
+  - component: {fileID: 3555928826831407524}
   m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3555928826831407524
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545687128498345360}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1545687128517135251
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +649,7 @@ GameObject:
   - component: {fileID: 1545687128886626460}
   - component: {fileID: 1545687128886626530}
   - component: {fileID: 1545687128886626461}
+  - component: {fileID: 580922517416111977}
   m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
@@ -704,6 +718,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &580922517416111977
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545687128886626463}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1545687128962665070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1103,7 @@ GameObject:
   - component: {fileID: 1545687129054854915}
   - component: {fileID: 1545687129054854913}
   - component: {fileID: 1545687129054854912}
+  - component: {fileID: 1251728921512932179}
   m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
@@ -1145,6 +1172,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1251728921512932179
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545687129054854914}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1545687129076154751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,10 +1846,10 @@ MonoBehaviour:
   - {fileID: 1545687129011409061}
   - {fileID: 1545687130387909815}
   playerlives:
-  - {fileID: 1545687130277834261}
-  - {fileID: 1545687128780398666}
-  - {fileID: 1545687129468721387}
-  - {fileID: 1545687129110371973}
+  - {fileID: 1545687128712294343}
+  - {fileID: 1545687130254539807}
+  - {fileID: 1545687130083477674}
+  - {fileID: 1545687128849398536}
   colors: {fileID: 11400000, guid: 2725cd307fb94a94bb9ba6588b4f4505, type: 2}
   roomData: {fileID: 11400000, guid: cf8e45a5083031443bcdd67224a1ec2f, type: 2}
 --- !u!1 &1545687129572194474
@@ -3418,6 +3457,7 @@ GameObject:
   - component: {fileID: 1545687130388435978}
   - component: {fileID: 1545687130388435976}
   - component: {fileID: 1545687130388435979}
+  - component: {fileID: 3789174318977203986}
   m_Layer: 5
   m_Name: Player4
   m_TagString: Untagged
@@ -3486,6 +3526,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3789174318977203986
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545687130388435973}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1545687130408257556
 GameObject:
   m_ObjectHideFlags: 0

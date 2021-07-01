@@ -15,7 +15,7 @@ namespace UI.Play
         public Text[] playerlives;
 
         private GameObject[] players;
-
+        private bool PlayerNumsetted;
 
         public PlayerColors colors;
         public PlayerRoomData roomData;
@@ -30,18 +30,49 @@ namespace UI.Play
         // Update is called once per frame
         void Update()
         {
-            for (int i = 0; i < players.Length; i++)
+            if (players.Length == 0)
             {
-                if (players[i].GetComponent<PlayerHealth>().life < 0)
-                {
-                    playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 1);
-                } 
-                else
-                {
-                    playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 0);
-                }
-                playerlives[players[i].GetComponent<PlayerInputHandler>().getId() - 1].text = players[i].GetComponent<PlayerHealth>().life.ToString();
+                players = FindAllPlayers();
             }
+            else
+            {
+                if (!PlayerNumsetted)
+                {
+                    switch (players.Length)
+                    {
+                        case 4:
+                            PlayerNumsetted = true;
+                            break;
+                        case 3:
+                            playerimages[3].GetComponent<CanvasGroup>().alpha = 0;
+                            PlayerNumsetted = true;
+                            break;
+                        case 2:
+                            playerimages[3].GetComponent<CanvasGroup>().alpha = 0;
+                            playerimages[2].GetComponent<CanvasGroup>().alpha = 0;
+                            PlayerNumsetted = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                for (int i = 0; i < players.Length; i++)
+                {
+                    if (players[i].GetComponent<PlayerHealth>().life < 0)
+                    {
+                        playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 1);
+                    }
+                    else
+                    {
+                        playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 0);
+                    }
+                    playerlives[players[i].GetComponent<PlayerInputHandler>().getId() - 1].text = players[i].GetComponent<PlayerHealth>().life.ToString();
+                }
+            }
+
+            
+
         }
         #region
         private void setColor()
@@ -61,7 +92,6 @@ namespace UI.Play
         }
 
 
-        //TODO:≤È’“≤ªµΩplayer
         private GameObject[] FindAllPlayers()
         {
             GameObject[] Currentplayers = GameObject.FindGameObjectsWithTag("Player");
