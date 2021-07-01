@@ -37,7 +37,7 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-            var playerId = _dataManager.playerId;
+            var playerId = _dataManager.PlayerId;
             var provider = InputProvider.GetPlayerInput(playerId);
             //跳跃
             if (provider.GetKeyDown(FencingKey.Jump))
@@ -61,11 +61,6 @@ namespace GamePlay.Player
             defending = provider.GetKey(FencingKey.Defend);
             _animator.SetBool(Defending, defending);
         }
-
-
-        public int getId()
-        {
-            return _dataManager.playerId;
-        }
+        
     }
 }

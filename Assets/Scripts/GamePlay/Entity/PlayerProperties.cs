@@ -9,6 +9,8 @@ namespace GamePlay.Entity
     public class PlayerProperties
     {
         public int life;
+        public int playerId;
         
+
     }
 }

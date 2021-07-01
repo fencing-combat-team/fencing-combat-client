@@ -5,6 +5,7 @@ using GamePlay.Data;
 using UnityEngine.UI;
 using GamePlay.Entity;
 using GamePlay.Player;
+using Managers;
 
 namespace UI.Play
 {
@@ -23,8 +24,7 @@ namespace UI.Play
         // Start is called before the first frame update
         void Start()
         {
-            setColor();
-            players = FindAllPlayers();
+            SetColor();
         }
 
         // Update is called once per frame
@@ -74,8 +74,10 @@ namespace UI.Play
             
 
         }
+
         #region
-        private void setColor()
+
+        private void SetColor()
         {
             Color color1 = colors[roomData.players[0].playerColor];
             color1.a = 100;
@@ -123,4 +125,3 @@ namespace UI.Play
         #endregion
     }
 }
-

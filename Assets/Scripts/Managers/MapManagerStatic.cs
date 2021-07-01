@@ -42,6 +42,8 @@ namespace Managers
                 },
             };
             
+            PlayerInGameData.Instance.ResetFor(2);
+            
             this.InitComponents();
             InitMap();
         }
@@ -63,7 +65,7 @@ namespace Managers
                 var playerRender = playerObj.GetComponent<SpriteRenderer>();
                 playerRender.color = colors[player.playerColor];
                 playerData.playerData = player;
-                playerData.playerId = player.playerId;
+                playerData.PlayerId = player.playerId;
 
                 if (spawnIndex >= map.spawnPoints.Length)
                 {
@@ -72,6 +74,7 @@ namespace Managers
 
                 var pos = map.spawnPoints[spawnIndex++];
                 playerObj.transform.position = new Vector3(pos.x, pos.y);
+                playerObj.GetComponent<PlayerHealth>().spawnPoint = new Vector3(pos.x, pos.y);
                 players.Add(playerObj);
             }
             

@@ -1,31 +1,38 @@
+using Core;
+using GamePlay.Entity;
+using Managers;
 using UnityEngine;
+using Utils;
 
 namespace GamePlay.Player
 {
     public class PlayerHealth : MonoBehaviour
     {
-        //ÉúÃüÊý
-        public int life { get; set; }
+        public Vector3 spawnPoint;
+
+        [Autowired]
+        private PlayerDataManager _dataManager;
         // Start is called before the first frame update
         void Start()
         {
-            life = 3;
+            this.InitComponents();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (life <= 0)
+            if (_dataManager.Properties.life < 0)
             {
                 Debug.Log("Game Over");
+                Destroy(this.gameObject);
             }
                 
         }
 
         public void Die()
         {
-            life--;
-            transform.position = new Vector3(-4, -2, 0);
+            _dataManager.Properties.life--;
+            transform.position = spawnPoint;
         }
     }
 }
