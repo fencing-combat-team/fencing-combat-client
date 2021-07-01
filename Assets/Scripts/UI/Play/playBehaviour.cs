@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,54 +26,41 @@ namespace UI.Play
         void Start()
         {
             SetColor();
+            PlayerInGameData.Instance.Reset += Load;
         }
 
-        // Update is called once per frame
+        private void Load()
+        {
+            
+            for (int i = 0; i < playerimages.Length; i++)
+            {
+                playerimages[i].GetComponent<CanvasGroup>().alpha =
+                    i <  PlayerInGameData.Instance.Properties.Length ? 1 : 0;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            PlayerInGameData.Instance.Reset -= Load;
+            
+        }
+
         void Update()
         {
-            if (players.Length == 0)
+            foreach (var playerProp in PlayerInGameData.Instance.Properties)
             {
-                players = FindAllPlayers();
-            }
-            else
-            {
-                if (!PlayerNumsetted)
+                if (playerProp.life < 0)
                 {
-                    switch (players.Length)
-                    {
-                        case 4:
-                            PlayerNumsetted = true;
-                            break;
-                        case 3:
-                            playerimages[3].GetComponent<CanvasGroup>().alpha = 0;
-                            PlayerNumsetted = true;
-                            break;
-                        case 2:
-                            playerimages[3].GetComponent<CanvasGroup>().alpha = 0;
-                            playerimages[2].GetComponent<CanvasGroup>().alpha = 0;
-                            PlayerNumsetted = true;
-                            break;
-                        default:
-                            break;
-                    }
+                    playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 1);
+                }
+                else
+                {
+                    playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 0);
                 }
 
-                for (int i = 0; i < players.Length; i++)
-                {
-                    if (players[i].GetComponent<PlayerHealth>().life < 0)
-                    {
-                        playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 1);
-                    }
-                    else
-                    {
-                        playerchecks[players[i].GetComponent<PlayerInputHandler>().getId() - 1].color = new Color(1, 1, 1, 0);
-                    }
-                    playerlives[players[i].GetComponent<PlayerInputHandler>().getId() - 1].text = players[i].GetComponent<PlayerHealth>().life.ToString();
-                }
+                playerlives[playerProp.playerId - 1].text =
+                    playerProp.life.ToString();
             }
-
-            
-
         }
 
         #region
@@ -101,7 +89,6 @@ namespace UI.Play
             return Currentplayers;
 
 
-
             /*
             object[] playerInput = FindObjectsOfType<PlayerInputHandler>();
             Debug.Log(playerInput.Length);
@@ -122,6 +109,7 @@ namespace UI.Play
             return Currentplayers;
             */
         }
+
         #endregion
     }
 }

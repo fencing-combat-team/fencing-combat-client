@@ -19,7 +19,10 @@ namespace GamePlay.Data
             {
                 Properties[i] = new PlayerProperties() {playerId = i + 1};
             }
+            Reset?.Invoke();
         }
+
+        public event Action Reset;
 
         public PlayerProperties GetById(int playerId)
         {
