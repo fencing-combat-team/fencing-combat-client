@@ -138,6 +138,10 @@ namespace Managers
                         if (buff.activeTime <= 0)
                             WithdrawBuff(buff);
                         break;
+                    case 2:
+                        if (buff.activeCount <= 0)
+                            WithdrawBuff(buff);
+                        break;
                     default: break;
                 }
             }

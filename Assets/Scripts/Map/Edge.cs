@@ -22,6 +22,6 @@ public class Edge : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        other.gameObject.GetComponent<PlayerHealth>().Die();
+        other.gameObject.GetComponent<PlayerHealth>().EdgeDie();
     }
 }
