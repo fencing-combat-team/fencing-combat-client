@@ -11,7 +11,7 @@ using UnityEngine.Events;
 
 namespace GamePlay.Data
 {
-    public class PlayerInGameData : Singleton<PlayerInGameData>
+    public class PlayerInGameData : SingletonBehaviour<PlayerInGameData>
     {
         public PlayerInGameData()
         {

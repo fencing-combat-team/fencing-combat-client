@@ -21,6 +21,7 @@ namespace GamePlay.Player
             }
         }
         
+        
         [NonSerialized]
         private PlayerProperties _properties;
 

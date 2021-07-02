@@ -1,112 +1,136 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GamePlay.Entity;
 using GamePlay.Buff;
 using System.Linq;
+using Enums;
+using GamePlay.Data;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
     public class BuffManager : MonoBehaviour
     {
-        private int buffTypeCount = 4;            // buff类型数
-        private float buffUnusedTime = 20;        // buff未被拾取时的持续在场时间
+        private int buffTypeCount = 4; // buff类型数
+        private float buffUnusedTime = 20; // buff未被拾取时的持续在场时间
         private float buffDefaultActiveTime = 10; // buff默认持续时间
-        private int buffDefaultActiveCount = 3;   // buff默认使用次数
-        private float timePerInitBuff = 10;       // 生成buff的间隔时间
+        private int buffDefaultActiveCount = 3; // buff默认使用次数
+        private float timePerInitBuff = 10; // 生成buff的间隔时间
 
-        private float initTimer;      // 初始化计时器
-        private float updateTimer;    // 更新计时器
-        private int buffCounter;      // buff计数器（用于设置id）
+        private float initTimer; // 初始化计时器
+        private float updateTimer; // 更新计时器
+        private int buffCounter; // buff计数器（用于设置id）
 
-        public PlayerData[] players;  // 玩家
-        public string mapId;          // 根据地图id设置产生buff道具的位置
-        public Vector3[] position;    // 产生buff道具的位置
-        public List<Buff> buffList;   // buff列表
+        private PlayerData[] players; // 玩家
+        private List<Buff> buffList; // buff列表
+        private Dictionary<int, GameObject> buffObjects;
+
+        public Map map;
+        public GameObject buffPrefab;
+
 
         void Start()
         {
             InitBuffManager();
+            Random.InitState((int) DateTime.Now.Ticks);
         }
 
         void Update()
         {
             // 每段时间随机生成buff
             initTimer -= Time.deltaTime;
-            if(initTimer<=0)
+            if (initTimer <= 0)
             {
                 initTimer = timePerInitBuff;
-                InitBuff(Random.Range(0, buffTypeCount));
+                //随机Pick一个buff
+                var sum = map.buffs.Select(buff => buff.spawnChance).Sum();
+                var rand = Random.Range(0, sum);
+
+                var currentSum = 0f;
+                foreach (var buff in map.buffs)
+                {
+                    var chance = buff.spawnChance;
+                    currentSum += chance;
+                    if (currentSum > rand)
+                    {
+                        var pos = buff.possibleSpawnPoints;
+                        InitBuff(buff.buffId, pos[Random.Range(0, pos.Length)]);
+                        break;
+                    }
+                }
             }
 
 
             // 对buff时间进行更新
             updateTimer -= Time.deltaTime;
-            if(updateTimer<=0)
+            if (updateTimer <= 0)
             {
                 updateTimer = 1;
                 UpdateBuff();
             }
-
-
         }
 
-        private void InitBuffManager()     // 初始化Manager
+        private void InitBuffManager() // 初始化Manager
         {
             initTimer = timePerInitBuff;
             updateTimer = 1;
             buffCounter = 0;
+            buffList = new List<Buff>(); // buff列表
+            buffObjects = new Dictionary<int, GameObject>();
 
             players = GameManager.Instance.CurrentPlayers;
-            mapId = GameManager.Instance.CurrentMapId;
-            switch (mapId)
+            PlayerBuffManager.Instance.BuffRemove += (buff, p) =>
             {
-                case "sketch_map":
-                    //// position添加坐标!!!
-                    break;
-                case "color_map":
-                    //// position添加坐标!!!
-                    break;
-                case "pixel_map":
-                    //// position添加坐标!!!
-                    break;
-                case "realworld_map":
-                    //// position添加坐标!!!
-                    break;
-                default:print("Init Buff Wrong!"); break;
-            }
+                buffObjects?.Remove(buff.buffId);
+                buffList?.Remove(buff);
+            };
         }
 
-        private void InitBuff(int typeid)  // 生成一个buff
+        private void InitBuff(BuffTypeEnum typeid, Vector3 pos) // 生成一个buff
         {
             Buff newBuff;
             switch (typeid)
             {
-                case 0: newBuff = new HealthBuff(buffCounter,buffUnusedTime); break;
-                case 1: newBuff = new SpeedBuff(buffCounter, buffDefaultActiveTime, buffUnusedTime); break;
-                case 2: newBuff = new ShieldBuff(buffCounter, buffDefaultActiveCount, buffUnusedTime); break;
-                case 3: newBuff = new JumpBuff(buffCounter, buffDefaultActiveTime, buffUnusedTime); break;
+                case BuffTypeEnum.HealthBuff:
+                    newBuff = new HealthBuff(buffCounter, buffUnusedTime);
+                    break;
+                case BuffTypeEnum.SpeedBuff:
+                    newBuff = new SpeedBuff(buffCounter, buffDefaultActiveTime, buffUnusedTime);
+                    break;
+                case BuffTypeEnum.ShieldBuff:
+                    newBuff = new ShieldBuff(buffCounter, buffDefaultActiveCount, buffUnusedTime);
+                    break;
+                case BuffTypeEnum.JumpBuff:
+                    newBuff = new JumpBuff(buffCounter, buffDefaultActiveTime, buffUnusedTime);
+                    break;
                 default: return;
             }
+
             buffCounter++;
             buffList.Add(newBuff);
+            var obj = Instantiate(buffPrefab);
+            obj.GetComponent<BuffBehaviour>().SetBuff(newBuff);
+            obj.transform.position = pos;
+            buffObjects.Add(newBuff.buffId, obj);
         }
 
-        private void UpdateBuff()    // 更新buff
+        private void UpdateBuff() // 更新buff
         {
             List<Buff> unusedBuffs = buffList.Where(b => b.isUsed == false).ToList();
             List<Buff> usedBuffs = buffList.Where(b => b.isUsed == true).ToList();
 
-            foreach(var buff in unusedBuffs)
+            foreach (var buff in unusedBuffs)
             {
                 buff.buffUnusedTime--;
                 if (buff.buffUnusedTime <= 0)
                     WithdrawBuff(buff);
             }
 
-            foreach(var buff in usedBuffs)
+            foreach (var buff in usedBuffs)
             {
-                switch(buff.buffTypeId)
+                switch (buff.buffTypeId)
                 {
                     case 1:
                     case 3:
@@ -114,33 +138,24 @@ namespace Managers
                         if (buff.activeTime <= 0)
                             WithdrawBuff(buff);
                         break;
-                    default:break;
+                    default: break;
                 }
             }
         }
 
-        private void WithdrawBuff(Buff buff)   // 撤销buff
+        private void WithdrawBuff(Buff buff) // 撤销buff
         {
-            if(buff.isUsed == false)
+            if (buff.isUsed == false)
             {
-                ////  从地图上撤销！！！
+                Destroy(buffObjects[buff.buffId]);
             }
             else
             {
-                RemoveBuffFromPlayer();
+                PlayerBuffManager.Instance.RemoveBuff(buff);
             }
 
+            buffObjects.Remove(buff.buffId);
             buffList.Remove(buff);
-        }
-
-
-        public void AddBuffToPlayer(/*参数*/)  // 给玩家添加buff
-        {
-
-        }
-        public void RemoveBuffFromPlayer(/*参数*/) // 从玩家上取消buff
-        {
-
         }
     }
 }

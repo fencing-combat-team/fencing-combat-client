@@ -13,6 +13,7 @@ namespace GamePlay.Entity
         public string playerName;
         public PlayerColorEnum playerColor;
         public int score;
+        
     }
 
 

@@ -24,7 +24,6 @@ namespace UI.Play
 
         private void Awake()
         {
-            PlayerInGameData.Instance.Reset.AddListener(Load);
             Load();
         }
 
@@ -36,11 +35,10 @@ namespace UI.Play
 
         private void Load()
         {
-            
             for (int i = 0; i < playerimages.Length; i++)
             {
                 playerimages[i].GetComponent<CanvasGroup>().alpha =
-                    i <  PlayerInGameData.Instance.Properties.Length ? 1 : 0;
+                    i < PlayerInGameData.Instance.Properties.Length ? 1 : 0;
             }
         }
 
@@ -56,10 +54,17 @@ namespace UI.Play
                 else
                 {
                     playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 0);
-                    playerlives[playerProp.playerId - 1].text =
-                        playerProp.life.ToString();
+                    if (playerProp.shield > 0)
+                    {
+                        playerlives[playerProp.playerId - 1].text =
+                            $"{playerProp.life.ToString()}({playerProp.shield})";
+                    }
+                    else
+                    {
+                        playerlives[playerProp.playerId - 1].text =
+                            playerProp.life.ToString();
+                    }
                 }
-
             }
         }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePlay.Data;
 using UnityEngine;
 
 namespace GamePlay.Buff
@@ -19,6 +20,16 @@ namespace GamePlay.Buff
             this.info = "一定时间内为玩家提高5点速度";
             this.isUsed = false;
             this.buffUnusedTime = buffUnusedTime;
+        }
+
+        public override void Add(int playerId, PlayerBuffManager buffManager)
+        {
+            PlayerInGameData.Instance.GetById(playerId).speedInc += 5;
+        }
+
+        public override void Remove(int playerId, PlayerBuffManager buffManager)
+        {
+            PlayerInGameData.Instance.GetById(playerId).speedInc -= 5;
         }
     }
 }

@@ -14,8 +14,6 @@ namespace GamePlay.Player
         [Autowired]
         private Rigidbody2D _rigidbody2D;
 
-        private int _changeFrames = 20;
-
         private void Start()
         {
             this.InitComponents();

@@ -261,6 +261,18 @@ MonoBehaviour:
     spawnPoints:
     - {x: -5, y: -3}
     - {x: 5, y: -3}
+    title: 
+    description: 
+    shortcut: {fileID: 0}
+    buffs:
+    - buffId: 0
+      possibleSpawnPoints:
+      - {x: 0, y: 0, z: 0}
+      spawnChance: 1
+    - buffId: 1
+      possibleSpawnPoints:
+      - {x: 0, y: -3, z: 0}
+      spawnChance: 3
 --- !u!4 &230328859
 Transform:
   m_ObjectHideFlags: 0

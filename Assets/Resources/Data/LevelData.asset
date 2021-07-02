@@ -27,6 +27,11 @@ MonoBehaviour:
     title: 
     description: 
     shortcut: {fileID: 21300000, guid: d2668682d99b07e459168ae023930e6f, type: 3}
+    buffs:
+    - buffId: 0
+      possibleSpawnPoints:
+      - {x: 0, y: 0, z: 0}
+      spawnChance: 1
   - mapId: sketch_map
     groundColliderPrefabs:
     - {fileID: 2731924523474754655, guid: 15a05497d580e1e4a92349077fa6a654, type: 3}
@@ -39,6 +44,7 @@ MonoBehaviour:
     title: 
     description: 
     shortcut: {fileID: 21300000, guid: 0805105bf52850843a7db529cf38254b, type: 3}
+    buffs: []
   - mapId: color_map
     groundColliderPrefabs:
     - {fileID: 2699839079109569708, guid: 1a7a6a1ef7091e642bb8278e5c57561c, type: 3}
@@ -51,6 +57,7 @@ MonoBehaviour:
     title: 
     description: 
     shortcut: {fileID: 21300000, guid: e82009beaca51ea428c6bf6e34614359, type: 3}
+    buffs: []
   - mapId: realworld_map
     groundColliderPrefabs:
     - {fileID: 8103761562767263591, guid: 0b8f6e862faabe84eb0428d4e2654e90, type: 3}
@@ -63,3 +70,4 @@ MonoBehaviour:
     title: 
     description: 
     shortcut: {fileID: 21300000, guid: b4cc2e16a7cf7c9419990d889142ff53, type: 3}
+    buffs: []

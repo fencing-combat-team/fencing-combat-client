@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePlay.Data;
 using UnityEngine;
 
 namespace GamePlay.Buff
@@ -19,6 +20,16 @@ namespace GamePlay.Buff
             this.info = "为玩家恢复1点生命值";
             this.isUsed = false;
             this.buffUnusedTime = buffUnusedTime;
+        }
+
+        public override void Add(int playerId, PlayerBuffManager buffManager)
+        {
+            PlayerInGameData.Instance.GetById(playerId).life++;
+        }
+
+        public override void Remove(int playerId, PlayerBuffManager buffManager)
+        {
+            
         }
     }
 }

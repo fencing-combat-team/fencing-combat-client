@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GamePlay.Data;
 using UnityEngine;
 
 namespace GamePlay.Buff
@@ -19,6 +20,16 @@ namespace GamePlay.Buff
             this.info = "为玩家添加一层能够抵御3次攻击的护盾";
             this.isUsed = false;
             this.buffUnusedTime = buffUnusedTime;
+        }
+
+        public override void Add(int playerId, PlayerBuffManager buffManager)
+        {
+            PlayerInGameData.Instance.GetById(playerId).shield += this.activeCount;
+        }
+
+        public override void Remove(int playerId, PlayerBuffManager buffManager)
+        {
+            PlayerInGameData.Instance.GetById(playerId).shield = 0;
         }
     }
 }

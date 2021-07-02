@@ -11,6 +11,10 @@ namespace GamePlay.Entity
         public int life;
         public int playerId;
         
+        //Buff
+        public int jumpInc;
+        public int shield;
+        public int speedInc;
 
     }
 }

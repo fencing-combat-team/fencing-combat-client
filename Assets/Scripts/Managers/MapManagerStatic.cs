@@ -94,6 +94,13 @@ namespace Managers
             _autoCamera.background = bg.GetComponent<SpriteRenderer>();
             _autoCamera.ResetBackground();
             
+            //buff
+            var buffManagerObj = new GameObject();
+            buffManagerObj.name = "BuffManager";
+            var buffManager = buffManagerObj.AddComponent<BuffManager>();
+            buffManager.map = map;
+            buffManager.buffPrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Buff/Buff");
+            
 
         }
         private void SetTagForAllChildren(GameObject go, string tag)

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using GamePlay.Data;
+using GamePlay.Player;
 using UnityEngine;
 using Utils;
 
@@ -12,6 +14,9 @@ public class JumpState : StateMachineBehaviour
 
     [Autowired]
     private Rigidbody2D _rigidbody2D;
+
+    [Autowired]
+    private PlayerDataManager _dataManager;
 
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,6 +31,7 @@ public class JumpState : StateMachineBehaviour
 
     void Jump()
     {
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
+        var force = jumpForce + _dataManager.Properties.jumpInc;
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, force);
     }
 }

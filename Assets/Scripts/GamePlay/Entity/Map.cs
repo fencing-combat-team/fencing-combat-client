@@ -1,4 +1,5 @@
 ﻿using System;
+using Enums;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace GamePlay.Entity
     public class Map
     {
         public string mapId;
+
         /// <summary>
         /// 地面
         /// </summary>
@@ -24,6 +26,15 @@ namespace GamePlay.Entity
         public string description;
         public Sprite shortcut;
 
+        public MapBuff[] buffs;
+    }
 
+
+    [Serializable]
+    public class MapBuff
+    {
+        public BuffTypeEnum buffId;
+        public Vector3[] possibleSpawnPoints;
+        public float spawnChance;
     }
 }

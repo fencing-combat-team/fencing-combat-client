@@ -1,4 +1,5 @@
 using Core;
+using GamePlay.Data;
 using GamePlay.Player;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -16,6 +17,8 @@ namespace States.PlayerStates
         private PlayerMovement _movement;
         [Autowired]
         private PlayerInputHandler _input;
+        [Autowired]
+        private PlayerDataManager _dataManager;
 
         private static readonly int Jump = Animator.StringToHash("jump");
         private static readonly int Attack = Animator.StringToHash("attack");
@@ -29,8 +32,10 @@ namespace States.PlayerStates
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            
+            var speedNew = speed + _dataManager.Properties.speedInc;
             float move = _input.move;
-            _movement.ChangeSpeed(move * speed);
+            _movement.ChangeSpeed(move * speedNew);
         }
     }
 }

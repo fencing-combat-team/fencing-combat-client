@@ -22,6 +22,7 @@ namespace GamePlay.Player
         [SerializeField]
         [Tooltip("ÎäÆ÷")]
         private Weapon _weapon;
+        
         private Sword _sword=new Sword();
         private LongSword _longSword = new LongSword();
         private Hammer _hammer = new Hammer();

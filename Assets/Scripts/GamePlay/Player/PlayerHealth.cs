@@ -13,6 +13,7 @@ namespace GamePlay.Player
 
         [Autowired]
         private PlayerDataManager _dataManager;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -27,11 +28,15 @@ namespace GamePlay.Player
                 PlayerInGameData.Instance.OnPlayerDead(_dataManager.PlayerId);
                 Destroy(this.gameObject);
             }
-                
         }
 
         public void Die()
         {
+            if (_dataManager.Properties.shield > 0)
+            {
+                _dataManager.Properties.shield--;
+            }
+
             _dataManager.Properties.life--;
             transform.position = spawnPoint;
         }

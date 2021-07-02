@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+using System;
 using UnityEngine;
 
 namespace Core
@@ -7,7 +7,7 @@ namespace Core
     /// 单例类（MonoBehavior)
     /// </summary>
     /// <typeparam name="T">自己的类型</typeparam>
-    public class SingletonBehaviour<T> : MonoBehaviour
+    public class WeakSingletonBehaviour<T> : MonoBehaviour
         where T : MonoBehaviour
     {
         private static T _instance;
@@ -32,8 +32,7 @@ namespace Core
                         {
                             GameObject singleton = new GameObject();
                             _instance = singleton.AddComponent<T>();
-                            singleton.name = "(Singleton) " + typeof(T).ToString();
-                            DontDestroyOnLoad(singleton);
+                            singleton.name = "(WeakSingleton) " + typeof(T).ToString();
                         }
                     }
                 }
@@ -55,3 +54,4 @@ namespace Core
         }
     }
 }
+
