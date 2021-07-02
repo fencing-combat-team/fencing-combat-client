@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 0}
+  smoothTime: 0.3
 --- !u!1 &617628659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2699839079109569708, guid: 1a7a6a1ef7091e642bb8278e5c57561c, type: 3}
@@ -264,6 +265,10 @@ MonoBehaviour:
     spawnPoints:
     - {x: -8, y: 7}
     - {x: 5, y: -3}
+    title: 
+    description: 
+    shortcut: {fileID: 0}
+    buffs: []
 --- !u!4 &980124119
 Transform:
   m_ObjectHideFlags: 0

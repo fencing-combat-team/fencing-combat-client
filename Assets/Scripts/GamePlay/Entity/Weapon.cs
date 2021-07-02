@@ -6,6 +6,7 @@ namespace GamePlay.Entity
 {
     public abstract class Weapon 
     {
+        public int Id = 0;
         public float AttackDistance;
         public float AttackFeq=2000f;
         //该武器是否有防御功能
@@ -28,6 +29,7 @@ namespace GamePlay.Entity
         //
         public Sword()
         {
+            Id = 0;
             AttackDistance=1f;
             AttackFeq = 2000f;
             ImpactingForce=2f;
@@ -98,6 +100,7 @@ namespace GamePlay.Entity
     {
         public LongSword()
         {
+            Id = 1;
             AttackDistance = 1.5f;
             AttackFeq = 2000f;
             ImpactingForce = 2f;
@@ -143,6 +146,7 @@ namespace GamePlay.Entity
     {
         public Hammer()
         {
+            Id = 2;
             AttackDistance = 2f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;

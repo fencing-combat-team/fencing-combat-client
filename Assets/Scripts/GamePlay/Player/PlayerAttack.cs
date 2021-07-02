@@ -21,11 +21,8 @@ namespace GamePlay.Player
 
         [SerializeField]
         [Tooltip("ÎäÆ÷")]
-        public Weapon _weapon;
+        public Weapon _weapon=new Sword();
         
-        private Sword _sword=new Sword();
-        private LongSword _longSword = new LongSword();
-        private Hammer _hammer = new Hammer();
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -49,17 +46,17 @@ namespace GamePlay.Player
             else if (attack)
             {
                 _animator.SetTrigger(Attack);
-                _attackCooldown = 1000f / _longSword.AttackFeq;
+                _attackCooldown = 1000f / _weapon.AttackFeq;
             }
         }
 
         public void DoAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _hammer.Attack(gameObject.transform.position, direction).
+            _weapon.Attack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject ).ForEach(g =>
                 {
-                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
+                    if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if(!g.GetComponent<PlayerInputHandler>().defending || 
                     g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
@@ -67,7 +64,7 @@ namespace GamePlay.Player
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                           (direction.x * (_hammer.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
+                           (direction.x * (_weapon.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
                         StartCoroutine(Slide(g));
                     }
                         
@@ -80,10 +77,10 @@ namespace GamePlay.Player
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _hammer.DropAttack(gameObject.transform.position, direction).
+            _weapon.DropAttack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject).ForEach(g =>
                 {
-                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
+                    if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if(!g.GetComponent<PlayerInputHandler>().defending ||
                     g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
@@ -91,7 +88,7 @@ namespace GamePlay.Player
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_hammer.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
+                        (direction.x * (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
                         StartCoroutine(Slide(g));
 
                     }
@@ -103,10 +100,10 @@ namespace GamePlay.Player
         public void DoDropDownAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _hammer.DropDownAttack(gameObject.transform.position, direction).
+            _weapon.DropDownAttack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject).ForEach(g =>
                 {
-                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
+                    if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if (!g.GetComponent<PlayerInputHandler>().defending ||
                     g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
@@ -114,7 +111,7 @@ namespace GamePlay.Player
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_hammer.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
+                        (direction.x * (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
                         StartCoroutine(Slide(g));
 
                     }
