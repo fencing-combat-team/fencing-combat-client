@@ -153,6 +153,7 @@ namespace UI.Room
                 isPlay = false;
                 GameManager.Instance.RoomStatus.isGaming = false;
                 winnerPanel.Show();
+                winnerPanel.GetComponent<WinnerPanel>().GetWinner();
             }
             else
             {
