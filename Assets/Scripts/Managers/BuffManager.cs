@@ -13,7 +13,7 @@ namespace Managers
 {
     public class BuffManager : MonoBehaviour
     {
-        private int buffTypeCount = 4; // buff类型数
+        //private int buffTypeCount = 4; // buff类型数
         private float buffUnusedTime = 20; // buff未被拾取时的持续在场时间
         private float buffDefaultActiveTime = 10; // buff默认持续时间
         private int buffDefaultActiveCount = 3; // buff默认使用次数
@@ -29,6 +29,8 @@ namespace Managers
 
         public Map map;
         public GameObject buffPrefab;
+
+
 
 
         void Start()
@@ -86,6 +88,8 @@ namespace Managers
                 buffObjects?.Remove(buff.buffId);
                 buffList?.Remove(buff);
             };
+
+
         }
 
         private void InitBuff(BuffTypeEnum typeid, Vector3 pos) // 生成一个buff
@@ -114,6 +118,8 @@ namespace Managers
             obj.GetComponent<BuffBehaviour>().SetBuff(newBuff);
             obj.transform.position = pos;
             buffObjects.Add(newBuff.buffId, obj);
+
+            
         }
 
         private void UpdateBuff() // 更新buff
@@ -132,6 +138,9 @@ namespace Managers
             {
                 switch (buff.buffTypeId)
                 {
+                    case 0:
+                        WithdrawBuff(buff);
+                        break;
                     case 1:
                     case 3:
                         buff.activeTime--;

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using GamePlay.Entity;
 using GamePlay.Player;
 using Managers;
+using GamePlay.Buff;
+using UnityEditor;
 
 namespace UI.Play
 {
@@ -21,6 +23,11 @@ namespace UI.Play
 
         public PlayerColors colors;
         public PlayerRoomData roomData;
+
+        public GameObject buffStackPrefab;
+        public Vector3[] buffStackPos;
+        private List<GameObject> buffStackList;
+        private Dictionary<int, int> buffCountEachPlayer; // 每个玩家的buff数，键为玩家id，值为buff数
 
         private void Awake()
         {
@@ -40,13 +47,25 @@ namespace UI.Play
                 playerimages[i].GetComponent<CanvasGroup>().alpha =
                     i < PlayerInGameData.Instance.Properties.Length ? 1 : 0;
             }
+
+            buffCountEachPlayer = new Dictionary<int, int>();
+            buffStackList = new List<GameObject>();
+            for (int i = 0; i < PlayerInGameData.Instance.Properties.Length; i++)
+            {
+                buffCountEachPlayer.Add(i, 0);
+                var info = PrefabUtility.InstantiatePrefab(buffStackPrefab) as GameObject;
+                info.transform.SetParent(this.transform);
+                info.transform.position = buffStackPos[i];
+                info.name = "BuffStack" + (i + 1);
+                buffStackList.Add(info);
+            }
         }
 
         void Update()
         {
             foreach (var playerProp in PlayerInGameData.Instance.Properties)
             {
-                if (playerProp.life < 0)
+                if (playerProp.life <= 0)
                 {
                     playerchecks[playerProp.playerId - 1].color = new Color(1, 1, 1, 1);
                     playerlives[playerProp.playerId - 1].text = "";
@@ -66,6 +85,22 @@ namespace UI.Play
                     }
                 }
             }
+        }
+
+        public void SetBuffInfo(int playerId, Buff buff)
+        {
+            var info = buffStackList[playerId - 1];
+            var stack = info.GetComponent<BuffStackBehaviour>();
+
+            stack.SetBuffInfo(playerId, buff);
+
+            buffCountEachPlayer[playerId - 1]++;
+        }
+
+        public void RemoveInfo(int playerId, Buff buff)
+        {
+            buffStackList[playerId - 1].GetComponent<BuffStackBehaviour>().RemoveInfo(playerId, buff);
+            buffCountEachPlayer[playerId - 1]--;
         }
 
         #region

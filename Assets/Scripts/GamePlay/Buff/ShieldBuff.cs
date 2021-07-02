@@ -29,7 +29,7 @@ namespace GamePlay.Buff
 
         public override void Remove(int playerId, PlayerBuffManager buffManager)
         {
-            PlayerInGameData.Instance.GetById(playerId).shield = 0;
+            //PlayerInGameData.Instance.GetById(playerId).shield = 0;
         }
     }
 }

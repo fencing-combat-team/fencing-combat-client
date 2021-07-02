@@ -20,9 +20,9 @@ MonoBehaviour:
     - {fileID: 2634615350458028546, guid: bb49454193371aa428a9f02feaca6950, type: 3}
     backgroundPrefab: {fileID: 5461197996397608462, guid: 04c3b224ed581c24490e3c3d43ffba4d, type: 3}
     spawnPoints:
+    - {x: -16, y: -3}
     - {x: -5, y: -3}
     - {x: 5, y: -3}
-    - {x: -16, y: -3}
     - {x: 16, y: -3}
     title: 
     description: 

@@ -1,9 +1,11 @@
 using Core;
+using GamePlay.Buff;
 using GamePlay.Data;
 using GamePlay.Entity;
 using Managers;
 using UnityEngine;
 using Utils;
+using System.Linq;
 
 namespace GamePlay.Player
 {
@@ -23,7 +25,7 @@ namespace GamePlay.Player
         // Update is called once per frame
         void Update()
         {
-            if (_dataManager.Properties.life < 0)
+            if (_dataManager.Properties.life <= 0)
             {
                 PlayerInGameData.Instance.OnPlayerDead(_dataManager.PlayerId);
                 Destroy(this.gameObject);
@@ -35,6 +37,8 @@ namespace GamePlay.Player
             if (_dataManager.Properties.shield > 0)
             {
                 _dataManager.Properties.shield--;
+                Entity.Buff buff = PlayerBuffManager.Instance.GetPlayerBuff(_dataManager.Properties.playerId).Where(b => b.buffTypeId == 2).FirstOrDefault();
+                buff.activeCount--;
             }
             else
             {
@@ -48,6 +52,8 @@ namespace GamePlay.Player
             if (_dataManager.Properties.shield > 0)
             {
                 _dataManager.Properties.shield = 0;
+                Entity.Buff buff = PlayerBuffManager.Instance.GetPlayerBuff(_dataManager.Properties.playerId).Where(b => b.buffTypeId == 2).FirstOrDefault();
+                buff.activeCount = 0;
             }
 
             _dataManager.Properties.life--;
