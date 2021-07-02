@@ -11,8 +11,8 @@ public class PlayerWeapons : MonoBehaviour
     {
         hammer = UnityEngine.Resources.Load<GameObject>("Prefabs/Weapon/hammer");
         longsword = UnityEngine.Resources.Load<GameObject>("Prefabs/Weapon/longSword");
-        InitWeapon(new Vector2(-7, 4), 1);
-        InitWeapon(new Vector2(7, 4), 2);
+        InitWeapon(new Vector2(7, 4), 1);
+        InitWeapon(new Vector2(-7, 4), 2);
     }
 
     // Update is called once per frame

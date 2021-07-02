@@ -33,6 +33,11 @@ namespace States.PlayerStates
             _attack.DoDropAttack();
         }
 
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            _attack.DoDropDownAttack();
+        }
+
 
     }
 }

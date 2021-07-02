@@ -15,6 +15,7 @@ namespace GamePlay.Entity
         public bool BreakDefending = false;
         //³å»÷Á¦£¨»÷ÍËÁ¦£©
         public  float ImpactingForce;
+        public float delay = 0.1f;
 
         public virtual List<GameObject> Attack(Vector2 position,Vector2 direction){ return null; }
         public virtual List<GameObject> DropAttack(Vector2 position, Vector2 direction) { return null; }
@@ -101,7 +102,7 @@ namespace GamePlay.Entity
         public LongSword()
         {
             Id = 1;
-            AttackDistance = 1.5f;
+            AttackDistance = 2f;
             AttackFeq = 2000f;
             ImpactingForce = 2f;
         }
@@ -147,10 +148,12 @@ namespace GamePlay.Entity
         public Hammer()
         {
             Id = 2;
-            AttackDistance = 2f;
+            AttackDistance = 1.5f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
             BreakDefending = false;
+            delay = 0.7f;
+
         }
 
         override public List<GameObject> Attack(Vector2 position, Vector2 direction)
@@ -160,7 +163,6 @@ namespace GamePlay.Entity
             LayerMask Mask = LayerMask.GetMask("Player");
             Ray2D ray = new Ray2D(position+direction*0.6f+Vector2.down*0.5f-direction*AttackDistance, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + 2f * AttackDistance * ray.direction, Color.red);
 
             RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f*AttackDistance, Mask);
 

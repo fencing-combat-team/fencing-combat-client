@@ -53,25 +53,32 @@ namespace GamePlay.Player
         public void DoAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
+            StartCoroutine(DelayAttack());
+            Ray2D ray = new Ray2D((Vector2)transform.position + direction * 0.6f + Vector2.down * 0.5f - direction * 1.5f, direction);
+            StartCoroutine(ShowAttackRay(ray));
+
+        }
+
+        IEnumerator DelayAttack()
+        {
+            yield return new WaitForSeconds(_weapon.delay);
+            Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
             _weapon.Attack(gameObject.transform.position, direction).
-                FindAll(g => g != this.gameObject ).ForEach(g =>
+                FindAll(g => g != this.gameObject).ForEach(g =>
                 {
                     if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
-                    else if(!g.GetComponent<PlayerInputHandler>().defending || 
-                    g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                    else if (!g.GetComponent<PlayerInputHandler>().defending ||
+                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
                         g.GetComponent<PlayerHealth>().Die();
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                           (direction.x * (_weapon.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
+                           (direction.x * (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
                         StartCoroutine(Slide(g));
                     }
-                        
-                });
-            Ray2D ray = new Ray2D((Vector2)(transform.position) + direction * 0.6f + Vector2.down * 0.5f - direction * 2f, direction);
-            StartCoroutine(ShowAttackRay(ray));
 
+                });
         }
 
         public void DoDropAttack()
@@ -117,9 +124,6 @@ namespace GamePlay.Player
                     }
 
                 });
-
-            Ray2D ray = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.5f, Vector2.right);
-            StartCoroutine(ShowAttackRay(ray));
 
         }
 

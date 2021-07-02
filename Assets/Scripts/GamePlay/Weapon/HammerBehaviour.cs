@@ -23,8 +23,7 @@ public class HammerBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Sprite spriteB = Resources.Load<Sprite>("Player/Hammer/idle");
-        collision.gameObject.GetComponent<SpriteRenderer>().sprite = spriteB;
-        Debug.Log(spriteB.name);
+        
         collision.gameObject.GetComponent<PlayerAttack>()._weapon = new Hammer();
         Destroy(this.gameObject);
     }
