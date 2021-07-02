@@ -170,12 +170,12 @@ namespace GamePlay.Entity
     {
         public Hammer()
         {
-            Id = WeaponTypeEnum.Hammer;
-            AttackDistance = 1.5f;
+            Id = 2;
+            AttackDistance = 1.1f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
             BreakDefending = false;
-            delay = 0.7f;
+            delay = 0.6f;
 
         }
 
@@ -184,11 +184,9 @@ namespace GamePlay.Entity
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * 0.6f + Vector2.down * 0.5f - direction * AttackDistance,
-                direction);
+            Ray2D ray = new Ray2D(position+direction*1.2f+Vector2.down*0.5f-direction*AttackDistance, direction);
 
-
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f * AttackDistance, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f*AttackDistance, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null &&
@@ -205,14 +203,14 @@ namespace GamePlay.Entity
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * -0.3f + Vector2.down * 0.5f, direction);
-            Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, direction);
+            Ray2D ray = new Ray2D(position + direction * 0.37f + Vector2.down*0.8f, direction);
+            Ray2D ray1 = new Ray2D(position + direction * 0.37f + Vector2.down * 1.3f, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
-            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 1f, Color.red);
+            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * 1f, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1.6f, Mask);
-            RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1.6f, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1f, Mask);
+            RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1f, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
@@ -231,12 +229,11 @@ namespace GamePlay.Entity
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * 0.3f + Vector2.down * 0.5f - direction * AttackDistance,
-                direction);
+            Ray2D ray = new Ray2D(position + direction * 0.87f + Vector2.down * 1.3f- 2f/3f*AttackDistance*direction, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + 4f / 3f * ray.direction * AttackDistance, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f * AttackDistance, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f /3f * AttackDistance, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null &&
