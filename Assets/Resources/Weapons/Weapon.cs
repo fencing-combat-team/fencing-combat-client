@@ -124,7 +124,7 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * 0.3f , Vector2.down);
+            Ray2D ray = new Ray2D(position + direction * 0.5f , Vector2.down);
 
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
 
@@ -184,6 +184,8 @@ namespace Resources.Weapons
             return gameObject;
 
         }
+
+
     }
 
 }
