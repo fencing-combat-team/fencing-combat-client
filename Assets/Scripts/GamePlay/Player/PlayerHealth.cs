@@ -6,6 +6,7 @@ using Managers;
 using UnityEngine;
 using Utils;
 using System.Linq;
+using Enums;
 
 namespace GamePlay.Player
 {

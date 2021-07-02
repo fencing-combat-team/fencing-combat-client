@@ -24,17 +24,17 @@ namespace GamePlay.Entity
 
         public virtual List<GameObject> Attack(Vector2 position, Vector2 direction)
         {
-            return null;
+            return new List<GameObject>();
         }
 
         public virtual List<GameObject> DropAttack(Vector2 position, Vector2 direction)
         {
-            return null;
+            return new List<GameObject>();
         }
 
         public virtual List<GameObject> DropDownAttack(Vector2 position, Vector2 direction)
         {
-            return null;
+            return new List<GameObject>();
         }
     }
 
@@ -88,7 +88,7 @@ namespace GamePlay.Entity
             return gameObject;
         }
 
-        override public List<GameObject> DropAttack(Vector2 position, Vector2 direction)
+        public override List<GameObject> DropAttack(Vector2 position, Vector2 direction)
         {
             float angle = 15f;
             List<GameObject> gameObject = new List<GameObject>();
@@ -170,7 +170,7 @@ namespace GamePlay.Entity
     {
         public Hammer()
         {
-            Id = 2;
+            Id = WeaponTypeEnum.Hammer;
             AttackDistance = 1.1f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
