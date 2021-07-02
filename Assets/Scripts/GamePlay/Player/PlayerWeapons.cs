@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Enums;
+using GamePlay;
+using GamePlay.Camera;
 using GamePlay.Entity;
 using GamePlay.Player;
 using UnityEditor.Animations;
@@ -18,24 +21,30 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
 
     public void SwitchPlayerWeapon(GameObject player, WeaponTypeEnum weapon)
     {
+        var playerAtttack = player.GetComponent<PlayerAttack>();
+        if (!(playerAtttack._weapon is Sword))
+        {
+            _isSpawned[playerAtttack._weapon.Id] = false;
+        }
+
         switch (weapon)
         {
             case WeaponTypeEnum.Sword:
-                player.GetComponent<PlayerAttack>()._weapon = new Sword();
+                playerAtttack._weapon = new Sword();
                 player.GetComponent<Animator>().runtimeAnimatorController =
                     Resources.Load<AnimatorController>("Animation/Player/Player");
                 player.GetComponent<SpriteRenderer>().sprite =
                     Resources.Load<Sprite>("Player/Sword/idle");
                 break;
             case WeaponTypeEnum.LongSword:
-                player.GetComponent<PlayerAttack>()._weapon = new LongSword();
+                playerAtttack._weapon = new LongSword();
                 player.GetComponent<Animator>().runtimeAnimatorController =
                     Resources.Load<AnimatorOverrideController>("Animation/Player/LongSword");
                 player.GetComponent<SpriteRenderer>().sprite =
                     Resources.Load<Sprite>("Player/LongSword/idle");
                 break;
             case WeaponTypeEnum.Hammer:
-                player.GetComponent<PlayerAttack>()._weapon = new Hammer();
+                playerAtttack._weapon = new Hammer();
                 player.GetComponent<Animator>().runtimeAnimatorController =
                     Resources.Load<AnimatorOverrideController>("Animation/Player/Hammer");
                 player.GetComponent<SpriteRenderer>().sprite =
@@ -49,6 +58,8 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
     private float _gameTime;
     private Dictionary<WeaponTypeEnum, float> _spawnInterval;
     private Dictionary<WeaponTypeEnum, bool> _isSpawned;
+
+    public Dictionary<GameObject, Vector3> CurrentWeapon = new Dictionary<GameObject, Vector3>();
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +94,19 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
         };
     }
 
+    private Vector3 FindSpawnPos(Vector3[] possible)
+    {
+        var remains = possible.Where(a => CurrentWeapon.Values.Any(b =>
+            a.x - b.x + a.y - b.y < 0.1f)
+        ).ToArray();
+        if (remains.Length <= 0)
+        {
+            return possible[Random.Range(0, possible.Length)];
+        }
+
+        return remains[Random.Range(0, remains.Length)];
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -111,9 +135,16 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
                 var rand = Random.Range(0, 1);
                 if (rand < weapon.spawnChance)
                 {
-                    var pos = weapon.possibleSpawnPoints[Random.Range(0, weapon.possibleSpawnPoints.Length)];
-                    SpawnWeapon(pos, weapon.weaponId);
+                    var pos = FindSpawnPos(weapon.possibleSpawnPoints);
+
+                    var obj = SpawnWeapon(pos, weapon.weaponId);
+
+                    GameObject.Find("Main Camera").GetComponent<AutoCamera>().InspectPositons
+                        .Add(pos);
                     _isSpawned[weapon.weaponId] = true;
+
+                    CurrentWeapon.Add(obj, pos);
+                    obj.AddComponent<DestroyListener>().Destroy += () => { CurrentWeapon.Remove(obj); };
                 }
                 else
                 {
@@ -123,9 +154,9 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
         }
     }
 
-    public void SpawnWeapon(Vector2 position, WeaponTypeEnum weaponId)
+    public GameObject SpawnWeapon(Vector2 position, WeaponTypeEnum weaponId)
     {
-        GameObject obj;
+        GameObject obj = null;
         switch (weaponId)
         {
             case WeaponTypeEnum.LongSword:
@@ -139,5 +170,7 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
             default:
                 break;
         }
+
+        return obj;
     }
 }

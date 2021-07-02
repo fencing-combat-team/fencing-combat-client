@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
@@ -26,7 +28,7 @@ namespace GamePlay.Camera
                 ResetBackground();
             }
         }
-    
+
 
         public void ResetBackground()
         {
@@ -58,6 +60,15 @@ namespace GamePlay.Camera
 
         public float smoothTime = 0.3f;
 
+        public List<Vector2> InspectPositons = new List<Vector2>();
+
+        private List<Vector2> _removingInspectPositions = new List<Vector2>();
+
+        IEnumerator RunAfter(float time, Action action)
+        {
+            yield return new WaitForSeconds(time);
+            action();
+        }
 
         // Update is called once per frame
         void Update()
@@ -66,9 +77,42 @@ namespace GamePlay.Camera
             {
                 return;
             }
+
             //物品xy坐标
-            var objX = objList.Select(o => o.transform.position.x).ToArray();
-            var objY = objList.Select(o => o.transform.position.y).ToArray();
+            var objX = objList.Select(o => o.transform.position.x).ToList();
+            var objY = objList.Select(o => o.transform.position.y).ToList();
+
+            //屏幕宽高比
+            float aspectRatio = 1.0f * Screen.width / Screen.height;
+            if (InspectPositons.Count + _removingInspectPositions.Count > 0)
+            {
+                var cameraHeight = _camera.orthographicSize * 2;
+                var cameraPos = _camera.transform.position;
+                var cameraBounds = new Rect()
+                {
+                    size = new Vector2(
+                        cameraHeight * aspectRatio,
+                        cameraHeight
+                    ),
+                    center = new Vector2(
+                        cameraPos.x,
+                        cameraPos.y
+                    )
+                };
+                var inboundPos = InspectPositons.FindAll(p => cameraBounds.Contains(p));
+                _removingInspectPositions.AddRange(inboundPos);
+                InspectPositons.RemoveAll(p => cameraBounds.Contains(p));
+
+                StartCoroutine(RunAfter(3,
+                    () => { _removingInspectPositions.RemoveAll(p => inboundPos.Contains(p)); }
+                ));
+                objX.AddRange(InspectPositons.Select(v => v.x));
+                objX.AddRange(_removingInspectPositions.Select(v => v.x));
+                objY.AddRange(InspectPositons.Select(v => v.y));
+                objY.AddRange(_removingInspectPositions.Select(v => v.y));
+            }
+
+
             //求物体xy坐标差值
             float dist = Mathf.Max(objX.Range(), objY.Range());
 
@@ -76,11 +120,10 @@ namespace GamePlay.Camera
             //相机高度一半
             float cameraSize = Mathf.Min(size, _boundary.height / 2);
             // _camera.orthographicSize = cameraSize;
-            _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, cameraSize, ref cameraScaleSpeed, smoothTime);
+            _camera.orthographicSize =
+                Mathf.SmoothDamp(_camera.orthographicSize, cameraSize, ref cameraScaleSpeed, smoothTime);
 
 
-            //屏幕宽高比
-            float aspectRatio = 1.0f * Screen.width / Screen.height;
             float cameraXMin = _boundary.xMin + cameraSize * aspectRatio;
             float cameraXMax = _boundary.xMax - cameraSize * aspectRatio;
             float cameraYMin = _boundary.yMin + cameraSize;
@@ -96,12 +139,9 @@ namespace GamePlay.Camera
 
             Vector3 pos = new Vector3(cameraX, cameraY, -10);
             // _camera.transform.position = pos;
-            
-            _camera.transform.position = 
+
+            _camera.transform.position =
                 Vector3.SmoothDamp(_camera.transform.position, pos, ref cameraMoveSpeed, smoothTime);
-
-
         }
-        
     }
 }
