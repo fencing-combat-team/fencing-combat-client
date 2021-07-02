@@ -18,15 +18,17 @@ namespace States.PlayerStates
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             this.InitComponents(animator);
-            switch (_attack._weapon)
-            {
-                case Sword _:
-                    _attack.AttackAfter(0.1f);
-                    break;
-                case LongSword _:
-                    _attack.AttackAfter(0.2f);
-                    break;
-            }
+            
+            _attack.DoAttack();
+            // switch (_attack._weapon)
+            // {
+            //     case Sword _:
+            //         _attack.AttackAfter(0.1f);
+            //         break;
+            //     case LongSword _:
+            //         _attack.AttackAfter(0.2f);
+            //         break;
+            // }
         }
 
         
@@ -38,10 +40,10 @@ namespace States.PlayerStates
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_attack._weapon is Hammer)
-            {
-                _attack.DoAttack();
-            }
+            // if (_attack._weapon is Hammer)
+            // {
+            //     _attack.DoAttack();
+            // }
         }
     }
 }

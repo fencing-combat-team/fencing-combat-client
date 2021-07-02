@@ -36,6 +36,7 @@ namespace GamePlay.Player
 
         public void Die()
         {
+            PlayerWeapons.Instance.SpawnWeapon(this.transform.position, _attack._weapon.Id);
             if (_dataManager.Properties.shield > 0)
             {
                 _dataManager.Properties.shield--;
@@ -45,9 +46,8 @@ namespace GamePlay.Player
                 _dataManager.Properties.life--;
                 transform.position = spawnPoint;
             }
-
-            PlayerWeapons.Instance.SpawnWeapon(this.transform.position, _attack._weapon.Id);
             PlayerWeapons.Instance.SwitchPlayerWeapon(this.gameObject, WeaponTypeEnum.Sword);
+
         }
 
         public void EdgeDie()

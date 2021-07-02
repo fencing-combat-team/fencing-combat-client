@@ -53,6 +53,23 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    public void Begin()
+    {
+        if (!_isBegin)
+        {
+            _isBegin = true;
+            Random.InitState((int) DateTime.Now.Ticks);
+        }
+    }
+
+    private bool _isBegin;
+
+    public void Init()
+    {
+        _isBegin = false;
         _gameTime = 0;
         _spawnInterval = new Dictionary<WeaponTypeEnum, float>()
         {
@@ -69,6 +86,11 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
     // Update is called once per frame
     void Update()
     {
+        if (!_isBegin)
+        {
+            return;
+        }
+
         _gameTime += Time.deltaTime;
         foreach (var weapon in map.weapons)
         {
@@ -83,7 +105,7 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
                 continue;
             }
 
-            if (weapon.appearBeginTime > _gameTime)
+            if (weapon.appearBeginTime < _gameTime)
             {
                 //������������
                 var rand = Random.Range(0, 1);
@@ -91,6 +113,7 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
                 {
                     var pos = weapon.possibleSpawnPoints[Random.Range(0, weapon.possibleSpawnPoints.Length)];
                     SpawnWeapon(pos, weapon.weaponId);
+                    _isSpawned[weapon.weaponId] = true;
                 }
                 else
                 {

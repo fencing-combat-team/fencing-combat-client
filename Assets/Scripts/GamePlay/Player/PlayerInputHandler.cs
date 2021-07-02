@@ -34,6 +34,9 @@ namespace GamePlay.Player
             this.InitComponents();
         }
 
+        bool hasInput = false;
+        bool begined = false;
+
         // Update is called once per frame
         void Update()
         {
@@ -43,6 +46,7 @@ namespace GamePlay.Player
             if (provider.GetKeyDown(FencingKey.Jump))
             {
                 _animator.SetTrigger(Jump);
+                hasInput = true;
             }
 
 
@@ -55,12 +59,20 @@ namespace GamePlay.Player
             {
                 this.transform.localScale = new Vector3((int) move, 1);
                 direction = new Vector2(move, 0);
+                hasInput = true;
             }
 
             //格挡
             defending = provider.GetKey(FencingKey.Defend);
             _animator.SetBool(Defending, defending);
+
+            hasInput = hasInput || attack || defending;
+
+            if (hasInput && !begined)
+            {
+                PlayerWeapons.Instance.Begin();
+                begined = true;
+            }
         }
-        
     }
 }

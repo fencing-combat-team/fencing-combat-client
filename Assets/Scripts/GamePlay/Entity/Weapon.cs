@@ -125,7 +125,7 @@ namespace GamePlay.Entity
     {
         public LongSword()
         {
-            Id = 1;
+            Id = WeaponTypeEnum.LongSword;
             AttackDistance = 2f;
             AttackFeq = 2000f;
             ImpactingForce = 2f;
@@ -170,7 +170,7 @@ namespace GamePlay.Entity
     {
         public Hammer()
         {
-            Id = 2;
+            Id = WeaponTypeEnum.Hammer;
             AttackDistance = 1.5f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
