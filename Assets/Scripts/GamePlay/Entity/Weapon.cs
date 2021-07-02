@@ -2,10 +2,11 @@ using UnityEngine;
 using GamePlay.Player;
 using System.Collections.Generic;
 
-namespace Resources.Weapons
+namespace GamePlay.Entity
 {
     public abstract class Weapon 
     {
+        public int Id = 0;
         public float AttackDistance;
         public float AttackFeq=2000f;
         //该武器是否有防御功能
@@ -14,6 +15,7 @@ namespace Resources.Weapons
         public bool BreakDefending = false;
         //冲击力（击退力）
         public  float ImpactingForce;
+        public float delay = 0.1f;
 
         public virtual List<GameObject> Attack(Vector2 position,Vector2 direction){ return null; }
         public virtual List<GameObject> DropAttack(Vector2 position, Vector2 direction) { return null; }
@@ -28,6 +30,7 @@ namespace Resources.Weapons
         //
         public Sword()
         {
+            Id = 0;
             AttackDistance=1f;
             AttackFeq = 2000f;
             ImpactingForce=2f;
@@ -98,7 +101,8 @@ namespace Resources.Weapons
     {
         public LongSword()
         {
-            AttackDistance = 1.5f;
+            Id = 1;
+            AttackDistance = 2f;
             AttackFeq = 2000f;
             ImpactingForce = 2f;
         }
@@ -143,10 +147,13 @@ namespace Resources.Weapons
     {
         public Hammer()
         {
-            AttackDistance = 2f;
+            Id = 2;
+            AttackDistance = 1.1f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
             BreakDefending = false;
+            delay = 0.6f;
+
         }
 
         override public List<GameObject> Attack(Vector2 position, Vector2 direction)
@@ -154,9 +161,7 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position+direction*0.6f+Vector2.down*0.5f-direction*AttackDistance, direction);
-
-            Debug.DrawLine(ray.origin, ray.origin + 2f * AttackDistance * ray.direction, Color.red);
+            Ray2D ray = new Ray2D(position+direction*1.2f+Vector2.down*0.5f-direction*AttackDistance, direction);
 
             RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f*AttackDistance, Mask);
 
@@ -175,14 +180,14 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * -0.3f + Vector2.down*0.5f, Vector2.right);
-            Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
+            Ray2D ray = new Ray2D(position + direction * 0.37f + Vector2.down*0.8f, direction);
+            Ray2D ray1 = new Ray2D(position + direction * 0.37f + Vector2.down * 1.3f, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
-            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 1f, Color.red);
+            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * 1f, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1.6f, Mask);
-            RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1.6f, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1f, Mask);
+            RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1f, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
@@ -201,11 +206,11 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * 0.3f + Vector2.down * 0.5f - direction * AttackDistance, direction);
+            Ray2D ray = new Ray2D(position + direction * 0.87f + Vector2.down * 1.3f- 2f/3f*AttackDistance*direction, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + 4f / 3f * ray.direction * AttackDistance, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f * AttackDistance, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f /3f * AttackDistance, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null &&

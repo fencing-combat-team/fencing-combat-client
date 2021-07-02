@@ -15,6 +15,8 @@ namespace GamePlay.Player
 
         [Autowired]
         private PlayerDataManager _dataManager;
+        [Autowired]
+        private PlayerWeapons _weapon;
 
         // Start is called before the first frame update
         void Start()
@@ -45,6 +47,8 @@ namespace GamePlay.Player
                 _dataManager.Properties.life--;
                 transform.position = spawnPoint;
             }
+            _weapon.InitWeapon(this.transform.position, this.GetComponent<PlayerAttack>()._weapon.Id);
+            this.GetComponent<PlayerAttack>()._weapon = new Sword();
         }
 
         public void EdgeDie()

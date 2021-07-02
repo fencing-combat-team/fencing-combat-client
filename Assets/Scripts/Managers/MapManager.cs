@@ -81,6 +81,7 @@ namespace Managers
             buffManager.map = map;
             buffManager.buffPrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Buff/Buff");
 
+
         }
 
         private void SetTagForAllChildren(GameObject go, string tag)

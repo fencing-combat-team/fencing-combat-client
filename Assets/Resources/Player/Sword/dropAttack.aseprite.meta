@@ -13,7 +13,7 @@ ScriptedImporter:
     TextureShape: 1
     SpriteMode: 2
     PixelsPerUnit: 5
-    AnimationLoop: 0
+    AnimationLoop: 1
     MeshType: 1
     ExtrudeEdges: 1
     Pivot: 0
