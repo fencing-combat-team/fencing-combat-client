@@ -179,6 +179,7 @@ namespace Resources.Weapons
             Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
 
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
+            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * AttackDistance, Color.red);
 
             RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1.6f, Mask);
             RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1.6f, Mask);

@@ -98,11 +98,6 @@ namespace GamePlay.Player
 
                 });
 
-            Ray2D ray = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.5f, Vector2.right);
-            Ray2D ray1 = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
-            StartCoroutine(ShowAttackRay(ray));
-            StartCoroutine(ShowAttackRay(ray1));
-
         }
 
         public void DoDropDownAttack()
