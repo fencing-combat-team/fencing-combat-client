@@ -36,6 +36,19 @@ namespace GamePlay.Player
             {
                 _dataManager.Properties.shield--;
             }
+            else
+            {
+                _dataManager.Properties.life--;
+                transform.position = spawnPoint;
+            }
+        }
+
+        public void EdgeDie()
+        {
+            if (_dataManager.Properties.shield > 0)
+            {
+                _dataManager.Properties.shield = 0;
+            }
 
             _dataManager.Properties.life--;
             transform.position = spawnPoint;

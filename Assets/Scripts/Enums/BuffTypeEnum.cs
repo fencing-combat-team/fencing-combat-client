@@ -6,9 +6,9 @@ namespace Enums
     [Serializable]
     public enum BuffTypeEnum : int
     {
-        JumpBuff = 0,
-        HealthBuff = 1,
+        HealthBuff = 0,
+        SpeedBuff = 1,
         ShieldBuff = 2,
-        SpeedBuff = 3
+        JumpBuff = 3
     }
 }
