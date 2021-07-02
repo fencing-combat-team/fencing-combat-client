@@ -17,6 +17,7 @@ namespace Resources.Weapons
 
         public virtual List<GameObject> Attack(Vector2 position,Vector2 direction){ return null; }
         public virtual List<GameObject> DropAttack(Vector2 position, Vector2 direction) { return null; }
+        public virtual List<GameObject> DropDownAttack(Vector2 position, Vector2 direction) { return null; }
     }
 
     //ÉÈÐÎ¹¥»÷
@@ -145,6 +146,7 @@ namespace Resources.Weapons
             AttackDistance = 2f;
             AttackFeq = 1000f;
             ImpactingForce = 2f;
+            BreakDefending = false;
         }
 
         override public List<GameObject> Attack(Vector2 position, Vector2 direction)
@@ -152,9 +154,9 @@ namespace Resources.Weapons
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position+direction*0.4f+Vector2.down*0.5f-direction*AttackDistance, direction);
+            Ray2D ray = new Ray2D(position+direction*0.6f+Vector2.down*0.5f-direction*AttackDistance, direction);
 
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance * 2f, Color.red);
+            Debug.DrawLine(ray.origin, ray.origin + 2f * AttackDistance * ray.direction, Color.red);
 
             RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f*AttackDistance, Mask);
 
@@ -169,17 +171,45 @@ namespace Resources.Weapons
 
         override public List<GameObject> DropAttack(Vector2 position, Vector2 direction)
         {
+            BreakDefending = true;
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * 0.3f, Vector2.down);
+            Ray2D ray = new Ray2D(position + direction * -0.3f + Vector2.down*0.5f, Vector2.right);
+            Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
 
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
 
-            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, AttackDistance, Mask);
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 1.6f, Mask);
+            RaycastHit2D[] info1 = Physics2D.RaycastAll(ray1.origin, ray1.direction, 1.6f, Mask);
 
             for (int i = 0; i < info.Length; i++)
                 if (info[i].collider != null && !gameObject.Exists(g => g == info[i].collider.gameObject))
+                    gameObject.Add(info[i].collider.gameObject);
+
+            for (int i = 0; i < info1.Length; i++)
+                if (info1[i].collider != null && !gameObject.Exists(g => g == info1[i].collider.gameObject))
+                    gameObject.Add(info1[i].collider.gameObject);
+
+            return gameObject;
+
+        }
+        override public List<GameObject> DropDownAttack(Vector2 position, Vector2 direction)
+        {
+            BreakDefending = false;
+            List<GameObject> gameObject = new List<GameObject>();
+
+            LayerMask Mask = LayerMask.GetMask("Player");
+            Ray2D ray = new Ray2D(position + direction * 0.3f + Vector2.down * 0.5f - direction * AttackDistance, direction);
+
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
+
+            RaycastHit2D[] info = Physics2D.RaycastAll(ray.origin, ray.direction, 2f * AttackDistance, Mask);
+
+            for (int i = 0; i < info.Length; i++)
+                if (info[i].collider != null &&
+                    info[i].collider.gameObject.GetComponent<PlayerInteration>().OnGround() && 
+                    !gameObject.Exists(g => g == info[i].collider.gameObject))
                     gameObject.Add(info[i].collider.gameObject);
             return gameObject;
 

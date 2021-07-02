@@ -24,6 +24,7 @@ namespace GamePlay.Player
         private Weapon _weapon;
         private Sword _sword=new Sword();
         private LongSword _longSword = new LongSword();
+        private Hammer _hammer = new Hammer();
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -54,10 +55,10 @@ namespace GamePlay.Player
         public void DoAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _longSword.Attack(gameObject.transform.position, direction).
+            _hammer.Attack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject ).ForEach(g =>
                 {
-                    if (g.GetComponent<PlayerAttack>()._longSword.NoDefending)
+                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if(!g.GetComponent<PlayerInputHandler>().defending || 
                     g.GetComponent<PlayerInputHandler>().direction ==this.gameObject.GetComponent<PlayerInputHandler>().direction)
@@ -65,22 +66,24 @@ namespace GamePlay.Player
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                           (direction.x * (_longSword.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
+                           (direction.x * (_hammer.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
                         StartCoroutine(Slide(g));
 
                     }
                         
                 });
+            Ray2D ray = new Ray2D((Vector2)(transform.position) + direction * 0.6f + Vector2.down * 0.5f - direction * 2f, direction);
+            StartCoroutine(ShowAttackRay(ray));
 
         }
 
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _longSword.DropAttack(gameObject.transform.position, direction).
+            _hammer.DropAttack(gameObject.transform.position, direction).
                 FindAll(g => g != this.gameObject).ForEach(g =>
                 {
-                    if (g.GetComponent<PlayerAttack>()._longSword.NoDefending)
+                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if(!g.GetComponent<PlayerInputHandler>().defending ||
                     g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
@@ -88,20 +91,62 @@ namespace GamePlay.Player
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_longSword.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _longSword.ImpactingForce);
+                        (direction.x * (_hammer.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
                         StartCoroutine(Slide(g));
 
                     }
 
                 });
 
+            Ray2D ray = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.5f, Vector2.right);
+            Ray2D ray1 = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
+            StartCoroutine(ShowAttackRay(ray));
+            StartCoroutine(ShowAttackRay(ray1));
+
         }
+
+        public void DoDropDownAttack()
+        {
+            Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
+            _hammer.DropDownAttack(gameObject.transform.position, direction).
+                FindAll(g => g != this.gameObject).ForEach(g =>
+                {
+                    if (g.GetComponent<PlayerAttack>()._hammer.NoDefending)
+                        g.GetComponent<PlayerHealth>().Die();
+                    else if (!g.GetComponent<PlayerInputHandler>().defending ||
+                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                        g.GetComponent<PlayerHealth>().Die();
+                    else
+                    {
+                        g.GetComponent<PlayerMovement>().ChangeSpeed
+                        (direction.x * (_hammer.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
+                        StartCoroutine(Slide(g));
+
+                    }
+
+                });
+
+            Ray2D ray = new Ray2D((Vector2)transform.position + direction * -0.3f + Vector2.down * 0.5f, Vector2.right);
+            StartCoroutine(ShowAttackRay(ray));
+
+        }
+
 
         IEnumerator Slide(GameObject gameObject)
         {
 
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<PlayerMovement>().ChangeSpeed(0);
+        }
+
+        IEnumerator ShowAttackRay(Ray2D ray)
+        {
+            for(int i=0;i<60;i++)
+            {
+                Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2f, Color.red);
+                yield return null;
+        }
+
         }
 
     }
