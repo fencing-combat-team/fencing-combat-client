@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
-using Resources.Weapons;
+using GamePlay.Entity;
 using UnityEngine;
 using Utils;
 
@@ -21,7 +21,7 @@ namespace GamePlay.Player
 
         [SerializeField]
         [Tooltip("ÎäÆ÷")]
-        private Weapon _weapon;
+        public Weapon _weapon;
         
         private Sword _sword=new Sword();
         private LongSword _longSword = new LongSword();
@@ -69,7 +69,6 @@ namespace GamePlay.Player
                         g.GetComponent<PlayerMovement>().ChangeSpeed
                            (direction.x * (_hammer.AttackDistance+1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _hammer.ImpactingForce);
                         StartCoroutine(Slide(g));
-
                     }
                         
                 });

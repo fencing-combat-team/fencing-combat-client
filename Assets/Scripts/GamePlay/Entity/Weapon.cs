@@ -2,7 +2,7 @@ using UnityEngine;
 using GamePlay.Player;
 using System.Collections.Generic;
 
-namespace Resources.Weapons
+namespace GamePlay.Entity
 {
     public abstract class Weapon 
     {
