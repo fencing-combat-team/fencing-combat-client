@@ -20,7 +20,7 @@ namespace GamePlay.Buff
         }
         public void SetBuffInfo(int playerId, Entity.Buff buff)
         {
-            var obj = PrefabUtility.InstantiatePrefab(buffInfoPrefab) as GameObject;
+            var obj = Instantiate(buffInfoPrefab);
             obj.GetComponent<BuffInfoBehaviour>().SetBuffInfo(buff);
             GameObject parent = GameObject.Find("/PlayUI/MainPanel/PlayerPanel/BuffStack" + playerId);
             obj.transform.SetParent(parent.transform);

@@ -53,7 +53,7 @@ namespace UI.Play
             for (int i = 0; i < PlayerInGameData.Instance.Properties.Length; i++)
             {
                 buffCountEachPlayer.Add(i, 0);
-                var info = PrefabUtility.InstantiatePrefab(buffStackPrefab) as GameObject;
+                var info = Instantiate(buffStackPrefab);
                 info.transform.SetParent(this.transform);
                 info.transform.position = buffStackPos[i];
                 info.name = "BuffStack" + (i + 1);

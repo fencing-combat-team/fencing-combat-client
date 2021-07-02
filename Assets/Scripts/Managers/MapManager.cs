@@ -38,7 +38,7 @@ namespace Managers
             //玩家
             foreach (var player in GameManager.Instance.CurrentPlayers)
             {
-                var playerObj = PrefabUtility.InstantiatePrefab(playerPrefab) as GameObject;
+                var playerObj = Instantiate(playerPrefab);
                 playerObj.name = player.playerName;
                 var playerData = playerObj.GetComponent<PlayerDataManager>();
                 var playerRender = playerObj.GetComponent<SpriteRenderer>();
@@ -61,7 +61,7 @@ namespace Managers
             var colliders = new List<BoxCollider2D>();
             foreach (var groundPrefab in map.groundColliderPrefabs)
             {
-                var ground = PrefabUtility.InstantiatePrefab(groundPrefab) as GameObject;
+                var ground = Instantiate(groundPrefab);
                 SetTagForAllChildren(ground, "Ground");
                 colliders.AddRange(ground.GetComponentsInChildren<BoxCollider2D>());
             }
@@ -69,7 +69,7 @@ namespace Managers
             
             
             //背景
-            var bg = PrefabUtility.InstantiatePrefab(map.backgroundPrefab) as GameObject;
+            var bg = Instantiate(map.backgroundPrefab);
             bg.transform.position = bg.transform.position + new Vector3(0, 0, 10);
             _autoCamera.background = bg.GetComponent<SpriteRenderer>();
             _autoCamera.ResetBackground();

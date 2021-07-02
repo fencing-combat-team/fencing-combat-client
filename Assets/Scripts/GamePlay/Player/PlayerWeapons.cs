@@ -8,7 +8,6 @@ using GamePlay;
 using GamePlay.Camera;
 using GamePlay.Entity;
 using GamePlay.Player;
-using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,7 +31,7 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
             case WeaponTypeEnum.Sword:
                 playerAtttack._weapon = new Sword();
                 player.GetComponent<Animator>().runtimeAnimatorController =
-                    Resources.Load<AnimatorController>("Animation/Player/Player");
+                    Resources.Load<RuntimeAnimatorController>("Animation/Player/Player");
                 player.GetComponent<SpriteRenderer>().sprite =
                     Resources.Load<Sprite>("Player/Sword/idle");
                 break;

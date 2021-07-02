@@ -59,7 +59,7 @@ namespace Managers
             //玩家
             foreach (var player in GameManager.Instance.CurrentPlayers)
             {
-                var playerObj = PrefabUtility.InstantiatePrefab(playerPrefab) as GameObject;
+                var playerObj = Instantiate(playerPrefab);
                 playerObj.name = player.playerName;
                 var playerData = playerObj.GetComponent<PlayerDataManager>();
                 var playerRender = playerObj.GetComponent<SpriteRenderer>();

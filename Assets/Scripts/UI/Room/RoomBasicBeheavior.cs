@@ -63,7 +63,6 @@ namespace UI.Room
         // Start is called before the first frame update
         void Start()
         {
-            
             Random.InitState((int) DateTime.Now.Ticks);
 
             //初始化颜色选择器
@@ -79,12 +78,12 @@ namespace UI.Room
             }
 
             _roomSettingTextBehaviour = GetComponentInChildren<RoomSettingTextBehaviour>();
-            
+
             if (GameManager.Instance.RoomStatus.isGaming)
             {
                 isPlay = true;
                 Grounds = GameManager.Instance.RoomStatus.GroundsRemained;
-                
+
                 StartCoroutine(nameof(NewLevelSet));
             }
         }
@@ -130,12 +129,19 @@ namespace UI.Room
 
         public void OnExitButtonClicked()
         {
-            isPlay = false;
-            startButton.interactable = true;
-            settingButton.interactable = true;
-            GameManager.Instance.RoomStatus.Reset();
-            StopCoroutine(nameof(NewLevelSet));
-            StopCoroutine(nameof(Timer));
+            if (isPlay == true)
+            {
+                isPlay = false;
+                startButton.interactable = true;
+                settingButton.interactable = true;
+                GameManager.Instance.RoomStatus.Reset();
+                StopCoroutine(nameof(NewLevelSet));
+                StopCoroutine(nameof(Timer));
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
+            }
         }
 
         #endregion
@@ -146,7 +152,6 @@ namespace UI.Room
 
         IEnumerator NewLevelSet()
         {
-            
             //游戏结束判定
             if (Grounds == 0)
             {
