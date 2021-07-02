@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 using GamePlay.Player;
 using GamePlay.Entity;
@@ -20,9 +21,7 @@ public class LongSwordBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerAttack>()._weapon = new LongSword();
-        Sprite spriteB = Resources.Load<Sprite>("Player/LongSword/idle");
-        collision.gameObject.GetComponent<SpriteRenderer>().sprite = spriteB;
+        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.LongSword);
         Destroy(this.gameObject);
     }
 }

@@ -11,6 +11,7 @@ namespace GamePlay.Player
     {
         [Autowired]
         private Animator _animator;
+
         [Autowired]
         private PlayerInputHandler _input;
 
@@ -20,9 +21,9 @@ namespace GamePlay.Player
         private static readonly int Attack = Animator.StringToHash("attack");
 
         [SerializeField]
-        [Tooltip("ÎäÆ÷")]
-        public Weapon _weapon=new Sword();
-        
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½")]
+        public Weapon _weapon = new Sword();
+
 
         private bool attack;
         private float _attackCooldown = 0;
@@ -38,7 +39,7 @@ namespace GamePlay.Player
         {
             attack = _input.attack;
 
-            //¹¥»÷
+            //ï¿½ï¿½ï¿½ï¿½
             if (_attackCooldown > 0)
             {
                 _attackCooldown -= Time.deltaTime;
@@ -48,6 +49,16 @@ namespace GamePlay.Player
                 _animator.SetTrigger(Attack);
                 _attackCooldown = 1000f / _weapon.AttackFeq;
             }
+        }
+
+        public void AttackAfter(float time)
+        {
+            StartCoroutine(AttackAfterInternal(time));
+        }
+        private IEnumerator AttackAfterInternal(float time)
+        {
+            yield return new WaitForSeconds(time);
+            DoAttack();
         }
 
         public void DoAttack()
@@ -84,45 +95,45 @@ namespace GamePlay.Player
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _weapon.DropAttack(gameObject.transform.position, direction).
-                FindAll(g => g != this.gameObject).ForEach(g =>
+            _weapon.DropAttack(gameObject.transform.position, direction).FindAll(g => g != this.gameObject).ForEach(g =>
+            {
+                if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
+                    g.GetComponent<PlayerHealth>().Die();
+                else if (!g.GetComponent<PlayerInputHandler>().defending ||
+                         g.GetComponent<PlayerInputHandler>().direction ==
+                         this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                    g.GetComponent<PlayerHealth>().Die();
+                else
                 {
-                    if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
-                        g.GetComponent<PlayerHealth>().Die();
-                    else if(!g.GetComponent<PlayerInputHandler>().defending ||
-                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
-                        g.GetComponent<PlayerHealth>().Die();
-                    else
-                    {
-                        g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
-                        StartCoroutine(Slide(g));
-
-                    }
-
-                });
-
+                    g.GetComponent<PlayerMovement>().ChangeSpeed
+                    (direction.x *
+                     (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) *
+                     _weapon.ImpactingForce);
+                    StartCoroutine(Slide(g));
+                }
+            });
         }
 
         public void DoDropDownAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _weapon.DropDownAttack(gameObject.transform.position, direction).
-                FindAll(g => g != this.gameObject).ForEach(g =>
+            _weapon.DropDownAttack(gameObject.transform.position, direction).FindAll(g => g != this.gameObject).ForEach(
+                g =>
                 {
                     if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if (!g.GetComponent<PlayerInputHandler>().defending ||
-                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                             g.GetComponent<PlayerInputHandler>().direction ==
+                             this.gameObject.GetComponent<PlayerInputHandler>().direction)
                         g.GetComponent<PlayerHealth>().Die();
                     else
                     {
                         g.GetComponent<PlayerMovement>().ChangeSpeed
-                        (direction.x * (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) * _weapon.ImpactingForce);
+                        (direction.x *
+                         (_weapon.AttackDistance + 1f - Mathf.Abs(g.transform.position.x - this.transform.position.x)) *
+                         _weapon.ImpactingForce);
                         StartCoroutine(Slide(g));
-
                     }
-
                 });
 
         }
@@ -130,20 +141,17 @@ namespace GamePlay.Player
 
         IEnumerator Slide(GameObject gameObject)
         {
-
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<PlayerMovement>().ChangeSpeed(0);
         }
 
         IEnumerator ShowAttackRay(Ray2D ray)
         {
-            for(int i=0;i<60;i++)
+            for (int i = 0; i < 60; i++)
             {
                 Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2f, Color.red);
                 yield return null;
+            }
         }
-
-        }
-
     }
 }

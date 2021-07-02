@@ -82,6 +82,14 @@ namespace Managers
             buffManager.buffPrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Buff/Buff");
 
 
+            
+            //Weapon
+            var weaponManagerObj = new GameObject();
+            buffManagerObj.name = "WeaponManager";
+            var weaponManager = weaponManagerObj.AddComponent<PlayerWeapons>();
+            weaponManager.map = map;
+            weaponManager.hammerPrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Weapon/hammer");
+            weaponManager.longswordPrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Weapon/longSword");
         }
 
         private void SetTagForAllChildren(GameObject go, string tag)

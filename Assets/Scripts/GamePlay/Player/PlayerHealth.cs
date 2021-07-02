@@ -1,4 +1,5 @@
 using Core;
+using Enums;
 using GamePlay.Data;
 using GamePlay.Entity;
 using Managers;
@@ -13,8 +14,9 @@ namespace GamePlay.Player
 
         [Autowired]
         private PlayerDataManager _dataManager;
+
         [Autowired]
-        private PlayerWeapons _weapon;
+        private PlayerAttack _attack;
 
         // Start is called before the first frame update
         void Start()
@@ -43,8 +45,9 @@ namespace GamePlay.Player
                 _dataManager.Properties.life--;
                 transform.position = spawnPoint;
             }
-            _weapon.InitWeapon(this.transform.position, this.GetComponent<PlayerAttack>()._weapon.Id);
-            this.GetComponent<PlayerAttack>()._weapon = new Sword();
+
+            PlayerWeapons.Instance.SpawnWeapon(this.transform.position, _attack._weapon.Id);
+            PlayerWeapons.Instance.SwitchPlayerWeapon(this.gameObject, WeaponTypeEnum.Sword);
         }
 
         public void EdgeDie()

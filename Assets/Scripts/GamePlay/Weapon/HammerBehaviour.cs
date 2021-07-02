@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 using GamePlay.Player;
 using GamePlay.Entity;
@@ -22,9 +23,7 @@ public class HammerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Sprite spriteB = Resources.Load<Sprite>("Player/Hammer/idle");
-        
-        collision.gameObject.GetComponent<PlayerAttack>()._weapon = new Hammer();
+        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.Hammer);
         Destroy(this.gameObject);
     }
 }

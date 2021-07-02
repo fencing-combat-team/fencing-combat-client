@@ -27,6 +27,8 @@ namespace GamePlay.Entity
         public Sprite shortcut;
 
         public MapBuff[] buffs;
+        
+        public MapWeapon[] weapons;
     }
 
 
@@ -36,5 +38,15 @@ namespace GamePlay.Entity
         public BuffTypeEnum buffId;
         public Vector3[] possibleSpawnPoints;
         public float spawnChance;
+    }
+    
+    [Serializable]
+    public class MapWeapon
+    {
+        public WeaponTypeEnum weaponId;
+        public Vector3[] possibleSpawnPoints;
+        public float spawnChance;
+        public float appearBeginTime;
+        public float appearAttemptInterval;
     }
 }

@@ -45,7 +45,6 @@ namespace Core
         void OnDestroy()
         {
             _instance = null;
-            applicationIsQuitting = true;
         }
         void OnApplicationQuit()
         {

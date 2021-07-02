@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 1689565358304176762}
   - component: {fileID: 1689565358304176761}
   - component: {fileID: 1689565358304176760}
-  - component: {fileID: 6030673134128795430}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -103,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1689565358304176717}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: c9745033437eb9741bd75e3773a401ec, type: 2}
+  m_Controller: {fileID: 9100000, guid: f35827416c39a5949910a8d54d3ea86c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -251,17 +250,3 @@ MonoBehaviour:
     playerColor: 0
     score: 0
   playerId: 0
---- !u!114 &6030673134128795430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689565358304176717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719bce8f062ee9c4db0c6b3b79ddc482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hammer: {fileID: 0}
-  longsword: {fileID: 0}
