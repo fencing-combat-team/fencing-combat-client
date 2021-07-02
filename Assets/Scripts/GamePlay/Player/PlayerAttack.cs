@@ -54,8 +54,11 @@ namespace GamePlay.Player
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
             StartCoroutine(DelayAttack());
-            Ray2D ray = new Ray2D((Vector2)transform.position + direction * 0.6f + Vector2.down * 0.5f - direction * 1.5f, direction);
+            Ray2D ray = new Ray2D((Vector2)transform.position + direction * 1.2f + Vector2.down * 0.5f - direction * 1.1f, direction);
+            Ray2D ray1 = new Ray2D((Vector2)transform.position + direction * 1.2f + Vector2.down * 0.5f , Vector2.up);
             StartCoroutine(ShowAttackRay(ray));
+            StartCoroutine(ShowAttackRay(ray1));
+
 
         }
 
@@ -84,13 +87,12 @@ namespace GamePlay.Player
         public void DoDropAttack()
         {
             Vector2 direction = gameObject.GetComponent<PlayerInputHandler>().direction;
-            _weapon.DropAttack(gameObject.transform.position, direction).
-                FindAll(g => g != this.gameObject).ForEach(g =>
+             _weapon.DropAttack(gameObject.transform.position, direction).FindAll(g => g != this.gameObject).ForEach(g =>
                 {
                     if (g.GetComponent<PlayerAttack>()._weapon.NoDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else if(!g.GetComponent<PlayerInputHandler>().defending ||
-                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction)
+                    g.GetComponent<PlayerInputHandler>().direction == this.gameObject.GetComponent<PlayerInputHandler>().direction || _weapon.BreakDefending)
                         g.GetComponent<PlayerHealth>().Die();
                     else
                     {
@@ -123,8 +125,10 @@ namespace GamePlay.Player
 
                     }
 
-                });
 
+                });
+            Ray2D ray = new Ray2D((Vector2)transform.position + direction * 0.87f + Vector2.down * 1.3f - 2f / 3f * 1.1f * direction, direction);
+            StartCoroutine(ShowAttackRay(ray));
         }
 
 
@@ -137,9 +141,9 @@ namespace GamePlay.Player
 
         IEnumerator ShowAttackRay(Ray2D ray)
         {
-            for(int i=0;i<60;i++)
+            for(int i=0;i<400;i++)
             {
-                Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2f, Color.red);
+                Debug.DrawLine(ray.origin, ray.origin + 2f / 3f * ray.direction * 2.2f, Color.red);
                 yield return null;
         }
 
