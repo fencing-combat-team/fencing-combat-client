@@ -24,6 +24,7 @@ public class HammerBehaviour : MonoBehaviour
     {
         Sprite spriteB = Resources.Load<Sprite>("Player/Hammer/idle");
         collision.gameObject.GetComponent<SpriteRenderer>().sprite = spriteB;
+        Debug.Log(spriteB.name);
         collision.gameObject.GetComponent<PlayerAttack>()._weapon = new Hammer();
         Destroy(this.gameObject);
     }

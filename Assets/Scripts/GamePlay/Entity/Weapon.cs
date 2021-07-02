@@ -179,8 +179,8 @@ namespace GamePlay.Entity
             List<GameObject> gameObject = new List<GameObject>();
 
             LayerMask Mask = LayerMask.GetMask("Player");
-            Ray2D ray = new Ray2D(position + direction * -0.3f + Vector2.down*0.5f, Vector2.right);
-            Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, Vector2.right);
+            Ray2D ray = new Ray2D(position + direction * -0.3f + Vector2.down*0.5f, direction);
+            Ray2D ray1 = new Ray2D(position + direction * -0.3f + Vector2.down * 0.8f, direction);
 
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * AttackDistance, Color.red);
             Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * AttackDistance, Color.red);
