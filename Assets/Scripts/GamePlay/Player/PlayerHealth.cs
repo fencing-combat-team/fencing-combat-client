@@ -50,7 +50,7 @@ namespace GamePlay.Player
                 _dataManager.Properties.life--;
                 transform.position = spawnPoint;
             }
-            PlayerWeapons.Instance.SwitchPlayerWeapon(this.gameObject, WeaponTypeEnum.Sword);
+            PlayerWeapons.Instance.SwitchPlayerWeapon(this.gameObject, WeaponTypeEnum.Sword, true);
 
         }
 

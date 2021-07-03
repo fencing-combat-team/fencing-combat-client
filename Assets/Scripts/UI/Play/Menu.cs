@@ -43,7 +43,7 @@ namespace UI.Play
         }
         public void OnExitButtonClicked()
         {
-
+            Application.Quit();
         }
 
         #endregion

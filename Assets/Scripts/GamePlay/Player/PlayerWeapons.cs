@@ -18,10 +18,10 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
 
     public Map map;
 
-    public void SwitchPlayerWeapon(GameObject player, WeaponTypeEnum weapon)
+    public void SwitchPlayerWeapon(GameObject player, WeaponTypeEnum weapon, bool attack)
     {
         var playerAtttack = player.GetComponent<PlayerAttack>();
-        if (!(playerAtttack._weapon is Sword))
+        if (!(playerAtttack._weapon is Sword) && !attack)
         {
             _isSpawned[playerAtttack._weapon.Id] = false;
         }
@@ -71,7 +71,7 @@ public class PlayerWeapons : WeakSingletonBehaviour<PlayerWeapons>
         if (!_isBegin)
         {
             _isBegin = true;
-            Random.InitState((int) DateTime.Now.Ticks);
+            Random.InitState((int)DateTime.Now.Ticks);
         }
     }
 

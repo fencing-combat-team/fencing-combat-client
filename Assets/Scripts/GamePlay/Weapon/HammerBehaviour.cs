@@ -16,7 +16,7 @@ public class HammerBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.Hammer);
+        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.Hammer, false);
         Destroy(this.gameObject);
     }
 }

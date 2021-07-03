@@ -17,7 +17,7 @@ public class LongSwordBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.LongSword);
+        PlayerWeapons.Instance.SwitchPlayerWeapon(collision.gameObject, WeaponTypeEnum.LongSword, false);
         Destroy(this.gameObject);
     }
 }

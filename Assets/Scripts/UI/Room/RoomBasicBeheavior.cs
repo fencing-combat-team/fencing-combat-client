@@ -47,7 +47,7 @@ namespace UI.Room
 
         bool isPlay = false;
 
-        private float Timeleft = 10;
+        private float Timeleft = 5;
 
         //外部会引用到的变量
         public float TimeleftPercent = 1;
@@ -114,10 +114,15 @@ namespace UI.Room
 
         public void OnStartButtonClicked()
         {
+            foreach(var data in GameManager.Instance.PlayerRoomData.players)
+            {
+                data.score = 0;
+
+            }
             isPlay = true;
             GameManager.Instance.RoomStatus.Reset();
             GameManager.Instance.RoomStatus.isGaming = true;
-            GameManager.Instance.RoomStatus.GroundsRemained = roomSetting.round;
+            Grounds = GameManager.Instance.RoomStatus.GroundsRemained = roomSetting.round;
             StartCoroutine(nameof(NewLevelSet));
         }
 
