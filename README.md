@@ -9,5 +9,9 @@ v1.1.1 正式版
 
 ### 项目依赖
 
-- Unity 2020.3.8f
+- Unity 2020.3.9f
+
+### 其他代码仓库
+[早期demo](https://github.com/fencing-combat-team/Jijian/tree/dev)
+[项目文档](https://github.com/fencing-combat-team/fencing-combat-docs)
 
