@@ -15,3 +15,9 @@ v1.1.1 正式版
 [早期demo](https://github.com/fencing-combat-team/Jijian/tree/dev)
 [项目文档](https://github.com/fencing-combat-team/fencing-combat-docs)
 
+### 项目成员
+徐贵龙 warmthdawn
+蒋文涛 Winter-Jon
+郭派峰 Takanashi-Rikka1412
+程枭 DubyKun
+柯昊野 Neko-pararo
